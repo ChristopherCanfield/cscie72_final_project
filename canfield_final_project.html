@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Canfield Final Project</title>
+		<meta name="description" content="CSCI E-72 Canfield Final Project">
+		<meta name="author" content="Christopher D. Canfield">
+		
+		<style type="text/css">
+			.textboxLabelDefault {
+				float: left;
+				display: block;
+				clear: left;
+				text-align: right;
+				padding-right: 10px;
+				margin-top: 8px;
+				margin-bottom: 8px;
+			}
+			
+			.defaultText {
+				margin-top: 8px;
+				margin-bottom: 8px;
+				margin-right: 5px;
+			}
+			
+			.blockDisplay {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<span >
+			<canvas id="gl-canvas" width="750" height="750" class="textboxLabelDefault">
+				Your browser doesn't support the HTML5 canvas element
+			</canvas>
+			
+			<span class="blockDisplay ">
+				<span style="font-weight: bold">Controls:</span><br>
+				Forward: Up or W<br>
+				Backward: Down or S<br>
+				Rotate: Left/Right or A/D<br>
+				Strafe: ctrl-Left/ctrl-Right or ctrl-A/ctrl-D<br>
+				Vertical Up: Q<br>
+				Vertical Down: E
+			</span>
+		</span>
+		
+		<!-- three.js -->
+		<script type="text/javascript" src="../Common/three.js"></script>
+		
+		<!-- Utilities -->
+		<script type="text/javascript" src="TextureManager.js"></script>
+		<script type="text/javascript" src="MoveableCamera.js"></script>
+		<script type="text/javascript" src="util/Colors.js"></script>
+		<script type="text/javascript" src="util/MathHelper.js"></script>
+		<script type="text/javascript" src="util/GeometryHelper.js"></script>
+		
+		<!-- Navigation -->
+		<script type="text/javascript" src="navigation/BoundingBox.js"></script>
+		<script type="text/javascript" src="navigation/NavPoint.js"></script>
+		
+		<!-- Scene entities -->
+		<script type="text/javascript" src="drawable/Drawable.js"></script>
+        <script type="text/javascript" src="drawable/Ground.js"></script>
+        <script type="text/javascript" src="drawable/Ocean.js"></script>
+        <script type="text/javascript" src="drawable/Tree.js"></script>
+        <script type="text/javascript" src="drawable/Hill.js"></script>
+        <script type="text/javascript" src="drawable/StoneWall.js"></script>
+        <script type="text/javascript" src="drawable/BallGuy.js"></script>
+        <script type="text/javascript" src="drawable/BallChild.js"></script>
+        <script type="text/javascript" src="drawable/Bird.js"></script>
+        <script type="text/javascript" src="drawable/Sphere.js"></script>
+		<script type="text/javascript" src="drawable/LostWorldScene.js"></script>
+		
+		<!-- The starting point of the program. -->
+		<script type="text/javascript" src="main.js"></script>
+		
+		<div style="clear:both">
+			<footer>
+			    Christopher D. Canfield<br>
+			    CSCI E-72 Final Project
+			</footer>
+		</div>
+	</body>
+</html>
