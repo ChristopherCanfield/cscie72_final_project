@@ -1,6 +1,7 @@
 /**
  * @author Christopher D. Canfield
  * MathHelper.js
+ * October 2013
  */
 
 

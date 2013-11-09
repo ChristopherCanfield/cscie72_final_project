@@ -1,6 +1,7 @@
 /**
  * @author Christopher D. Canfield
  * TextureManager.js
+ * October 2013; Updated November 2013
  */
 
 

@@ -2,6 +2,7 @@
  * @author Christopher D. Canfield
  * CSCI E-72 HW5
  * 2013-10-22
+ * Updated November 2013
  */
 
 
@@ -10,7 +11,7 @@
  */
 var gl;
 
-// Constants
+// OpenGL Constants
 var glCOLOR_BUFFER_BIT = true;
 var glDEPTH_BUFFER_BIT = true;
 
@@ -18,16 +19,27 @@ var cdc = {
     /**
      * Processes camera movements.
      */
-    moveableCamera: null, 
+    camera: null, 
     
     /**
      * The root of the scene graph.
      */
     scene: null,
     
+    /**
+     * Assists with loading textures.
+     */
     textureManager: null,
     
-    timer: null
+    /**
+     * Timer used for logic, movement & animation.
+     */
+    timer: null,
+    
+    /**
+     * Specifies whether to log events to console.
+     */
+    debug: false
 };
 
 init();
@@ -44,6 +56,8 @@ function init()
         antialias: true 
     };
     
+    cdc.debug = true;
+    
     // Create the webGL render.
     gl = new THREE.WebGLRenderer(glParameters);
     gl.setClearColor(Colors.SKY_GETTING_DARK_4); // gl.clearColor(r, g, b);
@@ -52,12 +66,12 @@ function init()
     cdc.textureManager = new TextureManager(gl);
     
     // Wrap the camera so it can be moved.
-    cdc.moveableCamera = new MoveableCamera(window, glCanvas.width, glCanvas.height);
+    cdc.camera = new Camera(window, glCanvas.width, glCanvas.height);
     
     // Create the scene graph root node, and populate the scene.
-    cdc.scene = new LostWorldScene(gl);
-    cdc.scene.createScene();
-    cdc.scene.getThreeJsScene().add(cdc.moveableCamera.yawObject);
+   // cdc.scene = new VillageScene(gl);
+   // cdc.scene.createScene();
+   // cdc.scene.getThreeJsScene().add(cdc.camera.yawObject);
     
     cdc.timer = new THREE.Clock();
     cdc.timer.start();
@@ -72,8 +86,9 @@ function init()
 function render()
 {
     gl.clear(glCOLOR_BUFFER_BIT, glDEPTH_BUFFER_BIT); //gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.render(cdc.scene.getThreeJsScene(), cdc.moveableCamera.getCamera());
+    gl.render(cdc.scene.getThreeJsScene(), cdc.camera.getThreeJSCamera());
     
+    // Process logic, movement and animation updates.
     cdc.scene.update(cdc.timer.getDelta());
     
     window.requestAnimationFrame(render);

@@ -1,6 +1,7 @@
 /**
  * @author Christopher D. Canfield
  * GeometryHelper.js
+ * October 2013
  */
 
 

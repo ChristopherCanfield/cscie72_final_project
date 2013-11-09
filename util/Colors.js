@@ -1,6 +1,7 @@
 /**
  * @author Christopher D. Canfield
  * Colors.js
+ * October 2013
  */
 
 
