@@ -8,14 +8,15 @@
 
 /**
  * Processes user input.
- * @param {Object} canvas Reference to the html canvas.
+ * @param {int} canvasWidth The width of the canvas.
+ * @param {int} canvasHeight The height of the canvas.
  * @param {Camera} camera Reference to the Camera object.
  */
-function InputManager(canvas, camera) {
+function InputManager(canvasWidth, canvasHeight, camera) {
     this.camera = camera;
     
-    this.lastMouseX = canvas.width / 2.0;
-    this.lastMosueY = canvas.height / 2.0;
+    this.lastMouseX = canvasWidth / 2.0;
+    this.lastMosueY = canvasHeight / 2.0;
     
     // Set the keydown event handler, and bind this object's "this" pointer to it. 
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this

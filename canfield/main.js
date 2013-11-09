@@ -32,6 +32,11 @@ var cdc = {
     textureManager: null,
     
     /**
+     * Processes user input.
+     */
+    inputManager: null,
+    
+    /**
      * Timer used for logic, movement & animation.
      */
     timer: null,
@@ -53,7 +58,7 @@ function init()
     var glParameters = {
         canvas: glCanvas,
         alpha: false,
-        antialias: true 
+        antialias: true     // TODO: allow user to turn this on or off.
     };
     
     cdc.debug = true;
@@ -67,6 +72,7 @@ function init()
     
     // Wrap the camera so it can be moved.
     cdc.camera = new Camera(window, glCanvas.width, glCanvas.height);
+    cdc.inputManager = new InputManager(glCanvas.width, glCanvas.height, cdc.camera);
     
     // Create the scene graph root node, and populate the scene.
    // cdc.scene = new VillageScene(gl);
