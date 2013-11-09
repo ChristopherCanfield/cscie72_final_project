@@ -32,7 +32,7 @@ function Camera(window, glCanvasWidth, glCanvasHeight) {
     this.yawObject.rotation.y = 0;
     this.yawObject.add(this.pitchObject);
     
-    this.rotationSpeed = 0.1;
+    this.rotationSpeed = 0.01;
     this.movementSpeed = 10.15;
     this.movementSpeedY = 10.025;
     
@@ -59,16 +59,16 @@ Camera.prototype.update = function() {
     this.yawObject.translateZ(this.velocity.z);
 };
 
-Camera.prototype.rotateLeft = function() {
-    this.yawObject.rotation.y += this.rotationSpeed;
+Camera.prototype.rotateLeft = function(amount) {
+    this.yawObject.rotation.y += this.rotationSpeed * amount;
     this.velocity.x = 0;
     this.velocity.y = 0;
     this.velocity.z = 0;
     this.update();
 };
 
-Camera.prototype.rotateRight = function() {
-    this.yawObject.rotation.y -= this.rotationSpeed;
+Camera.prototype.rotateRight = function(amount) {
+    this.yawObject.rotation.y -= this.rotationSpeed * amount;
     this.velocity.x = 0;
     this.velocity.y = 0;
     this.velocity.z = 0;

@@ -29,7 +29,7 @@ function InputManager(canvasWidth, canvasHeight, camera) {
  * Processes key down events.
  * @param {Object} e A keydown event object.
  */
-Camera.prototype.keyDown = function(e) {
+InputManager.prototype.keyDown = function(e) {
     if (typeof KeyEvent == "undefined") {
         var KeyEvent = {
             DOM_VK_LEFT: 37,
@@ -52,12 +52,12 @@ Camera.prototype.keyDown = function(e) {
     {
         if (e.ctrlKey === true)
         {
-            this.strafeLeft();
+            this.camera.strafeLeft();
         }
         else
         {
             if (cdc.debug) console.log("Key: Left");
-            this.rotateLeft();
+            this.camera.rotateLeft();
         }
         return false;
     }
@@ -66,12 +66,12 @@ Camera.prototype.keyDown = function(e) {
     {
         if (e.ctrlKey === true)
         {
-            this.strafeRight();
+            this.camera.strafeRight();
         }
         else
         {
             if (cdc.debug) console.log("Key: Right");
-            this.rotateRight();
+            this.camera.rotateRight();
         }
         return false;
     }
@@ -79,7 +79,7 @@ Camera.prototype.keyDown = function(e) {
             keyCode == KeyEvent.DOM_VK_W)
     {
         if (cdc.debug) console.log("Key: Up");
-        this.moveForward();
+        this.camera.moveForward();
         return false;
  
     }
@@ -87,7 +87,7 @@ Camera.prototype.keyDown = function(e) {
             keyCode == KeyEvent.DOM_VK_S)
     {
         if (cdc.debug) console.log("Key: Down");
-        this.moveBackward();
+        this.camera.moveBackward();
         return false;
     }
     
@@ -110,16 +110,16 @@ Camera.prototype.keyDown = function(e) {
  * Processes mouse move events.
  * @param {Object} e A mousemove event object.
  */
-Camera.prototype.mouseMove = function(e) {
+InputManager.prototype.mouseMove = function(e) {
     if (e.clientX > this.lastMouseX)
     {
         if (cdc.debug) console.log("mouse move x right: " + e.clientX);
-        this.rotateRight();
+        this.camera.rotateRight(e.clientX - this.lastMouseX);
     }
     else if (e.clientX < this.lastMouseX)
     {
         if (cdc.debug) console.log("mouse move x left: " + e.clientX);
-        this.rotateLeft();
+        this.camera.rotateLeft(this.lastMouseX - e.clientX);
     }
     this.lastMouseX = e.clientX;
     
@@ -127,7 +127,7 @@ Camera.prototype.mouseMove = function(e) {
     {
         if (cdc.debug) console.log("mouse move y up: " + e.clientY);
     }
-    else if (e.clientY < this.lastMouseX)
+    else if (e.clientY < this.lastMouseY)
     {
         if (cdc.debug) console.log("mouse move y down: " + e.clientY);
     }
