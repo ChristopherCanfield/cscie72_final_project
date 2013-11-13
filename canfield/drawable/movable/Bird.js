@@ -73,7 +73,7 @@ Bird.prototype = Object.create(Drawable.prototype);
 Bird.prototype.constructor = Bird;
 
 
-Bird.prototype.animate = function(deltaTime) {
+Bird.prototype.updateThis = function(deltaTime) {
     // Update the BallChild's movement.
     this.wrapper.position.x += this.movementX * 0.2;
     this.wrapper.position.z += this.movementZ * 0.2;

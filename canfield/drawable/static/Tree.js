@@ -5,16 +5,19 @@
 
 
 /**
- * Creates a tree.
+ * A tree.
  * @param {Object} x
  * @param {Object} z
- * @param {Object} height
+ * @param {Object} height 
  * @param {Object} barkTexturePath
  * @param {Object} leavesRadius
  * @param {Object} leavesTexturePath
- * @param {integer} leavesTextureRepeat
+ * @param {integer} leavesTextureRepeat The number of times to repeat the leaves texture.
+ * @param {Zone} zone The zone that the tree belongs to.
  */
-function Tree(x, z, height, barkTexturePath, leavesRadius, leavesTexturePath, leavesTextureRepeat) {
+function Tree(x, z, height, barkTexturePath, 
+        leavesRadius, leavesTexturePath, leavesTextureRepeat,
+        zone) {
     Drawable.call(this);
     
     var texture = cdc.textureManager.getTexture(barkTexturePath);
@@ -46,6 +49,12 @@ function Tree(x, z, height, barkTexturePath, leavesRadius, leavesTexturePath, le
     leavesMesh.position.x = x;
     leavesMesh.position.y = Ground.Y_TOP + height;
     leavesMesh.position.z = z;
+    
+    // TODO: set the blockedArea for this true.
+    if (typeof zone != 'undefined' && this.blockedArea != null)
+    {
+        zone.add(this.blockedArea);
+    }
 }
 
 Tree.prototype = Object.create(Drawable.prototype);

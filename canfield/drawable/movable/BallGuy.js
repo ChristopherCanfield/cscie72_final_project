@@ -102,7 +102,7 @@ BallGuy.prototype = Object.create(Drawable.prototype);
 BallGuy.prototype.constructor = BallGuy;
 
 
-BallGuy.prototype.animate = function(deltaTime) {
+BallGuy.prototype.updateThis = function(deltaTime) {
     if (this.movementX > 0.001)
     {
         this.ballMesh.rotation.z += 0.008 * this.movementX;

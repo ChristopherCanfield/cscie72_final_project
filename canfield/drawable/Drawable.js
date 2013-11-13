@@ -15,13 +15,22 @@ function Drawable() {
     // They are drawn when this object is drawn.
     this.drawables = [];
     
+    // The drawable's bounding box. The object is not required
+    // to have a bounding box. Type: BoundingBox.
     this.boundingBox = null;
     
+    // The area that the drawable blocks. The object is not required
+    // to block an area. Type: BlockedArea.
+    this.blockedArea = null;
+    
+    // Reference to the nav graph that the drawable will use.
     this.navGraph = null;
     this.currentNavTarget = null;
     this.navigationBoundingBox = null;
     this.lastNavTargetId = -1;
     
+    // The x & z movement and y rotation that is applied per call of 
+    // the update method.
     this.movementX = 0.0;
     this.movementZ = 0.0;
     this.rotationY = 0.0;
@@ -54,17 +63,19 @@ Drawable.prototype.addToThreeJsScene = function(threeJsScene) {
 };
 
 
-
+/**
+ *Calls the update and updateThis methods on all attached drawables. 
+ */
 Drawable.prototype.update = function(deltaTime) {
     for (var i = 0; i < this.drawables.length; ++i)
     {
-        this.drawables[i].animate(deltaTime);
+        this.drawables[i].updateThis(deltaTime);
         this.drawables[i].update(deltaTime);        
     }    
 };
 
-Drawable.prototype.animate = function(deltaTime) {
-    // Override in inheritting class if this functionality is needed.
+Drawable.prototype.updateThis = function(deltaTime) {
+    // Override in inheriting class if this functionality is needed.
 };
 
 

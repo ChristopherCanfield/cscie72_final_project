@@ -110,7 +110,7 @@ BallChild.prototype = Object.create(Drawable.prototype);
 BallChild.prototype.constructor = BallChild;
 
 
-BallChild.prototype.animate = function(deltaTime) {
+BallChild.prototype.updateThis = function(deltaTime) {
     if (this.movementX > 0.001)
     {
         this.ballMesh.rotation.z += 0.008 * this.movementX;
