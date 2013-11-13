@@ -1,6 +1,7 @@
 /**
  * @author Christopher D. Canfield
  * BallGuy.js
+ * October 2013
  */
 
 

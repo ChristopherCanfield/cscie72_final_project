@@ -1,6 +1,7 @@
 /**
  * @author Christopher D. Canfield
  * Drawable.js
+ * October 2013
  */
 
 
@@ -83,6 +84,8 @@ Drawable.prototype.intersects = function(otherBox) {
     }
 };
 
+
+// TODO (11/13/2013): These should not be members of drawable.
 
 Drawable.prototype.setRandomNavPointTarget = function() {
     if (this.navGraph == null)

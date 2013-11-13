@@ -1,22 +1,23 @@
 /**
  * @author Christopher D. Canfield
- * VillageScene.js
+ * GameScene.js
+ * October 2013
  */
 
 
 /**
  * The root node for the scene.
  */
-function VillageScene() {
+function GameScene() {
     Drawable.call(this);
     
     this.threeJsScene = new THREE.Scene();
 }
 
-VillageScene.prototype = Object.create(Drawable.prototype);
-VillageScene.prototype.constructor = VillageScene;
+GameScene.prototype = Object.create(Drawable.prototype);
+GameScene.prototype.constructor = VillageScene;
 
-VillageScene.prototype.createScene = function() {
+GameScene.prototype.createScene = function() {
     // Create the scene.
     
     // Create the navigation graph.
@@ -71,12 +72,16 @@ VillageScene.prototype.createScene = function() {
 };
 
 
-VillageScene.prototype.getThreeJsScene = function() {
+GameScene.prototype.getThreeJsScene = function() {
     return this.threeJsScene;    
 };
 
 
-VillageScene.prototype.addTrees = function() {
+
+
+
+
+GameScene.prototype.addTrees = function() {
     // Tree(x, z, height, barkTexturePath, leavesRadius, leavesTexturePath, leavesTextureRepeat)
     
     // Forest, to the left of the starting position:
@@ -140,7 +145,7 @@ VillageScene.prototype.addTrees = function() {
     this.threeJsScene.add(forestLight3);
 };
 
-VillageScene.prototype.addHills = function() {
+GameScene.prototype.addHills = function() {
     this.add(new Hill(150, -2150, 50, Textures.ROCK_1, 3));
     this.add(new Hill(60, -2600, 145, Textures.ROCK_4, 1));
     this.add(new Hill(-50, -2300, 80, Textures.ROCK_2, 1));
@@ -160,7 +165,7 @@ VillageScene.prototype.addHills = function() {
     this.threeJsScene.add(light3);
 };
 
-VillageScene.prototype.addWalls = function() {
+GameScene.prototype.addWalls = function() {
     // StoneWall(x, z, width, height, depth, texturePath, textureRepeatX, textureRepeatY, textureRepeatXTop)
     
     this.add(new StoneWall(0, -500, 1000, 30, 10, 
@@ -180,7 +185,7 @@ VillageScene.prototype.addWalls = function() {
     this.add(stoneWallRight);
 };
 
-VillageScene.prototype.addLights = function() {
+GameScene.prototype.addLights = function() {
     var light1 = new THREE.PointLight(0xFFF07C, 3, 110); 
     light1.position.set(0, 65, -50); 
     this.threeJsScene.add(light1);
@@ -218,7 +223,7 @@ VillageScene.prototype.addLights = function() {
 };
 
 
-VillageScene.prototype.createNavGraph = function() {
+GameScene.prototype.createNavGraph = function() {
     this.navGraph = [];
     
     // Create the navigation nodes.

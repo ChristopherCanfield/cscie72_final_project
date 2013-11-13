@@ -18,7 +18,16 @@ MathHelper.degreesToRadians = function(degrees) {
     return (degrees * Math.PI / 180.0);
 };
 
-
 MathHelper.radiansToDegrees = function(radians) {
     return (radians * 180.0 / Math.PI);
+};
+
+
+/**
+ * From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FMath%2Frandom
+ * @param {Object} min
+ * @param {Object} max
+ */
+MathHelper.randomInt = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 };

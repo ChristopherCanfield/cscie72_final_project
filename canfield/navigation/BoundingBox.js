@@ -32,9 +32,11 @@ BoundingBox.prototype.intersects = function(otherBox) {
         return false;
     }
     
-    return (BoundingBox.overlapsX(this, otherBox) &&
-            BoundingBox.overlapsY(this, otherBox) &&
-            BoundingBox.overlapsZ(this, otherBox));    
+    var intersectsX = BoundingBox.overlapsX(this, otherBox);
+    var intersectsY = BoundingBox.overlapsY(this, otherBox);
+    var intersectsZ = BoundingBox.overlapsZ(this, otherBox);   
+    
+    return (intersectsX && intersectsY && intersectsZ);
 };
 
 
