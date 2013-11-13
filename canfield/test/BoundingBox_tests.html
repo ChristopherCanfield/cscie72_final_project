@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>BoundingBox_tests</title>
+		<meta name="description" content="">
+		<meta name="author" content="Christopher D. Canfield">
+		<script type="text/javascript" src="../navigation/BoundingBox.js"></script>
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>BoundingBox_tests</h1>
+			</header>
+			Successful tests return true in the console.
+
+			<script>
+				var box1 = new BoundingBox(1, 3, 4, 3, 1, 3);
+				var box2 = new BoundingBox(1, 3, 4, 3, 1, 3);
+				var testResult = box1.intersects(box2);
+				console.log("Same size & location: " + testResult);
+				
+				box2 = new BoundingBox(2, 1, 3, 2, 2, 1);
+				testResult = box1.intersects(box2);
+				console.log("Should intersect: " + testResult);
+				
+				testResult = BoundingBox.overlapsX(box1, box2);
+				console.log("Overlaps X: " + testResult);
+				
+				testResult = BoundingBox.overlapsY(box1, box2);
+				console.log("Overlaps Y: " + testResult);
+				
+				testResult = BoundingBox.overlapsZ(box1, box2);
+				console.log("Overlaps Z: " + testResult);
+				
+				box2 = new BoundingBox(100, 1, 4, 3, 1, 3);
+				testResult = !box1.intersects(box2);
+				console.log("x does not intersect:" + testResult);
+				
+				box2 = new BoundingBox(1, 3, 100, 3, 1, 3);
+				testResult = !box1.intersects(box2);
+				console.log("y does not intersect: " + testResult);
+				
+				box2 = new BoundingBox(1, 3, 4, 3, 100, 3);
+				testResult = !box1.intersects(box2);
+				console.log("z does not intersect: " + testResult);
+				
+				box2 = new BoundingBox(100, 3, 400, 3, 100, 3);
+				testResult = !box1.intersects(box2);
+				console.log("Nothing intersects: " + testResult);
+				
+			</script>
+
+		</div>
+	</body>
+</html>

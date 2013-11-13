@@ -5,14 +5,12 @@
  */
 
 
-function BoundingBox(xLeft, width, yTop, height, zFront, depth) {
-    Drawable.call(this);
-    
+function BoundingBox(xLeft, width, yBottom, height, zBack, depth) {
     this.xLeft = xLeft;
     this.width = width;
-    this.yTop = yTop;
+    this.yBottom = yBottom;
     this.height = height;
-    this.zFront = zFront;
+    this.zBack = zBack;
     this.depth = depth;
     
     this.id = BoundingBox.id;
@@ -43,20 +41,20 @@ BoundingBox.prototype.intersects = function(otherBox) {
 BoundingBox.overlapsX = function(box1, box2) {
     return ((box1.xLeft <= (box2.xLeft + box2.width) &&
             box1.xLeft >= box2.xLeft) ||
-            ((box1.xLeft + box1.width) >= box2.left &&
+            ((box1.xLeft + box1.width) >= box2.xLeft &&
             box1.xLeft <= box2.xLeft)); 
 };
 
 BoundingBox.overlapsY = function(box1, box2) {
-    return ((box1.yTop >= (box2.yTop - box2.height) &&
-            box1.yTop <= box2.yTop) ||
-            ((box1.yTop - box1.height) <= box2.yTop &&
-            box1.yTop >= box2.yTop)); 
+    return ((box1.yBottom <= (box2.yBottom + box2.height) &&
+            box1.yBottom >= box2.yBottom) ||
+            ((box1.yBottom + box1.height) >= box2.yBottom &&
+            box1.yBottom <= box2.yBottom)); 
 };
 
 BoundingBox.overlapsZ = function(box1, box2) {
-    return ((box1.zFront >= (box2.zFront - box2.depth) &&
-            box1.zFront <= box2.zFront) ||
-            ((box1.zFront - box1.depth) <= box2.zFront &&
-            box1.zFront >= box2.zFront)); 
+    return ((box1.zBack <= (box2.zBack + box2.depth) &&
+            box1.zBack >= box2.zBack) ||
+            ((box1.zBack + box1.depth) >= box2.zBack &&
+            box1.zBack <= box2.zBack)); 
 };
