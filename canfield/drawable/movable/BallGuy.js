@@ -83,6 +83,8 @@ function BallGuy(scene, navGraph, initialNavPointTarget, lastNavPointId, x, z) {
     this.wrapper.add(this.ballMesh);
     
     // Add bounding box.
+    // TODO (2013-11-13): BoundingBox's y and z parameters have been changed to bottom and back, 
+    // from top and bottom. This needs to be fixed.
     this.boundingBox = new BoundingBox(x, 20, 20, 20, z, 20);
     
     // Set the navigation target.

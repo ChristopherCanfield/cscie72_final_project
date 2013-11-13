@@ -89,6 +89,8 @@ function BallChild(ballGuy, x, z) {
     this.wrapper.scale = new THREE.Vector3(0.35, 0.35, 0.35);
     
     // Add bounding box.
+    // TODO (2013-11-13): BoundingBox's y and z parameters have been changed to bottom and back, 
+    // from top and bottom. This needs to be fixed.
     this.boundingBox = new BoundingBox(this.wrapper.position.x, 20, 20, 25, this.wrapper.position.z, 20);
     console.log("Bounding Box: " + this.wrapper.position.x + ", " + this.wrapper.position.z);
     
