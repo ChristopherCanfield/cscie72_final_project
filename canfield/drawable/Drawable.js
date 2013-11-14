@@ -17,10 +17,12 @@ function Drawable() {
     
     // The drawable's bounding box. The object is not required
     // to have a bounding box. Type: BoundingBox.
+    // Remember: If this is set, this must also be moved when the object is moved.
     this.boundingBox = null;
     
     // The area that the drawable blocks. The object is not required
     // to block an area. Type: BlockedArea.
+    // Remember: If this is set, this must also be moved when the object is moved.
     this.blockedArea = null;
     
     // Reference to the nav graph that the drawable will use.
