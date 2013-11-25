@@ -17,3 +17,7 @@ function BlockedArea(boundingBox) {
 BlockedArea.prototype.getBoundingBox = function() {
     return this.boundingBox;    
 };
+
+BlockedArea.prototype.intersects = function(boundingBox) {
+    return this.boundingBox.intersects(boundingBox);
+};

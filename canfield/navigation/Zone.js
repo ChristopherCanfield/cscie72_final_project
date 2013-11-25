@@ -25,6 +25,20 @@ Zone.prototype.getBlockedAreas = function() {
 };
 
 /**
+ * Returns true if the specified bounding box intersects with at least one
+ * of the blocked areas in this zone.
+ */
+Zone.prototype.intersectsWithBlockedArea = function(boundingBox) {
+    for (var i = 0; i < this.blockedAreas.length; ++i)
+    {
+        if (this.blockedAreas[i].intersects(boundingBox))
+        {
+            return true;
+        }
+    }    
+};
+
+/**
  * Adds a blocked area to the zone. The Player can't move through a blocked area.
  * @param {BlockedArea} blockedArea
  */

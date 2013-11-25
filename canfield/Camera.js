@@ -188,8 +188,7 @@ Camera.prototype.isValidMove = function(movement) {
     
     for (var i = 0; i < touchedZones.length; ++i)
     {
-        var blockedAreas = touchedZones[i].getBlockedAreas();
-        if (blockedAreas.length > 0)
+        if (touchedZones[i].intersectsWithBlockedArea(newBoundingBox))
         {
             return true;
         }
