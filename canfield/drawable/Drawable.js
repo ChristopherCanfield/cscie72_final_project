@@ -36,7 +36,7 @@ function Drawable() {
     this.movementX = 0.0;
     this.movementZ = 0.0;
     this.rotationY = 0.0;
-};
+}
 
 
 /**
