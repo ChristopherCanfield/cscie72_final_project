@@ -160,7 +160,14 @@ Camera.prototype.getCameraTarget = function() {
 };
 
 Camera.prototype.isValidMove = function(movement) {
-    var clonedYawObject = this.yawObject.clone();
+    var clonedYawObject = new THREE.Object3D();
+    clonedYawObject.position.x = this.yawObject.position.x;
+    clonedYawObject.position.y = this.yawObject.position.y;
+    clonedYawObject.position.z = this.yawObject.position.z;
+    clonedYawObject.rotation.x = this.yawObject.rotation.x;
+    clonedYawObject.rotation.y = this.yawObject.rotation.y;
+    clonedYawObject.rotation.z = this.yawObject.rotation.z;
+    
     clonedYawObject.translateZ(this.movementSpeed);
     var newBoundingBox = new BoundingBox(clonedYawObject.position.x, this.width,
             clonedYawObject.position.y, this.height,
