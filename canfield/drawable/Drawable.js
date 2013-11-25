@@ -53,7 +53,7 @@ Drawable.prototype.add = function(drawable) {
  * @param {THREE.Scene} threeJsScene the three.js scene object.
  */
 Drawable.prototype.addToThreeJsScene = function(threeJsScene) {
-    if (this.threeJsSceneObject != null)
+    if (this.threeJsSceneObject !== null)
     {
         threeJsScene.add(this.threeJsSceneObject);
     }

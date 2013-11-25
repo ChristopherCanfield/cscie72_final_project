@@ -8,7 +8,7 @@
 
 function Zones() {
     this.zones = [];
-};
+}
 
 
 /**

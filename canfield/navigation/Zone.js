@@ -9,7 +9,7 @@
 function Zone(boundingBox) {
     this.boundingBox = boundingBox;
     this.blockedAreas = [];
-};
+}
 
 Zone.prototype.getBoundingBox = function() {
     return this.boundingBox;

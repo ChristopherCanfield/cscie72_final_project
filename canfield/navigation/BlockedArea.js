@@ -12,7 +12,7 @@
 function BlockedArea(boundingBox) {
     this.boundingBox = boundingBox;
     this.id = MathHelper.randomInt();
-};
+}
 
 BlockedArea.prototype.getBoundingBox = function() {
     return this.boundingBox;    
