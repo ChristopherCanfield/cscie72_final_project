@@ -20,6 +20,10 @@ Zone.prototype.setBoundingBox = function(boundingBox) {
 };
 
 
+Zone.prototype.getBlockedAreas = function() {
+    return this.blockedAreas;
+};
+
 /**
  * Adds a blocked area to the zone. The Player can't move through a blocked area.
  * @param {BlockedArea} blockedArea

@@ -15,7 +15,14 @@
 
 
 
-function Camera(window, glCanvasWidth, glCanvasHeight) {
+/**
+ * 
+ * @param {Object} window
+ * @param {int} glCanvasWidth
+ * @param {int} glCanvasHeight
+ * @param {Zones} zones
+ */
+function Camera(window, glCanvasWidth, glCanvasHeight, zones) {
     // Create the camera.
     this.camera = new THREE.PerspectiveCamera(45, glCanvasWidth / glCanvasHeight, 0.1, 10000.0); // 0.1, 10
     this.cameraTarget = new THREE.Vector3(0.0, 0.0, 0.0);
@@ -39,6 +46,11 @@ function Camera(window, glCanvasWidth, glCanvasHeight) {
     this.velocity = new THREE.Vector3();
     
     this.target = null;
+    this.zones = zones;
+    
+    this.width = 30;
+    this.height = 30;
+    this.depth = 20;
 };
 
 
@@ -83,10 +95,16 @@ Camera.prototype.moveForward = function() {
 };
 
 Camera.prototype.moveBackward = function() {
-    this.velocity.x = 0;
-    this.velocity.y = 0;
-    this.velocity.z = this.movementSpeed;
-    this.update();
+    
+    
+    
+    if (isValidMove(this.movementSpeed))
+    {
+        this.velocity.x = 0;
+        this.velocity.y = 0;
+        this.velocity.z = this.movementSpeed;
+        this.update();
+    }
 };
 
 Camera.prototype.upY = function() {
@@ -121,3 +139,20 @@ Camera.prototype.getCameraTarget = function() {
     return this.cameraTarget;   
 };
 
+Camera.prototype.isValidMove = function(movement) {
+    var clonedYawObject = this.yawObject.clone();
+    clonedYawObject.translateZ(this.movementSpeed);
+    var newBoundingBox = new BoundingBox(clonedYawObject.position.x, this.width,
+            clonedYawObject.position.y, this.height,
+            clonedYawObject.position.z, this.depth);
+    var touchedZones = this.zones.getCurrentZones(newBoundingBox);
+    
+    for (var i = 0; i < touchedZones.length; ++i)
+    {
+        if (touchedZones[i].getBlockedAreas().length > 0)
+        {
+            return true;
+        }
+    }
+    return false;
+};
