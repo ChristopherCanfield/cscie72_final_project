@@ -23,6 +23,10 @@ Zones.prototype.add = function(zone) {
     this.zones.push(zone);
 };
 
+Zones.prototype.getZones = function() {
+    return this.zones;
+};
+
 /**
  * Returns a list of zones that the bounding box touches. Note that multiple
  * zones may be returned.
