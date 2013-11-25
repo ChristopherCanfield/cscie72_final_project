@@ -48,8 +48,8 @@ function Camera(window, zones, glCanvasWidth, glCanvasHeight) {
     this.target = null;
     this.zones = zones;
     
-    this.width = 30;
-    this.height = 30;
+    this.width = 20;
+    this.height = 20;
     this.depth = 20;
 };
 
@@ -93,7 +93,7 @@ Camera.prototype.rotateRight = function(amount) {
  * @return true if the camera moved, or false if not.
  */
 Camera.prototype.moveForward = function() {
-    if (isValidMove(-this.movementSpeed))
+    if (this.isValidMove(-this.movementSpeed))
     {
         this.velocity.x = 0;
         this.velocity.y = 0;
@@ -113,7 +113,7 @@ Camera.prototype.moveForward = function() {
  * @return true if the camera moved, or false if not.
  */
 Camera.prototype.moveBackward = function() {
-    if (isValidMove(this.movementSpeed))
+    if (this.isValidMove(this.movementSpeed))
     {
         this.velocity.x = 0;
         this.velocity.y = 0;

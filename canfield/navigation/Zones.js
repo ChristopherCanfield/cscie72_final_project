@@ -16,11 +16,11 @@ function Zones() {
  * @param {Zone} zone
  */
 Zones.prototype.add = function(zone) {
-    if (typeof zone != 'Zone')
-    {
-        throw 'Invalid parameter provided to Zones.add. Expted Zone, founded ' + (typeof zone);
-    }
-    this.zones.add(zone);
+    // if (zone instanceof Zone)
+    // {
+        // throw 'Invalid parameter provided to Zones.add. Expected Zone, found ' + (typeof zone);
+    // }
+    this.zones.push(zone);
 };
 
 /**
@@ -34,7 +34,7 @@ Zones.prototype.getCurrentZones = function(boundingBox) {
     {
         if (zones[i].getBoundingBox().intersects(boundingBox))
         {
-            currentZones.add(zones[i]);
+            currentZones.push(zones[i]);
         }
     }
     return currentZones;

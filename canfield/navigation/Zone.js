@@ -29,7 +29,7 @@ Zone.prototype.getBlockedAreas = function() {
  * @param {BlockedArea} blockedArea
  */
 Zone.prototype.addBlockedArea = function(blockedArea) {
-    this.blockedAreas.add(blockedArea);
+    this.blockedAreas.push(blockedArea);
 };
 
 
