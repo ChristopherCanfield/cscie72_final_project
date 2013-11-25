@@ -18,11 +18,11 @@
 /**
  * 
  * @param {Object} window
+ * @param {Zones} zones
  * @param {int} glCanvasWidth
  * @param {int} glCanvasHeight
- * @param {Zones} zones
  */
-function Camera(window, glCanvasWidth, glCanvasHeight, zones) {
+function Camera(window, zones, glCanvasWidth, glCanvasHeight) {
     // Create the camera.
     this.camera = new THREE.PerspectiveCamera(45, glCanvasWidth / glCanvasHeight, 0.1, 10000.0); // 0.1, 10
     this.cameraTarget = new THREE.Vector3(0.0, 0.0, 0.0);
