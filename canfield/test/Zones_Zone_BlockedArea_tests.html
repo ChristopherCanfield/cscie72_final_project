@@ -45,7 +45,18 @@
             testResult = zone2.getBlockedAreas().length == 2;
             console.log("Zone.addBlockedArea 2: " + testResult);
 			
+			testResult = zones.getCurrentZones(new BoundingBox(0, 500, 0, 500, 0, 500)).length > 0;
+			console.log("Zones.getCurrentZones (overlap): " + testResult);
 			
+			var currentZones = zones.getCurrentZones(new BoundingBox(0, 500, 0, 500, 0, 500));
+			for (var i = 0; i < currentZones.length; ++i)
+			{
+			    testResult = currentZones[i].getBlockedAreas().length > 0;
+			    console.log("Zone.getBlockedAreas() test " + i + ": " + testResult);
+			}
+			
+			testResult = zones.getCurrentZones(new BoundingBox(1500, 100, 1500, 100, 1500, 100)).length == 0;
+			console.log("Zones.getCurrentZones (no overlap): " + testResult);
 				
 			</script>
 

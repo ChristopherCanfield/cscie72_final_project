@@ -34,11 +34,11 @@ Zones.prototype.getZones = function() {
  */
 Zones.prototype.getCurrentZones = function(boundingBox) {
     var currentZones = [];
-    for (var i = 0; i < zones.length; ++i)
+    for (var i = 0; i < this.zones.length; ++i)
     {
-        if (zones[i].getBoundingBox().intersects(boundingBox))
+        if (this.zones[i].getBoundingBox().intersects(boundingBox))
         {
-            currentZones.push(zones[i]);
+            currentZones.push(this.zones[i]);
         }
     }
     return currentZones;
