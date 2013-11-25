@@ -25,7 +25,6 @@
 
 			<script>
             var zones = new Zones();
-            var camera = new Camera(window, zones, 50, 50);
             
             var zone1 = new Zone(new BoundingBox(0, 500, 0, 500, 0, 500));
             var zone2 = new Zone(new BoundingBox(200, 1000, 0, 500, 300, 600));
@@ -33,6 +32,8 @@
 			var blockedArea1_1 = new BoundingBox(0, 500, 0, 500, 50, 10);
 			var blockedArea2_1 = new BoundingBox(0, 500, 0, 500, 600, 10);
 			var blockedArea2_2 = new BoundingBox(250, 250, 0, 500, 800, 10);
+			
+			var camera = new Camera(window, zones, 50, 50);
 			
 			console.log("Adding zones");
 			zones.add(zone1);
@@ -43,48 +44,50 @@
 			zone2.addBlockedArea(new BlockedArea(blockedArea2_1));
 			zone2.addBlockedArea(new BlockedArea(blockedArea2_2));
 			
-			// Test 1.
-			var testResult = camera.moveForward();
+			var testResult = !camera.isValidMove(camera.getMovementSpeed());
+			console.log("!camera.isValidMove: " + testResult);
+			
+			camera.yawObject.translateZ(50);
+			testResult = camera.isValidMove(camera.getMovementSpeed());
+            console.log("camera.isValidMove: " + testResult);
+			
+			camera.yawObject.translateZ(-50);
+			testResult = camera.moveForward();
 			console.log("moveForward no conflict: " + testResult);
 			
-			// Test 2.
-			camera.yawObject.position.z = 250;
+			camera.yawObject.translateZ(250);
             testResult = camera.moveForward();
             console.log("moveForward no conflict 2: " + testResult);
             
-            // Test 3.
-            camera.yawObject.position.z = 45;
+            camera.yawObject.translateZ(-250);
+            camera.yawObject.translateZ(45);
             var testResult = !camera.moveForward();
             console.log("moveForward conflict: " + testResult);
             
-            // Test 4.
-            camera.yawObject.position.z = 40;
+            camera.yawObject.translateZ(-45);
+            camera.yawObject.translateZ(40);
             testResult = !camera.moveForward();
             console.log("moveForward conflict 2: " + testResult);
 			
-			// Test 5.
-			camera.yawObject.position.z = 0;
+			camera.yawObject.translateZ(-40);
 			testResult = camera.moveBackward();
 			console.log("moveBackward no conflict: " + testResult);
 			
-		    // Test 6.
-		    camera.yawObject.position.z = 250;
+		    camera.yawObject.translateZ(250);
             testResult = camera.moveBackward();
             console.log("moveBackward no conflict 2: " + testResult);
 			
-			// Test 7.
-            camera.yawObject.position.z = 65;
+			camera.yawObject.translateZ(-250);
+			camera.yawObject.translateZ(65);
             testResult = !camera.moveBackward();
             console.log("moveBackward conflict 1: " + testResult);
             
-            // Test 8.
-            camera.yawObject.position.z = 70;
+            camera.yawObject.translateZ(-65);
+            camera.yawObject.translateZ(70);
             testResult = !camera.moveBackward();
             console.log("moveBackward conflict 2: " + testResult);
-			
 				
 			</script>
-
 		</div>
 	</body>
 </html>

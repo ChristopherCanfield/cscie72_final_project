@@ -51,11 +51,23 @@ function Camera(window, zones, glCanvasWidth, glCanvasHeight) {
     this.width = 20;
     this.height = 20;
     this.depth = 20;
-};
+}
 
 
 Camera.prototype.getThreeJSCamera = function() {
     return this.camera;
+};
+
+Camera.prototype.getMovementSpeed = function() {
+    return this.movementSpeed;
+};
+
+Camera.prototype.getMovementSpeedY = function() {
+    return this.movementSpeedY;
+};
+
+Camera.prototype.getRotationSpeed = function() {
+    return this.rotationSpeed;
 };
 
 
@@ -168,7 +180,7 @@ Camera.prototype.isValidMove = function(movement) {
     clonedYawObject.rotation.y = this.yawObject.rotation.y;
     clonedYawObject.rotation.z = this.yawObject.rotation.z;
     
-    clonedYawObject.translateZ(this.movementSpeed);
+    clonedYawObject.translateZ(movement);
     var newBoundingBox = new BoundingBox(clonedYawObject.position.x, this.width,
             clonedYawObject.position.y, this.height,
             clonedYawObject.position.z, this.depth);
@@ -176,7 +188,8 @@ Camera.prototype.isValidMove = function(movement) {
     
     for (var i = 0; i < touchedZones.length; ++i)
     {
-        if (touchedZones[i].getBlockedAreas().length > 0)
+        var blockedAreas = touchedZones[i].getBlockedAreas();
+        if (blockedAreas.length > 0)
         {
             return true;
         }
