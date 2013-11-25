@@ -87,23 +87,43 @@ Camera.prototype.rotateRight = function(amount) {
     this.update();
 };
 
+/**
+ * Moves the camera forward, if doing so won't cause it to conflict with a 
+ * blocked area.
+ * @return true if the camera moved, or false if not.
+ */
 Camera.prototype.moveForward = function() {
-    this.velocity.x = 0;
-    this.velocity.y = 0;
-    this.velocity.z = -this.movementSpeed;
-    this.update();
+    if (isValidMove(-this.movementSpeed))
+    {
+        this.velocity.x = 0;
+        this.velocity.y = 0;
+        this.velocity.z = -this.movementSpeed;
+        this.update();
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 };
 
+/**
+ * Moves the camera backward, if doing so won't cause it to conflict with a 
+ * blocked area.
+ * @return true if the camera moved, or false if not.
+ */
 Camera.prototype.moveBackward = function() {
-    
-    
-    
     if (isValidMove(this.movementSpeed))
     {
         this.velocity.x = 0;
         this.velocity.y = 0;
         this.velocity.z = this.movementSpeed;
         this.update();
+        return true;
+    }
+    else
+    {
+        return false;
     }
 };
 
