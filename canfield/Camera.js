@@ -18,12 +18,12 @@
 /**
  * 
  * @param {Object} window
- * @param {Zones} zones
+ * @param {Zones} zones Reference to the zones within the scene.
  * @param {int} glCanvasWidth
  * @param {int} glCanvasHeight
  */
 function Camera(window, zones, glCanvasWidth, glCanvasHeight) {
-    // Create the camera.
+    // Create the three.js camera.
     this.camera = new THREE.PerspectiveCamera(45, glCanvasWidth / glCanvasHeight, 0.1, 10000.0); // 0.1, 10
     this.cameraTarget = new THREE.Vector3(0.0, 0.0, 0.0);
     
@@ -32,6 +32,8 @@ function Camera(window, zones, glCanvasWidth, glCanvasHeight) {
     this.pitchObject = new THREE.Object3D();
     this.pitchObject.add(this.camera);
 
+    // Top-level scene object that controls the movement and rotation of 
+    // the camera.
     this.yawObject = new THREE.Object3D();
     this.yawObject.position.z = 0;
     this.yawObject.rotation.x = 0;
@@ -39,6 +41,7 @@ function Camera(window, zones, glCanvasWidth, glCanvasHeight) {
     this.yawObject.rotation.y = 0;
     this.yawObject.add(this.pitchObject);
     
+    // Movement & rotation speed.
     this.rotationSpeed = 0.01;
     this.movementSpeed = 10.15;
     this.movementSpeedY = 10.025;
@@ -46,12 +49,22 @@ function Camera(window, zones, glCanvasWidth, glCanvasHeight) {
     this.velocity = new THREE.Vector3();
     
     this.target = null;
+    
+    // Reference to the zones within the scene.
     this.zones = zones;
     
+    // For the blocked area bounding box.
     this.width = 20;
     this.height = 20;
     this.depth = 20;
+    
+    // Specifies whether additional debug information is printed to the console.
+    this.debug = false;
 }
+
+Camera.prototype.setDebug = function(debug) {
+    this.debug = debug;
+};
 
 
 Camera.prototype.getThreeJSCamera = function() {
@@ -105,11 +118,12 @@ Camera.prototype.rotateRight = function(amount) {
  * @return true if the camera moved, or false if not.
  */
 Camera.prototype.moveForward = function() {
-    if (this.isValidMove(-this.movementSpeed))
+    if (this.isValidMove(0, -this.movementSpeed))
     {
         this.velocity.x = 0;
         this.velocity.y = 0;
-        this.velocity.z = -this.movementSpeed;
+        // TODO: This was previously negative, and may need to be so again.
+        this.velocity.z = this.movementSpeed;
         this.update();
         return true;
     }
@@ -125,11 +139,12 @@ Camera.prototype.moveForward = function() {
  * @return true if the camera moved, or false if not.
  */
 Camera.prototype.moveBackward = function() {
-    if (this.isValidMove(this.movementSpeed))
+    if (this.isValidMove(0, this.movementSpeed))
     {
         this.velocity.x = 0;
         this.velocity.y = 0;
-        this.velocity.z = this.movementSpeed;
+        // TODO: This was previously positive, and may need to be so again.
+        this.velocity.z = -this.movementSpeed;
         this.update();
         return true;
     }
@@ -143,35 +158,69 @@ Camera.prototype.upY = function() {
     this.velocity.x = 0;
     this.velocity.y = this.movementSpeedY;
     this.velocity.z = 0;
-    this.update(); 
+    this.update();
+    return true;
 };
 
 Camera.prototype.downY = function() {
     this.velocity.x = 0;
     this.velocity.y = -this.movementSpeedY;
     this.velocity.z = 0;
-    this.update(); 
+    this.update();
+    return true;
 };
 
+/**
+ * Moves the camera to the left (strafe), if doing so won't cause it to 
+ * conflict with a blocked area.
+ * @return true if the camera moved, or false if not.
+ */
 Camera.prototype.strafeLeft = function() {
-    this.velocity.x = -this.movementSpeed;
-    this.velocity.y = 0;
-    this.velocity.z = 0;
-    this.update(); 
+    if (this.isValidMove(-this.movementSpeed, 0))
+    {
+        this.velocity.x = -this.movementSpeed;
+        this.velocity.y = 0;
+        this.velocity.z = 0;
+        this.update();
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 };
 
+/**
+ * Moves the camera to the right (strafe), if doing so won't cause it to 
+ * conflict with a blocked area.
+ * @return true if the camera moved, or false if not.
+ */
 Camera.prototype.strafeRight = function() {
-    this.velocity.x = this.movementSpeed;
-    this.velocity.y = 0;
-    this.velocity.z = 0;
-    this.update(); 
+    if (this.isValidMove(this.movementSpeed, 0))
+    {
+        this.velocity.x = this.movementSpeed;
+        this.velocity.y = 0;
+        this.velocity.z = 0;
+        this.update();
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 };
 
 Camera.prototype.getCameraTarget = function() {
     return this.cameraTarget;   
 };
 
-Camera.prototype.isValidMove = function(movement) {
+/**
+ * Returns true if the move is valid 
+ * (i.e., it does not conflict with a blocked area).
+ * @param {float} movementX
+ * @param {float} movementZ
+ */
+Camera.prototype.isValidMove = function(movementX, movementZ) {
     var clonedYawObject = new THREE.Object3D();
     clonedYawObject.position.x = this.yawObject.position.x;
     clonedYawObject.position.y = this.yawObject.position.y;
@@ -180,7 +229,23 @@ Camera.prototype.isValidMove = function(movement) {
     clonedYawObject.rotation.y = this.yawObject.rotation.y;
     clonedYawObject.rotation.z = this.yawObject.rotation.z;
     
-    clonedYawObject.translateZ(movement);
+    if (movementX !== 0)
+    {
+        clonedYawObject.translateX(movementX);
+        if (this.debug) console.log("Camera: movementX: " + movementX);
+    }
+    if (movementZ !== 0)
+    {
+        clonedYawObject.translateZ(movementZ);
+        if (this.debug) console.log("Camera: movementZ: " + movementZ);
+    }
+    
+    if (this.debug)
+    {
+        console.log("Camera: clonedYawObject (x,y,z): " + clonedYawObject.position.x + "," +
+                clonedYawObject.position.y + "," + clonedYawObject.position.z);
+    }
+    
     var newBoundingBox = new BoundingBox(clonedYawObject.position.x, this.width,
             clonedYawObject.position.y, this.height,
             clonedYawObject.position.z, this.depth);
@@ -190,8 +255,14 @@ Camera.prototype.isValidMove = function(movement) {
     {
         if (touchedZones[i].intersectsWithBlockedArea(newBoundingBox))
         {
-            return true;
+            if (this.debug) console.log("Camera: isValidMove: true");
+            // False if the new move does not cause the camera to intersect 
+            // with a blocked area.
+            return false;
         }
     }
-    return false;
+    
+    if (this.debug) console.log("Camera: isValidMove: false");
+    // True if the new move does not cause the camera to intersect with a blocked area.
+    return true;
 };

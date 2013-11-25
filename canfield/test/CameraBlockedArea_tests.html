@@ -34,6 +34,7 @@
 			var blockedArea2_2 = new BoundingBox(250, 250, 0, 500, 800, 10);
 			
 			var camera = new Camera(window, zones, 50, 50);
+			camera.setDebug(true);
 			
 			console.log("Adding zones");
 			zones.add(zone1);
@@ -44,12 +45,14 @@
 			zone2.addBlockedArea(new BlockedArea(blockedArea2_1));
 			zone2.addBlockedArea(new BlockedArea(blockedArea2_2));
 			
-			var testResult = !camera.isValidMove(camera.getMovementSpeed());
+			var testResult = !camera.isValidMove(0, camera.getMovementSpeed());
 			console.log("!camera.isValidMove: " + testResult);
 			
 			camera.yawObject.translateZ(50);
-			testResult = camera.isValidMove(camera.getMovementSpeed());
+			testResult = camera.isValidMove(0, camera.getMovementSpeed());
             console.log("camera.isValidMove: " + testResult);
+			
+			// TODO: Need to test isValidMove with strafe (x).
 			
 			camera.yawObject.translateZ(-50);
 			testResult = camera.moveForward();
