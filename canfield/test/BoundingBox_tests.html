@@ -51,6 +51,9 @@
 				testResult = !box1.intersects(box2);
 				console.log("Nothing intersects: " + testResult);
 				
+                testResult = box2.intersects(box2);
+                console.log("Exact intersect: " + testResult);
+				
 			</script>
 
 		</div>

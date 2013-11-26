@@ -35,7 +35,8 @@ Zone.prototype.intersectsWithBlockedArea = function(boundingBox) {
         {
             return true;
         }
-    }    
+    }
+    return false;
 };
 
 /**

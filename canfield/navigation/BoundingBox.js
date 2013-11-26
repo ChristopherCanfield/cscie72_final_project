@@ -19,15 +19,25 @@ function BoundingBox(xLeft, width, yBottom, height, zBack, depth) {
 
 BoundingBox.id = 0;
 
+
+BoundingBox.prototype.equals = function(otherBox) {
+    return (this.xLeft === otherBox.xLeft &&
+            this.width === otherBox.width &&
+            this.yBottom === otherBox.yBottom &&
+            this.height === otherBox.height &&
+            this.zBack === otherBox.zBack &&
+            this.depth === otherBox.depth);
+};
+
 /**
  * 
  * @param {BoundingBox} otherBox
  * @return boolean specifying whether the two BoundingBoxes intersect.
  */
 BoundingBox.prototype.intersects = function(otherBox) {
-    if (this.id === otherBox.id)
+    if (this.id === otherBox.id || this.equals(otherBox))
     {
-        return false;
+        return true;
     }
     
     var intersectsX = BoundingBox.overlapsX(this, otherBox);

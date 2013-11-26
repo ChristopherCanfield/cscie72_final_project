@@ -57,7 +57,39 @@
 			
 			testResult = zones.getCurrentZones(new BoundingBox(1500, 100, 1500, 100, 1500, 100)).length == 0;
 			console.log("Zones.getCurrentZones (no overlap): " + testResult);
-				
+			
+			testZonesBlockedArea2_2 = zones.getCurrentZones(blockedArea2_2);
+			for (var i = 0; i < testZonesBlockedArea2_2.length; ++i)
+            {
+                testResult = testZonesBlockedArea2_2[i].intersectsWithBlockedArea(blockedArea2_2);
+                console.log("Zone.intersectsWithBlockedArea (exact overlap): " + testResult);
+            }
+			
+			var testBoundingBox1 = new BoundingBox(400, 100, 0, 500, 800, 10);
+            var testZones1 = zones.getCurrentZones(testBoundingBox1);
+            for (var i = 0; i < testZones1.length; ++i)
+            {
+                testResult = testZones1[i].intersectsWithBlockedArea(testBoundingBox1);
+                console.log("Zone.intersectsWithBlockedArea (overlap X): " + testResult);
+            }
+			
+			var testBoundingBox2 = new BoundingBox(250, 250, 100, 300, 800, 10);
+			var testZones2 = zones.getCurrentZones(testBoundingBox2);
+			for (var i = 0; i < testZones2.length; ++i)
+            {
+                testResult = testZones2[i].intersectsWithBlockedArea(testBoundingBox2);
+                console.log("Zone.intersectsWithBlockedArea (overlap Z): " + testResult);
+            }
+			
+            var testBoundingBox3 = new BoundingBox(250, 250, 0, 500, 795, 10);
+            var testZones3 = zones.getCurrentZones(testBoundingBox3);
+            for (var i = 0; i < testZones3.length; ++i)
+            {
+                testResult = testZones3[i].intersectsWithBlockedArea(testBoundingBox3);
+                console.log("Zone.intersectsWithBlockedArea (overlap Z): " + testResult);
+            }
+            
+			
 			</script>
 		</div>
 	</body>
