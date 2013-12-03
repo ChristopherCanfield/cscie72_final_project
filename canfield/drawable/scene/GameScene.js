@@ -25,7 +25,6 @@ GameScene.prototype.createScene = function() {
     this.createNavGraph();
     
     this.add(new Ground());
-    this.add(new Ocean());
     
     new Room1(this, this.zones);
     
