@@ -5,6 +5,14 @@
  */
 
 
+/**
+ * @param {float} xLeft
+ * @param {float} width
+ * @param {float} yBottom
+ * @param {float} height
+ * @param {float} zBack
+ * @param {float} depth 
+ */
 function BoundingBox(xLeft, width, yBottom, height, zBack, depth) {
     this.xLeft = xLeft;
     this.width = width;

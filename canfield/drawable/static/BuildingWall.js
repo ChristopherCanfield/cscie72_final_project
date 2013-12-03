@@ -18,7 +18,7 @@
  * @param {int} textureRepeatY
  * @param {Zone} zone The zone that the wall falls within.
  */
-function BuildingWall(xLeft, zBack, width, height, depth, texturePath, textureRepeatX, textureRepeatY, zone) {
+function BuildingWall(xLeft, zBack, width, height, depth, texturePath, textureRepeatX, textureRepeatY, zone, debug) {
     Drawable.call(this);
     
     // Front & Back
@@ -30,12 +30,18 @@ function BuildingWall(xLeft, zBack, width, height, depth, texturePath, textureRe
     
     this.geometry = new THREE.CubeGeometry(width, height, depth);
     var mesh = new THREE.Mesh(this.geometry, material);
-    mesh.position.set(xLeft, Ground.Y_TOP - 0.5, zBack);
+    mesh.position.set(xLeft + (width / 2), Ground.Y_TOP - 0.5, zBack);
     this.threeJsSceneObject = mesh;
     
     // Prevent camera from walking through wall.
-    this.blockedArea = new BlockedArea(new BoundingBox(xLeft, width, 0, height, zBack + depth, depth));
+    this.blockedArea = new BlockedArea(new BoundingBox(xLeft, width, 0, height, zBack, depth));
     zone.addBlockedArea(this.blockedArea);
+    
+    if (typeof debug !== "undefined" && debug)
+    {
+        console.log("BuildingWall: (" + mesh.position.x + "," + mesh.position.y + "," + mesh.position.z + ") | (" + xLeft + ",0," + zBack + ")");
+        console.log("BuildingWall Width,Height,Depth: " + mesh.width + "," + mesh.height + "," + mesh.depth);
+    }
 }
 
 

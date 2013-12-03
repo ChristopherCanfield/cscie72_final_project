@@ -29,8 +29,8 @@ GameScene.prototype.createScene = function() {
     new Room1(this, this.zones);
     
     // TODO: remove this, and replace with a set of lights.
-    var light1 = new THREE.PointLight(0xFFFFFF, 10, 200); 
-    light1.position.set(-50, 50, 0); 
+    var light1 = new THREE.PointLight(0xFFFFFF, 15, 300); 
+    light1.position.set(200, 20, -100); 
     this.threeJsScene.add(light1);
     
     

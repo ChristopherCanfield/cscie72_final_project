@@ -14,7 +14,7 @@
 function Room1(gameScene, zones) {
     this.zone = new Zone(new BoundingBox(Room1.X_LEFT, Room1.X_WIDTH, 
                         0, 1000, 
-                        Room1.Z_BACK + Room1.Z_DEPTH, Room1.Z_DEPTH));
+                        Room1.Z_BACK, Room1.Z_DEPTH));
     zones.add(this.zone);
     
     // TODO: change wall textures.
@@ -26,14 +26,14 @@ function Room1(gameScene, zones) {
     
     // Back wall.
     var backWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK, 
-            Room1.X_WIDTH, 200, 10,
+            Room1.X_WIDTH, 200, 30,
             Textures.WALL_5, 14, 7,
-            this.zone);
+            this.zone, true);
     gameScene.add(backWall);
     
     // Front wall.
     var frontWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK + Room1.Z_DEPTH, 
-            Room1.X_WIDTH, 200, 50,
+            Room1.X_WIDTH, 200, 30,
             Textures.WALL_2, 10, 4,
             this.zone);
     gameScene.add(frontWall);
