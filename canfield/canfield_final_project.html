@@ -43,8 +43,6 @@
 				Backward: Down or S<br>
 				Rotate: Left/Right or A/D<br>
 				Strafe: ctrl-Left/ctrl-Right or ctrl-A/ctrl-D<br>
-				Vertical Up: Q<br>
-				Vertical Down: E
 			</span>
 		</span>
 		
@@ -62,19 +60,29 @@
 		<!-- Navigation -->
 		<script type="text/javascript" src="navigation/BoundingBox.js"></script>
 		<script type="text/javascript" src="navigation/NavPoint.js"></script>
+		<script type="text/javascript" src="navigation/BlockedArea.js"></script>
+		<script type="text/javascript" src="navigation/Zone.js"></script>
+		<script type="text/javascript" src="navigation/Zones.js"></script>
 		
 		<!-- Scene entities -->
 		<script type="text/javascript" src="drawable/Drawable.js"></script>
-        <script type="text/javascript" src="drawable/Ground.js"></script>
-        <script type="text/javascript" src="drawable/Ocean.js"></script>
-        <script type="text/javascript" src="drawable/Tree.js"></script>
-        <script type="text/javascript" src="drawable/Hill.js"></script>
-        <script type="text/javascript" src="drawable/StoneWall.js"></script>
-        <script type="text/javascript" src="drawable/BallGuy.js"></script>
-        <script type="text/javascript" src="drawable/BallChild.js"></script>
-        <script type="text/javascript" src="drawable/Bird.js"></script>
-        <script type="text/javascript" src="drawable/Sun.js"></script>
-		<script type="text/javascript" src="drawable/VillageScene.js"></script>
+		
+        <script type="text/javascript" src="drawable/static/Ground.js"></script>
+        <script type="text/javascript" src="drawable/static/Ocean.js"></script>
+        <script type="text/javascript" src="drawable/static/Tree.js"></script>
+        <script type="text/javascript" src="drawable/static/Hill.js"></script>
+        <script type="text/javascript" src="drawable/static/StoneWall.js"></script>
+        <script type="text/javascript" src="drawable/static/BuildingWall.js"></script>
+        
+        <script type="text/javascript" src="drawable/movable/BallGuy.js"></script>
+        <script type="text/javascript" src="drawable/movable/BallChild.js"></script>
+        <script type="text/javascript" src="drawable/movable/Bird.js"></script>
+        
+        <script type="text/javascript" src="drawable/particle/Particle.js"></script>
+        <script type="text/javascript" src="drawable/particle/ParticleSystem.js"></script>
+        
+        <script type="text/javascript" src="drawable/scene/GameScene.js"></script>
+        <script type="text/javascript" src="drawable/scene/Room1.js"></script>
 		
 		<!-- The starting point of the program. -->
 		<script type="text/javascript" src="main.js"></script>

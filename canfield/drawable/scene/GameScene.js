@@ -12,10 +12,11 @@ function GameScene() {
     Drawable.call(this);
     
     this.threeJsScene = new THREE.Scene();
+    this.zones = new Zones();
 }
 
 GameScene.prototype = Object.create(Drawable.prototype);
-GameScene.prototype.constructor = VillageScene;
+GameScene.prototype.constructor = GameScene;
 
 GameScene.prototype.createScene = function() {
     // Create the scene.
@@ -26,49 +27,51 @@ GameScene.prototype.createScene = function() {
     this.add(new Ground());
     this.add(new Ocean());
     
+    new Room1(this, this.zones);
+    
     // The moon.
-    this.add(new Sphere(200, 700, 1600, 16, 0.3, Colors.MOON_1));
-    
-    var lightbulb = new THREE.Mesh( 
-        new THREE.SphereGeometry( 10, 16, 8 ), 
-        new THREE.MeshBasicMaterial( { color: 0xffaa00 } )
-    );
-    this.threeJsScene.add( lightbulb );
-    lightbulb.position.set(0, 150, 100);
-    
-    this.addTrees();
-    this.addHills();
-    this.addWalls();
-    
-    // TODO: move this guy after testing.
-    var node24 = this.navGraph[13];
-    var node23 = this.navGraph[12];
-    var ballGuy = new BallGuy(this, this.navGraph, node24, node23.id, 0, -60); 
-    this.add(ballGuy);
-    
-    this.add(new BallChild(ballGuy, -10, -35));
-    this.add(new BallChild(ballGuy, 10, -5));
-    this.add(new BallChild(ballGuy, 0, 20));
-    this.add(new BallChild(ballGuy, 5, 40));
-    this.add(new BallChild(ballGuy, 15, 60));
-    this.add(new BallChild(ballGuy, 10, 80));
-    this.add(new BallChild(ballGuy, -5, 100));
-    this.add(new BallChild(ballGuy, 20, 120));
-    this.add(new BallChild(ballGuy, 0, 140));
-    
-    // Add many birds.
-    for (var i = 0; i < 50; ++i)
-    {
-        this.add(new Bird());
-    }
-    
-    var ambientLight = new THREE.AmbientLight(0x404040);
-    this.threeJsScene.add(ambientLight);
-    
-    this.addLights();
-    
-    // Attach the scene to the three.js scene graph.
-    this.addToThreeJsScene(this.threeJsScene);
+    // this.add(new Sphere(200, 700, 1600, 16, 0.3, Colors.MOON_1));
+//     
+    // var lightbulb = new THREE.Mesh( 
+        // new THREE.SphereGeometry( 10, 16, 8 ), 
+        // new THREE.MeshBasicMaterial( { color: 0xffaa00 } )
+    // );
+    // this.threeJsScene.add( lightbulb );
+    // lightbulb.position.set(0, 150, 100);
+//     
+    // this.addTrees();
+    // this.addHills();
+    // this.addWalls();
+//     
+    // // TODO: move this guy after testing.
+    // var node24 = this.navGraph[13];
+    // var node23 = this.navGraph[12];
+    // var ballGuy = new BallGuy(this, this.navGraph, node24, node23.id, 0, -60); 
+    // this.add(ballGuy);
+//     
+    // this.add(new BallChild(ballGuy, -10, -35));
+    // this.add(new BallChild(ballGuy, 10, -5));
+    // this.add(new BallChild(ballGuy, 0, 20));
+    // this.add(new BallChild(ballGuy, 5, 40));
+    // this.add(new BallChild(ballGuy, 15, 60));
+    // this.add(new BallChild(ballGuy, 10, 80));
+    // this.add(new BallChild(ballGuy, -5, 100));
+    // this.add(new BallChild(ballGuy, 20, 120));
+    // this.add(new BallChild(ballGuy, 0, 140));
+//     
+    // // Add many birds.
+    // for (var i = 0; i < 50; ++i)
+    // {
+        // this.add(new Bird());
+    // }
+//     
+    // var ambientLight = new THREE.AmbientLight(0x404040);
+    // this.threeJsScene.add(ambientLight);
+//     
+    // this.addLights();
+//     
+    // // Attach the scene to the three.js scene graph.
+     this.addToThreeJsScene(this.threeJsScene);
 };
 
 
@@ -76,6 +79,9 @@ GameScene.prototype.getThreeJsScene = function() {
     return this.threeJsScene;    
 };
 
+GameScene.prototype.getZones = function() {
+    return this.zones;    
+};
 
 
 

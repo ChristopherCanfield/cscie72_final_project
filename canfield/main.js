@@ -70,14 +70,15 @@ function init()
     
     cdc.textureManager = new TextureManager(gl);
     
-    // Wrap the camera so it can be moved.
-    cdc.camera = new Camera(window, glCanvas.width, glCanvas.height);
+    // Create the scene graph root node, and populate the scene.
+    cdc.scene = new GameScene();
+    cdc.scene.createScene();
+    
+    // Create the camera so it can be moved.
+    cdc.camera = new Camera(cdc.scene.getZones(), window, glCanvas.width, glCanvas.height);
     cdc.inputManager = new InputManager(glCanvas.width, glCanvas.height, cdc.camera);
     
-    // Create the scene graph root node, and populate the scene.
-   // cdc.scene = new VillageScene(gl);
-   // cdc.scene.createScene();
-   // cdc.scene.getThreeJsScene().add(cdc.camera.yawObject);
+    cdc.scene.getThreeJsScene().add(cdc.camera.yawObject);
     
     cdc.timer = new THREE.Clock();
     cdc.timer.start();

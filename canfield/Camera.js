@@ -17,12 +17,12 @@
 
 /**
  * 
+ * @param {zones} zones Reference to the zones within the scene.
  * @param {Object} window
- * @param {Zones} zones Reference to the zones within the scene.
  * @param {int} glCanvasWidth
  * @param {int} glCanvasHeight
  */
-function Camera(window, zones, glCanvasWidth, glCanvasHeight) {
+function Camera(zones, window, glCanvasWidth, glCanvasHeight) {
     // Create the three.js camera.
     this.camera = new THREE.PerspectiveCamera(45, glCanvasWidth / glCanvasHeight, 0.1, 10000.0); // 0.1, 10
     this.cameraTarget = new THREE.Vector3(0.0, 0.0, 0.0);

@@ -65,6 +65,7 @@ Drawable.prototype.addToThreeJsScene = function(threeJsScene) {
 };
 
 
+
 /**
  *Calls the update and updateThis methods on all attached drawables. 
  */

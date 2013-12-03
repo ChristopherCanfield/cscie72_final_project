@@ -8,8 +8,8 @@
 
 /**
  * Creates an impassable wall.
- * @param {float} x
- * @param {float} z
+ * @param {float} xLeft
+ * @param {float} zBack
  * @param {float} width
  * @param {float} height
  * @param {float} depth
@@ -18,7 +18,7 @@
  * @param {int} textureRepeatY
  * @param {Zone} zone The zone that the wall falls within.
  */
-function BuildWall(x, z, width, height, depth, texturePath, textureRepeatX, textureRepeatY, zone) {
+function BuildingWall(xLeft, zBack, width, height, depth, texturePath, textureRepeatX, textureRepeatY, zone) {
     Drawable.call(this);
     
     // Front & Back
@@ -30,14 +30,14 @@ function BuildWall(x, z, width, height, depth, texturePath, textureRepeatX, text
     
     this.geometry = new THREE.CubeGeometry(width, height, depth);
     var mesh = new THREE.Mesh(this.geometry, material);
-    mesh.position.set(x, Ground.Y_TOP - 0.5, z);
+    mesh.position.set(xLeft, Ground.Y_TOP - 0.5, zBack);
     this.threeJsSceneObject = mesh;
     
     // Prevent camera from walking through wall.
-    this.blockedArea = new BlockedArea(new BoundingBox(x, width, y, height, z, depth));
-    zone.addBlockedArea.push(this.blockedArea);
+    this.blockedArea = new BlockedArea(new BoundingBox(xLeft, width, Ground.Y_TOP, height, zBack + depth, depth));
+    zone.addBlockedArea(this.blockedArea);
 }
 
 
-BuildWall.prototype = Object.create(Drawable.prototype);
-BuildWall.prototype.constructor = BuildWall;
+BuildingWall.prototype = Object.create(Drawable.prototype);
+BuildingWall.prototype.constructor = BuildingWall;
