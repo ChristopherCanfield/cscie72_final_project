@@ -29,5 +29,15 @@ MathHelper.radiansToDegrees = function(radians) {
  * @param {Object} max
  */
 MathHelper.randomInt = function(min, max) {
+    if (typeof min == "undefined")
+    {
+        min = 0;
+    }
+    if (typeof max == "undefined")
+    {
+        max = Number.MAX_INTEGER;
+    }
+    
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
+

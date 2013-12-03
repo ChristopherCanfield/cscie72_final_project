@@ -29,6 +29,12 @@ GameScene.prototype.createScene = function() {
     
     new Room1(this, this.zones);
     
+    // TODO: remove this, and replace with a set of lights.
+    var light1 = new THREE.PointLight(0xFFFFFF, 10, 200); 
+    light1.position.set(-50, 50, 0); 
+    this.threeJsScene.add(light1);
+    
+    
     // The moon.
     // this.add(new Sphere(200, 700, 1600, 16, 0.3, Colors.MOON_1));
 //     

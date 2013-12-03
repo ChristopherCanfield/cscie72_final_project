@@ -15,6 +15,7 @@ function Room1(gameScene, zones) {
     this.zone = new Zone(new BoundingBox(Room1.X_LEFT, Room1.X_WIDTH, 
                         1000, 1000, 
                         Room1.Z_BACK + Room1.Z_DEPTH, Room1.Z_DEPTH));
+    zones.add(this.zone);
     
     // TODO: change wall textures.
     
@@ -39,8 +40,11 @@ function Room1(gameScene, zones) {
     
     // East wall.
     
+    
     // West wall.
     
+    
+    // TODO: add lights, door, models.
 }
 
 Room1.X_LEFT = -400;

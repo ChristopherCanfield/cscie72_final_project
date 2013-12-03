@@ -42,7 +42,7 @@ function Camera(zones, window, glCanvasWidth, glCanvasHeight) {
     this.yawObject.add(this.pitchObject);
     
     // Movement & rotation speed.
-    this.rotationSpeed = 0.01;
+    this.rotationSpeed = 0.005;
     this.movementSpeed = 10.15;
     this.movementSpeedY = 10.025;
     
@@ -122,8 +122,7 @@ Camera.prototype.moveForward = function() {
     {
         this.velocity.x = 0;
         this.velocity.y = 0;
-        // TODO: This was previously negative, and may need to be so again.
-        this.velocity.z = this.movementSpeed;
+        this.velocity.z = -this.movementSpeed;
         this.update();
         return true;
     }
@@ -143,8 +142,7 @@ Camera.prototype.moveBackward = function() {
     {
         this.velocity.x = 0;
         this.velocity.y = 0;
-        // TODO: This was previously positive, and may need to be so again.
-        this.velocity.z = -this.movementSpeed;
+        this.velocity.z = this.movementSpeed;
         this.update();
         return true;
     }
@@ -255,14 +253,14 @@ Camera.prototype.isValidMove = function(movementX, movementZ) {
     {
         if (touchedZones[i].intersectsWithBlockedArea(newBoundingBox))
         {
-            if (this.debug) console.log("Camera: isValidMove: true");
+            if (this.debug) console.log("Camera: isValidMove: false");
             // False if the new move does not cause the camera to intersect 
             // with a blocked area.
             return false;
         }
     }
     
-    if (this.debug) console.log("Camera: isValidMove: false");
+    if (this.debug) console.log("Camera: isValidMove: true");
     // True if the new move does not cause the camera to intersect with a blocked area.
     return true;
 };

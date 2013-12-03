@@ -40,11 +40,6 @@ var cdc = {
      * Timer used for logic, movement & animation.
      */
     timer: null,
-    
-    /**
-     * Specifies whether to log events to console.
-     */
-    debug: false
 };
 
 init();
@@ -61,8 +56,6 @@ function init()
         antialias: true     // TODO: allow user to turn this on or off.
     };
     
-    cdc.debug = true;
-    
     // Create the webGL render.
     gl = new THREE.WebGLRenderer(glParameters);
     gl.setClearColor(Colors.SKY_GETTING_DARK_4); // gl.clearColor(r, g, b);
@@ -76,6 +69,7 @@ function init()
     
     // Create the camera so it can be moved.
     cdc.camera = new Camera(cdc.scene.getZones(), window, glCanvas.width, glCanvas.height);
+    cdc.camera.debug = true;
     cdc.inputManager = new InputManager(glCanvas.width, glCanvas.height, cdc.camera);
     
     cdc.scene.getThreeJsScene().add(cdc.camera.yawObject);

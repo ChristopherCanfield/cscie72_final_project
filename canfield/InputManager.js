@@ -12,7 +12,7 @@
  * @param {int} canvasHeight The height of the canvas.
  * @param {Camera} camera Reference to the Camera object.
  */
-function InputManager(canvasWidth, canvasHeight, camera) {
+function InputManager(canvasWidth, canvasHeight, camera) {    
     this.camera = camera;
     
     this.lastMouseX = canvasWidth / 2.0;
@@ -22,6 +22,9 @@ function InputManager(canvasWidth, canvasHeight, camera) {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
     window.onkeydown = this.keyDown.bind(this);
     window.onmousemove = this.mouseMove.bind(this);
+    
+    // Specifies whether additional debug information is printed to the console.
+    this.debug = false;
 };
 
 
@@ -56,7 +59,7 @@ InputManager.prototype.keyDown = function(e) {
         }
         else
         {
-            if (cdc.debug) console.log("Key: Left");
+            if (this.debug) console.log("Key: Left");
             this.camera.rotateLeft();
         }
         return false;
@@ -70,7 +73,7 @@ InputManager.prototype.keyDown = function(e) {
         }
         else
         {
-            if (cdc.debug) console.log("Key: Right");
+            if (this.debug) console.log("Key: Right");
             this.camera.rotateRight();
         }
         return false;
@@ -78,7 +81,7 @@ InputManager.prototype.keyDown = function(e) {
     else if (keyCode == KeyEvent.DOM_VK_UP ||
             keyCode == KeyEvent.DOM_VK_W)
     {
-        if (cdc.debug) console.log("Key: Up");
+        if (this.debug) console.log("Key: Up");
         this.camera.moveForward();
         return false;
  
@@ -86,7 +89,7 @@ InputManager.prototype.keyDown = function(e) {
     else if (keyCode == KeyEvent.DOM_VK_DOWN ||
             keyCode == KeyEvent.DOM_VK_S)
     {
-        if (cdc.debug) console.log("Key: Down");
+        if (this.debug) console.log("Key: Down");
         this.camera.moveBackward();
         return false;
     }
@@ -113,24 +116,23 @@ InputManager.prototype.keyDown = function(e) {
 InputManager.prototype.mouseMove = function(e) {
     if (e.clientX > this.lastMouseX)
     {
-        if (cdc.debug) console.log("mouse move x right: " + e.clientX);
+        if (this.debug) console.log("mouse move x right: " + e.clientX);
         this.camera.rotateRight(e.clientX - this.lastMouseX);
     }
     else if (e.clientX < this.lastMouseX)
     {
-        if (cdc.debug) console.log("mouse move x left: " + e.clientX);
+        if (this.debug) console.log("mouse move x left: " + e.clientX);
         this.camera.rotateLeft(this.lastMouseX - e.clientX);
     }
     this.lastMouseX = e.clientX;
     
     if (e.clientY > this.lastMouseY)
     {
-        if (cdc.debug) console.log("mouse move y up: " + e.clientY);
+        if (this.debug) console.log("mouse move y up: " + e.clientY);
     }
     else if (e.clientY < this.lastMouseY)
     {
-        if (cdc.debug) console.log("mouse move y down: " + e.clientY);
+        if (this.debug) console.log("mouse move y down: " + e.clientY);
     }
     this.lastMouseY = e.clientY;
-    
 };
