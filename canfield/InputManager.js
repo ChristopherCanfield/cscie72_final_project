@@ -53,45 +53,27 @@ InputManager.prototype.keyDown = function(e) {
     if (keyCode == KeyEvent.DOM_VK_LEFT ||
             keyCode == KeyEvent.DOM_VK_A)
     {
-        if (e.ctrlKey === true)
-        {
-            this.camera.strafeLeft();
-        }
-        else
-        {
-            if (this.debug) console.log("Key: Left");
-            this.camera.rotateLeft();
-        }
-        return false;
+        if (this.debug) console.log("Key: Left");
+        return this.camera.strafeLeft();
     }
     else if (keyCode == KeyEvent.DOM_VK_RIGHT ||
             keyCode == KeyEvent.DOM_VK_D)
     {
-        if (e.ctrlKey === true)
-        {
-            this.camera.strafeRight();
-        }
-        else
-        {
-            if (this.debug) console.log("Key: Right");
-            this.camera.rotateRight();
-        }
-        return false;
+        if (this.debug) console.log("Key: Right");
+        return this.camera.strafeRight();
     }
     else if (keyCode == KeyEvent.DOM_VK_UP ||
             keyCode == KeyEvent.DOM_VK_W)
     {
         if (this.debug) console.log("Key: Up");
-        this.camera.moveForward();
-        return false;
+        return this.camera.moveForward();
  
     }
     else if (keyCode == KeyEvent.DOM_VK_DOWN ||
             keyCode == KeyEvent.DOM_VK_S)
     {
         if (this.debug) console.log("Key: Down");
-        this.camera.moveBackward();
-        return false;
+        return this.camera.moveBackward();
     }
     
     // TODO (2013-11-09): The next lines allow vertical movement. Remove this 
