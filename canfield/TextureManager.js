@@ -62,6 +62,7 @@ Textures.WALL_1 = "textures/wall/rock10.jpg";
 Textures.WALL_2 = "textures/wall/rock36.jpg";
 Textures.WALL_3 = "textures/wall/rockwall1.jpg";
 Textures.WALL_4 = "textures/wall/stonewall.jpg";
+Textures.WALL_5 = "textures/wall/stonewall2.jpg";
 
 
 function TextureManager(glContext) {

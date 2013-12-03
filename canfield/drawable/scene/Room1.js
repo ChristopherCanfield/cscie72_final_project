@@ -26,17 +26,17 @@ function Room1(gameScene, zones) {
     
     // Back wall.
     var backWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK, 
-            Room1.X_WIDTH, 200, 50,
-            Textures.METAL_1, 10, 2,
+            Room1.X_WIDTH, 200, 10,
+            Textures.WALL_5, 14, 7,
             this.zone);
     gameScene.add(backWall);
     
     // Front wall.
     var frontWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK + Room1.Z_DEPTH, 
             Room1.X_WIDTH, 200, 50,
-            Textures.METAL_1, 10, 2,
+            Textures.WALL_2, 10, 4,
             this.zone);
-    gameScene.add(backWall);
+    gameScene.add(frontWall);
     
     // East wall.
     
