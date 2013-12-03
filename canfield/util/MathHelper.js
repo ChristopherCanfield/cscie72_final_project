@@ -35,7 +35,7 @@ MathHelper.randomInt = function(min, max) {
     }
     if (typeof max == "undefined")
     {
-        max = Number.MAX_INTEGER;
+        max = Number.MAX_VALUE - 10;
     }
     
     return Math.floor(Math.random() * (max - min + 1) + min);
