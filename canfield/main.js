@@ -91,6 +91,7 @@ function render()
     
     // Process logic, movement and animation updates.
     cdc.scene.update(cdc.timer.getDelta());
+    cdc.camera.update(cdc.timer.getDelta());
     
     window.requestAnimationFrame(render);
 }

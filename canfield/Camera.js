@@ -58,6 +58,9 @@ function Camera(zones, window, glCanvasWidth, glCanvasHeight) {
     this.height = 20;
     this.depth = 20;
     
+    this.tick = 0;
+    this.lastRotateTick = 0;
+    
     // Specifies whether additional debug information is printed to the console.
     this.debug = false;
 }
@@ -84,7 +87,7 @@ Camera.prototype.getRotationSpeed = function() {
 };
 
 
-Camera.prototype.update = function() {
+Camera.prototype.updateMovement = function() {
     var MIN_Y = 0;
     
     this.yawObject.translateX(this.velocity.x);
@@ -97,19 +100,27 @@ Camera.prototype.update = function() {
 };
 
 Camera.prototype.rotateLeft = function(amount) {
-    this.yawObject.rotation.y += this.rotationSpeed * amount;
+    this.lastRotateTick = this.tick;
+    
+    var rotation = this.rotationSpeed * amount;
+    if (rotation > 0.25) rotation = 0.25;
+    this.yawObject.rotation.y += rotation;
     this.velocity.x = 0;
     this.velocity.y = 0;
     this.velocity.z = 0;
-    this.update();
+    this.updateMovement();
 };
 
 Camera.prototype.rotateRight = function(amount) {
-    this.yawObject.rotation.y -= this.rotationSpeed * amount;
+    this.lastRotateTick = this.tick;
+    
+    var rotation = this.rotationSpeed * amount;
+    if (rotation > 0.25) rotation = 0.25;
+    this.yawObject.rotation.y -= rotation;
     this.velocity.x = 0;
     this.velocity.y = 0;
     this.velocity.z = 0;
-    this.update();
+    this.updateMovement();
 };
 
 /**
@@ -123,7 +134,7 @@ Camera.prototype.moveForward = function() {
         this.velocity.x = 0;
         this.velocity.y = 0;
         this.velocity.z = -this.movementSpeed;
-        this.update();
+        this.updateMovement();
         return true;
     }
     else
@@ -143,7 +154,7 @@ Camera.prototype.moveBackward = function() {
         this.velocity.x = 0;
         this.velocity.y = 0;
         this.velocity.z = this.movementSpeed;
-        this.update();
+        this.updateMovement();
         return true;
     }
     else
@@ -156,7 +167,7 @@ Camera.prototype.upY = function() {
     this.velocity.x = 0;
     this.velocity.y = this.movementSpeedY;
     this.velocity.z = 0;
-    this.update();
+    this.updateMovement();
     return true;
 };
 
@@ -164,7 +175,7 @@ Camera.prototype.downY = function() {
     this.velocity.x = 0;
     this.velocity.y = -this.movementSpeedY;
     this.velocity.z = 0;
-    this.update();
+    this.updateMovement();
     return true;
 };
 
@@ -179,7 +190,7 @@ Camera.prototype.strafeLeft = function() {
         this.velocity.x = -this.movementSpeed;
         this.velocity.y = 0;
         this.velocity.z = 0;
-        this.update();
+        this.updateMovement();
         return true;
     }
     else
@@ -199,7 +210,7 @@ Camera.prototype.strafeRight = function() {
         this.velocity.x = this.movementSpeed;
         this.velocity.y = 0;
         this.velocity.z = 0;
-        this.update();
+        this.updateMovement();
         return true;
     }
     else
@@ -263,4 +274,8 @@ Camera.prototype.isValidMove = function(movementX, movementZ) {
     if (this.debug) console.log("Camera: isValidMove: true");
     // True if the new move does not cause the camera to intersect with a blocked area.
     return true;
+};
+
+Camera.prototype.update = function(delta) {
+    this.tick += delta;
 };

@@ -18,6 +18,9 @@ function InputManager(canvasWidth, canvasHeight, camera) {
     this.lastMouseX = canvasWidth / 2.0;
     this.lastMosueY = canvasHeight / 2.0;
     
+    this.canvasWidth = canvasWidth;
+    this.canvasHeight = canvasHeight;
+    
     // Set the keydown event handler, and bind this object's "this" pointer to it. 
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
     window.onkeydown = this.keyDown.bind(this);
@@ -96,12 +99,12 @@ InputManager.prototype.keyDown = function(e) {
  * @param {Object} e A mousemove event object.
  */
 InputManager.prototype.mouseMove = function(e) {
-    if (e.clientX > this.lastMouseX)
+    if (e.clientX > (this.canvasWidth / 2 + 5) && e.clientX > this.lastMouseX)
     {
         if (this.debug) console.log("mouse move x right: " + e.clientX);
         this.camera.rotateRight(e.clientX - this.lastMouseX);
     }
-    else if (e.clientX < this.lastMouseX)
+    else if (e.clientX < (this.canvasWidth / 2 - 5) && e.clientX < this.lastMouseX)
     {
         if (this.debug) console.log("mouse move x left: " + e.clientX);
         this.camera.rotateLeft(this.lastMouseX - e.clientX);
