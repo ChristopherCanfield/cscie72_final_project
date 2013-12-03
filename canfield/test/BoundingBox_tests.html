@@ -54,6 +54,10 @@
                 testResult = box2.intersects(box2);
                 console.log("Exact intersect: " + testResult);
 				
+				var wall1 = new BoundingBox(-400, 800, 0, 200, -100, 50);
+				var cameraPosition1 = new BoundingBox(-379.64, 20, 20, 20, 135.22, 20);
+				testResult = !cameraPosition1.intersects(wall1);
+				console.log("Camera position 1 intersects with wall 1: " + testResult);
 			</script>
 
 		</div>
