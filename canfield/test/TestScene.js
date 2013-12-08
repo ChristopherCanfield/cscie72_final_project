@@ -130,12 +130,12 @@ TestScene.prototype.addWalls = function() {
             
     var stoneWallLeft = new StoneWall(-500, 0, 1000, 30, 10, 
             Textures.WALL_4, 40, 3, 35);
-    stoneWallLeft.threeJsSceneObject.rotation.y = Math.PI / 2;
+    stoneWallLeft.threeJsDrawable.rotation.y = Math.PI / 2;
     this.add(stoneWallLeft);
     
     var stoneWallRight = new StoneWall(500, 0, 1000, 30, 10, 
             Textures.WALL_4, 40, 3, 35);
-    stoneWallRight.threeJsSceneObject.rotation.y = Math.PI / 2;
+    stoneWallRight.threeJsDrawable.rotation.y = Math.PI / 2;
     this.add(stoneWallRight);
 };
 

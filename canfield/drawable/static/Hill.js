@@ -19,7 +19,7 @@ function Hill(x, z, radius, texturePath, textureRepeat) {
     var mesh = new THREE.Mesh(this.geometry, material);
     mesh.position.set(x, Ground.Y_TOP - 0.5, z);
     
-    this.threeJsSceneObject = mesh;
+    this.threeJsDrawable = mesh;
 }
 
 Hill.prototype = Object.create(Drawable.prototype);

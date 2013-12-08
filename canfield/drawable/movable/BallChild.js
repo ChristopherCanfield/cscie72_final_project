@@ -73,7 +73,7 @@ function BallChild(ballGuy, x, z) {
     this.maxArmSwitchTime = Math.random() + 0.25;
     
     // Add to scene.
-    this.threeJsSceneObject = this.wrapper;
+    this.threeJsDrawable = this.wrapper;
     this.wrapper.add(this.bodyMesh);
     
     this.bodyMesh.add(eye1Mesh);
@@ -102,7 +102,7 @@ function BallChild(ballGuy, x, z) {
     this.navigationBoundingBox = new BoundingBox(this.wrapper.position.x, 5,
             0, 10, this.wrapper.position.z, 5);
             
-    var lookAtVector = new THREE.Vector3(ballGuy.threeJsSceneObject.position.x, 10, ballGuy.threeJsSceneObject.position.z);
+    var lookAtVector = new THREE.Vector3(ballGuy.threeJsDrawable.position.x, 10, ballGuy.threeJsSceneObject.position.z);
     this.wrapper.lookAt(lookAtVector);
 }
 
@@ -204,11 +204,11 @@ BallChild.prototype.checkForCollision = function() {
         if (this.intersects(this.scene.drawables[i].boundingBox))
         {
             
-            if (typeof(this.scene.drawables[i].threeJsSceneObject) === 'BallChild')
+            if (typeof(this.scene.drawables[i].threeJsDrawable) === 'BallChild')
             {
                 console.log("Collision child");
                 this.scene.drawables[i].navigationBoundingBox.xLeft += 5;
-                this.scene.drawables[i].threeJsSceneObject.position.x += 5;
+                this.scene.drawables[i].threeJsDrawable.position.x += 5;
                 this.scene.drawables[i].boundingBox.xLeft += 5;
             }
         }

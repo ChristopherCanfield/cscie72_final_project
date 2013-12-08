@@ -9,7 +9,7 @@ function Drawable() {
     this.geometry = new THREE.Geometry();
     
     // The object that will be added to the three.js scene.
-    this.threeJsSceneObject = null;
+    this.threeJsDrawable = null;
     
     // Drawables that make up this object. 
     // They are drawn when this object is drawn.
@@ -53,9 +53,9 @@ Drawable.prototype.add = function(drawable) {
  * @param {THREE.Scene} threeJsScene reference to the three.js scene.
  */
 Drawable.prototype.addToThreeJsScene = function(threeJsScene) {
-    if (this.threeJsSceneObject !== null)
+    if (this.threeJsDrawable !== null)
     {
-        threeJsScene.add(this.threeJsSceneObject);
+        threeJsScene.add(this.threeJsDrawable);
     }
     
     for (var i = 0; i < this.drawables.length; ++i)
@@ -127,7 +127,7 @@ Drawable.prototype.isAtNavTarget = function() {
 
 Drawable.prototype.setMovement = function() {
     var angle = MathHelper.angleInRadians(this.currentNavTarget.x, this.currentNavTarget.z,
-            this.threeJsSceneObject.position.x, this.threeJsSceneObject.position.z);
+            this.threeJsDrawable.position.x, this.threeJsDrawable.position.z);
     
     this.movementX = Math.cos(angle);
     this.movementZ = Math.sin(angle);

@@ -51,7 +51,7 @@ function Ground() {
     var mesh = new THREE.Mesh(this.geometry, material);
     mesh.position.set(0, Ground.Y_TOP, 0);
     
-    this.threeJsSceneObject = mesh;
+    this.threeJsDrawable = mesh;
 }
 
 Ground.prototype = Object.create(Drawable.prototype);

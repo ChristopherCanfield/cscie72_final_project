@@ -33,7 +33,7 @@ function Tree(x, z, height, barkTexturePath,
     
     var mesh = new THREE.Mesh(this.geometry, material);
     
-    this.threeJsSceneObject = mesh;
+    this.threeJsDrawable = mesh;
     
     // Add the leaves
     var leavesTexture = cdc.textureManager.getTexture(leavesTexturePath);
@@ -44,7 +44,7 @@ function Tree(x, z, height, barkTexturePath,
     
     var leavesGeometry = new THREE.TetrahedronGeometry(leavesRadius, 2);
     var leavesMesh = new THREE.Mesh(leavesGeometry, leavesMaterial);
-    this.threeJsSceneObject.add(leavesMesh);
+    this.threeJsDrawable.add(leavesMesh);
     
     leavesMesh.position.x = x;
     leavesMesh.position.y = Ground.Y_TOP + height;

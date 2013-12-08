@@ -68,7 +68,7 @@ function BallGuy(scene, navGraph, initialNavPointTarget, lastNavPointId, x, z) {
     this.armModifier = 1;
     
     // Add to scene.
-    this.threeJsSceneObject = this.wrapper;
+    this.threeJsDrawable = this.wrapper;
     this.wrapper.add(this.bodyMesh);
     
     this.bodyMesh.add(eye1Mesh);
@@ -191,11 +191,11 @@ BallGuy.prototype.checkForCollision = function() {
     {
         if (this.intersects(this.scene.drawables[i].boundingBox))
         {
-            if (typeof(this.scene.drawables[i].threeJsSceneObject.speed) !== 'undefined')
+            if (typeof(this.scene.drawables[i].threeJsDrawable.speed) !== 'undefined')
             {
                 console.log("Colision");
                 this.scene.drawables[i].navigationBoundingBox.xLeft += 5;
-                this.scene.drawables[i].threeJsSceneObject.position.x += 5;
+                this.scene.drawables[i].threeJsDrawable.position.x += 5;
                 this.scene.drawables[i].boundingBox.position.xLeft += 5;
             }
         }

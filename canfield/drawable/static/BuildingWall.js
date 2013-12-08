@@ -31,7 +31,7 @@ function BuildingWall(xLeft, zBack, width, height, depth, texturePath, textureRe
     this.geometry = new THREE.CubeGeometry(width, height, depth);
     var mesh = new THREE.Mesh(this.geometry, material);
     mesh.position.set(xLeft + (width / 2), Ground.Y_TOP - 0.5, zBack);
-    this.threeJsSceneObject = mesh;
+    this.threeJsDrawable = mesh;
     
     // Prevent camera from walking through wall.
     this.blockedArea = new BlockedArea(new BoundingBox(xLeft, width, 0, height, zBack, depth));

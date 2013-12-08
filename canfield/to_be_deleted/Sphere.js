@@ -20,9 +20,9 @@ function Sun(x, y, z, numOfSegments, r, color) {
     var material = new THREE.MeshBasicMaterial({ 
         vertexColors: THREE.VertexColors
     });
-    this.threeJsSceneObject = new THREE.Mesh(this.geometry, material);
+    this.threeJsDrawable = new THREE.Mesh(this.geometry, material);
     
-    this.threeJsSceneObject.position = new THREE.Vector3(x, y, z);
+    this.threeJsDrawable.position = new THREE.Vector3(x, y, z);
 }
 
 Sphere.prototype = Object.create(Drawable.prototype);

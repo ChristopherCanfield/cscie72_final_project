@@ -17,7 +17,7 @@ function StoneWall(x, z, width, height, depth, texturePath, textureRepeatX, text
     this.geometry = new THREE.CubeGeometry(width, height, depth);
     var mesh = new THREE.Mesh(this.geometry, material);
     mesh.position.set(x, Ground.Y_TOP - 0.5, z);
-    this.threeJsSceneObject = mesh;
+    this.threeJsDrawable = mesh;
     
     // Top
     var texture2 = cdc.textureManager.getTexture(texturePath).clone();
@@ -30,7 +30,7 @@ function StoneWall(x, z, width, height, depth, texturePath, textureRepeatX, text
     var geometry2 = new THREE.CubeGeometry(width, 1, depth);
     var mesh2 = new THREE.Mesh(geometry2, material2);
     mesh2.position.set(0, 15, 0);
-    this.threeJsSceneObject.add(mesh2);
+    this.threeJsDrawable.add(mesh2);
     
     // TODO: fix textures on the ends.
 }
