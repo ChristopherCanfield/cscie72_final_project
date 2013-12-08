@@ -27,6 +27,8 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     this.lifetime = lifetime;
     this.lifeMillis = 0;
     
+    this.id = Particle.nextId++;
+    
     this.particleSystem.add(this);
     
     // TODO: inherit from drawable, create geometry object, and add
@@ -47,5 +49,11 @@ Particle.prototype.update = function(deltaTime) {
 };
 
 Particle.prototype.equals = function(particle) {
-    
+    return (particle.id === this.id);
 };
+
+Particle.prototype.getId = function() {
+    return this.id;
+};
+
+Particle.nextId = 0;

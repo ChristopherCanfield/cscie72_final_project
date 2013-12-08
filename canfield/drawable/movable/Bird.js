@@ -48,7 +48,7 @@ function Bird() {
     this.wing2Mesh = new THREE.Mesh(wing2Geometry, wing2Material);
     this.wing2Mesh.position.x = 3;
     
-    this.threeJsSceneObject = this.wrapper;
+    this.threeJsDrawable = this.wrapper;
     this.wrapper.add(bodyMesh);
     bodyMesh.add(this.wing1Mesh);
     bodyMesh.add(this.wing2Mesh);

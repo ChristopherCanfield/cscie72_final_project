@@ -52,7 +52,7 @@ function Ocean() {
     var mesh = new THREE.Mesh(this.geometry, material);
     mesh.position.set(0, -3, 0);
     
-    this.threeJsSceneObject = mesh;
+    this.threeJsDrawable = mesh;
 }
 
 Ocean.prototype = Object.create(Drawable.prototype);
