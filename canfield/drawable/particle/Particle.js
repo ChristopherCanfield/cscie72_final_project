@@ -31,25 +31,22 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     
     this.id = Particle.nextId++;
     
-    this.particleSystem.add(this);
-    
     // TODO: inherit from drawable, create geometry object, and add
     // to scene object. Get three.js scene from ParticleSystem.
 }
 
 
 Particle.prototype.update = function(deltaTime) {
-    if (this.lifeMillis > this.lifetime)
+    if ((this.lifeMillis + deltaTime) > this.lifetime)
     {
         this.particleSystem.remove(this);
         return;
     }
+    this.lifeMillis += deltaTime;
     
     this.position.x += (this.speed.x * this.direction.x * deltaTime);
     this.position.y += (this.speed.y * this.direction.y * deltaTime);
     this.position.z += (this.speed.z * this.direction.z * deltaTime);
-    
-    this.lifeMillis += deltaTime;
 };
 
 Particle.prototype.equals = function(particle) {

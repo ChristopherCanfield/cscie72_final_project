@@ -9,9 +9,9 @@
 function Zone(boundingBox) {
     this.boundingBox = boundingBox;
     this.blockedAreas = [];
-    this.adjacentZones = {};
+    this.adjacentZones = [];
     
-    this.particleSystems = {};
+    this.particleSystems = [];
 }
 
 Zone.prototype.getBoundingBox = function() {

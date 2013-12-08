@@ -7,8 +7,8 @@
 
 
 function ParticleSystem(zone, threeJsScene) {
+    this.particles = [];
     this.zone = zone;
-    this.particles = {};
     this.threeJsScene = threeJsScene;
 }
 
@@ -20,7 +20,7 @@ ParticleSystem.prototype.add = function(particle) {
 ParticleSystem.prototype.remove = function(particle) {
     for (var i = 0; i < this.particles.length; ++i)
     {
-        if (this.particles.equals(particle))
+        if (this.particles[i].equals(particle))
         {
             this.particles.splice(i, 1);
             return;
@@ -30,7 +30,7 @@ ParticleSystem.prototype.remove = function(particle) {
 };
 
 
-ParticleSystem.prototype.updateParticles = function(deltaTime) {
+ParticleSystem.prototype.update = function(deltaTime) {
     for (var i = 0; i < this.particles.length; ++i)
     {
         this.particles[i].update(deltaTime);
