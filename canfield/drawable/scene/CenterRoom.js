@@ -1,9 +1,12 @@
 /**
  * @author Christopher D. Canfield
- * Room1.js
+ * StartRoom.js
  * December 2013
  */
 
+
+
+function CenterRoom() {}
 
 
 /**
@@ -11,10 +14,11 @@
  * @param {GameScene} gameScene 
  * @param {Zones} zones 
  */
-function Room1(gameScene, zones) {
-    this.zone = new Zone(new BoundingBox(Room1.X_LEFT, Room1.X_WIDTH, 
-                        0, 1000, 
-                        Room1.Z_BACK, Room1.Z_DEPTH));
+CenterRoom.create = function(gameScene, zones) {
+    // TODO: uncomment and update this.
+    //this.zone = new Zone(new BoundingBox(Room1.X_LEFT, Room1.X_WIDTH, 
+    //                    0, 1000, 
+    //                    Room1.Z_BACK, Room1.Z_DEPTH));
     zones.add(this.zone);
     
     // TODO: change wall textures.
@@ -25,18 +29,20 @@ function Room1(gameScene, zones) {
          // Zone): BuildingWall
     
     // Back wall.
-    var backWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK, 
+    // TODO: uncomment and update this.
+    /*var backWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK, 
             Room1.X_WIDTH, 200, 30,
             Textures.WALL_5, 14, 7,
             this.zone, true);
-    gameScene.add(backWall);
+    gameScene.add(backWall); */
     
     // Front wall.
-    var frontWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK + Room1.Z_DEPTH, 
+    // TODO: uncomment and update this.
+    /*var frontWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK + Room1.Z_DEPTH, 
             Room1.X_WIDTH, 200, 30,
             Textures.WALL_2, 10, 4,
             this.zone);
-    gameScene.add(frontWall);
+    gameScene.add(frontWall); */
     
     // East wall.
     
@@ -44,10 +50,11 @@ function Room1(gameScene, zones) {
     // West wall.
     
     
-    // TODO: add lights, door, models.
-}
+    // TODO: add lights, door, models, particle systems.
+};
 
-Room1.X_LEFT = -400;
-Room1.X_WIDTH = 800;
-Room1.Z_BACK = -150;
-Room1.Z_DEPTH = 1100;
+// TODO: Update these values
+CenterRoom.X_LEFT = -400;
+CenterRoom.X_WIDTH = 800;
+CenterRoom.Z_BACK = -150;
+CenterRoom.Z_DEPTH = 1100;

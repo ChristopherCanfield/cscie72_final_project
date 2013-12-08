@@ -50,7 +50,7 @@ Drawable.prototype.add = function(drawable) {
 
 /**
  * Adds this object to the three.js scene graph.
- * @param {THREE.Scene} threeJsScene the three.js scene object.
+ * @param {THREE.Scene} threeJsScene reference to the three.js scene.
  */
 Drawable.prototype.addToThreeJsScene = function(threeJsScene) {
     if (this.threeJsSceneObject !== null)

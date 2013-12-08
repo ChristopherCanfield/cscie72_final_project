@@ -10,6 +10,8 @@ function Zone(boundingBox) {
     this.boundingBox = boundingBox;
     this.blockedAreas = [];
     this.adjacentZones = {};
+    
+    this.particleSystems = {};
 }
 
 Zone.prototype.getBoundingBox = function() {
@@ -77,4 +79,23 @@ Zone.prototype.addAdjacentZone = function(zone) {
 
 Zone.prototype.getAdjacentZones = function() {
     return this.adjacentZones;
+};
+
+
+Zones.prototype.addParticleSystem = function(particleSystem) {
+    this.particleSystems.push(particleSystem);
+};
+
+Zones.prototype.updateParticles = function(deltaTime) {
+    for (var i = 0; i < this.particleSystems; ++i)
+    {
+        this.particleSystems[i].update(deltaTime);
+    }
+};
+
+Zones.prototype.renderParticles = function(glContext, threeJsScene, threeJsCamera) {
+    for (var i = 0; i < this.particleSystems; ++i)
+    {
+        this.particleSystems[i].render(glContext, threeJsScene, threeJsCamera);
+    }
 };

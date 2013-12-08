@@ -19,6 +19,12 @@ GameScene.prototype = Object.create(Drawable.prototype);
 GameScene.prototype.constructor = GameScene;
 
 GameScene.prototype.createScene = function() {
+    // TODO: do the following:
+    // - Add the zones
+    // - Add adjacent zones to each zone
+    // - Add particle systems to zone
+    
+    
     // Create the scene.
     
     // Create the navigation graph.
@@ -26,7 +32,7 @@ GameScene.prototype.createScene = function() {
     
     this.add(new Ground());
     
-    new Room1(this, this.zones);
+    Room1.create(this, this.zones);
     
     // TODO: remove this, and replace with a set of lights.
     var light1 = new THREE.PointLight(0xFFFFFF, 15, 300); 

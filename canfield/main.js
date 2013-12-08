@@ -39,7 +39,7 @@ var cdc = {
     /**
      * Timer used for logic, movement & animation.
      */
-    timer: null,
+    timer: null
 };
 
 init();
