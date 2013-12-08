@@ -19,6 +19,8 @@
  * @param {float} lifetime The number of milliseconds before the particle disappears.
  */
 function Particle(particleSystem, position, speed, direction, size, color, lifetime) {
+    this.particleSystem = particleSystem;
+    
     this.position = position;
     this.speed = speed;
     this.direction = direction;
@@ -43,9 +45,9 @@ Particle.prototype.update = function(deltaTime) {
         return;
     }
     
-    this.position.x += (speed.x * this.direction.x * deltaTime);
-    this.position.y += (speed.y * this.direction.y * deltaTime);
-    this.position.z += (speed.z * this.direction.z * deltaTime);
+    this.position.x += (this.speed.x * this.direction.x * deltaTime);
+    this.position.y += (this.speed.y * this.direction.y * deltaTime);
+    this.position.z += (this.speed.z * this.direction.z * deltaTime);
     
     this.lifeMillis += deltaTime;
 };
