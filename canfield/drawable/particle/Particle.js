@@ -19,6 +19,8 @@
  * @param {float} lifetime The number of milliseconds before the particle disappears.
  */
 function Particle(particleSystem, position, speed, direction, size, color, lifetime) {
+    Drawable.call(this);
+    
     this.particleSystem = particleSystem;
     
     this.position = position;
@@ -31,9 +33,17 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     
     this.id = Particle.nextId++;
     
+    this.geometry = new THREE.SphereGeometry(r, numOfSegments, numOfSegments);
+    var mesh = new THREE.Mesh(this.geometry, material);
+    mesh.position.set(xLeft + (width / 2), Ground.Y_TOP - 0.5, zBack);
+    this.threeJsDrawable = mesh;
+    
     // TODO: inherit from drawable, create geometry object, and add
     // to scene object. Get three.js scene from ParticleSystem.
 }
+
+Particle.prototype = Object.create(Drawable.prototype);
+Particle.prototype.constructor = Particle;
 
 
 Particle.prototype.update = function(deltaTime) {
