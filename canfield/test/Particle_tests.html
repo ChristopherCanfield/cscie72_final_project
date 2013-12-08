@@ -6,6 +6,7 @@
 		<title>BoundingBox_tests</title>
 		<meta name="description" content="Tests for the Particle class: November 2013">
 		<meta name="author" content="Christopher D. Canfield">
+		<script type="text/javascript" src="../../Common/three.js"
 		<script type="text/javascript" src="../navigation/Drawable.js"></script>
 		<script type="text/javascript" src="../navigation/Particle.js"></script>
 	</head>
@@ -18,7 +19,37 @@
 			Successful tests return true in the console.
 
 			<script>
-			
+		      var position1 = new THREE.Vector3(10, 10, 10);
+		      var speed1 = new THREE.Vector3(0.25, 0.25, 0.25);
+		      var direction1 = new THREE.Vector3(-1, 1, 1);
+		      var size1 = 3;
+		      var color1 = new THREE.Color("rgb(250, 0,0)");
+		      var lifetime1 = 10;
+		      var particle1 = new Particle(position1, speed1, direction1, 
+		              size1, color1, lifetime1);
+		              
+		      var position2 = new THREE.Vector3(10, 10, 10);
+              var speed2 = new THREE.Vector3(0.25, 0.25, 0.25);
+              var direction2 = new THREE.Vector3(-1, 1, 1);
+              var size2 = 4;
+              var color2 = new THREE.Color("rgb(250, 0,0)");
+              var lifetime2 = 10;
+              var particle2 = new Particle(position2, speed2, direction2, 
+                      size2, color2, lifetime2);
+                     
+              var testResult = particle1.equals(particle1);
+              console.log("particle.equals: " + testResult);
+              testResult = !particle1.equals(particle2);
+              console.log("!particle.equals: " + testResult);
+              testResult = !particle2.equals(particle1);
+              console.log("!particle.equals 2: " + testResult);
+              
+              particle1.update(11);
+              testResult = (particle1.lifeMillis === 11);
+              console.log("particle.update: " + testResult);
+              
+              testResult = (particle1.getId() === 0);
+              console.log("particle.getId: " + testResult);
 			</script>
 
 		</div>

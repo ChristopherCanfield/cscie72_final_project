@@ -43,7 +43,9 @@ Particle.prototype.update = function(deltaTime) {
         return;
     }
     
-    this.position.x += (speed.x * deltaTime);
+    this.position.x += (speed.x * this.direction.x * deltaTime);
+    this.position.y += (speed.y * this.direction.y * deltaTime);
+    this.position.z += (speed.z * this.direction.z * deltaTime);
     
     this.lifeMillis += deltaTime;
 };
