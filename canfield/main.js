@@ -86,6 +86,8 @@ function init()
  */
 function render()
 {
+    // TODO: get the current zone, plus all adjacent zones, and render them.
+    
     gl.clear(glCOLOR_BUFFER_BIT, glDEPTH_BUFFER_BIT); //gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.render(cdc.scene.getThreeJsScene(), cdc.camera.getThreeJSCamera());
     

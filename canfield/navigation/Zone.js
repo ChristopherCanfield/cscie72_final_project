@@ -9,6 +9,7 @@
 function Zone(boundingBox) {
     this.boundingBox = boundingBox;
     this.blockedAreas = [];
+    this.adjacentZones = {};
 }
 
 Zone.prototype.getBoundingBox = function() {
@@ -18,6 +19,7 @@ Zone.prototype.getBoundingBox = function() {
 Zone.prototype.setBoundingBox = function(boundingBox) {
     this.boundingBox = boundingBox;
 };
+
 
 
 Zone.prototype.getBlockedAreas = function() {
@@ -62,4 +64,17 @@ Zone.prototype.removeBlockedArea = function(blockedArea) {
             return;
         }
     }
+};
+
+
+/**
+ * 
+ * @param {Zone} zone
+ */
+Zone.prototype.addAdjacentZone = function(zone) {
+    this.adjacentZones.push(zone);
+};
+
+Zone.prototype.getAdjacentZones = function() {
+    return this.adjacentZones;
 };
