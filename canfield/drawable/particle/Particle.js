@@ -33,9 +33,11 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     
     this.id = Particle.nextId++;
     
-    this.geometry = new THREE.SphereGeometry(r, numOfSegments, numOfSegments);
+    var radius = 2; // TODO: change this after testing.
+    var numberOfSegments = 5;
+    this.geometry = new THREE.SphereGeometry(radius, numberOfSegments, numberOfSegments);
     var mesh = new THREE.Mesh(this.geometry, material);
-    mesh.position.set(xLeft + (width / 2), Ground.Y_TOP - 0.5, zBack);
+    mesh.position.set(position.x, position.y, position.z);
     this.threeJsDrawable = mesh;
     
     // TODO: inherit from drawable, create geometry object, and add
