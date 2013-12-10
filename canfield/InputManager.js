@@ -82,11 +82,11 @@ InputManager.prototype.keyDown = function(e) {
     // TODO (2013-11-09): The next lines allow vertical movement. Remove this 
     // if they remain unused.
     
-    // else if (keyCode == KeyEvent.DOM_VK_Q)
-    // {
-        // this.upY();
-        // return false;
-    // }
+    else if (keyCode == KeyEvent.DOM_VK_Q)
+    {
+        this.camera.rotate180();
+        return true;
+    }
     // else if (keyCode == KeyEvent.DOM_VK_E)
     // {
         // this.downY();

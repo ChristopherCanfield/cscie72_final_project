@@ -117,6 +117,20 @@ Camera.prototype.rotateRight = function(amount) {
     var rotation = this.rotationSpeed * amount;
     if (rotation > 0.25) rotation = 0.25;
     this.yawObject.rotation.y -= rotation;
+    console.log("rotation: " + this.yawObject.rotation.y);
+    this.velocity.x = 0;
+    this.velocity.y = 0;
+    this.velocity.z = 0;
+    this.updateMovement();
+};
+
+
+Camera.prototype.rotate180 = function() {
+    //var rotation = new THREE.Euler(0, Math.PI / 2.0, 0, "XYZ");
+    //this.yawObject.rotation.applyEuler(rotation);
+
+    //this.yawObject.applyAxisAngle("y", Math.PI / 2.0);
+    this.yawObject.rotation.y += (this.yawObject.rotation.y > Math.PI) ? -Math.PI : Math.PI;
     this.velocity.x = 0;
     this.velocity.y = 0;
     this.velocity.z = 0;

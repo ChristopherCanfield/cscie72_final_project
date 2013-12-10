@@ -56,8 +56,8 @@ StartRoom.addWallsFloorsCeiling = function(gameScene, zone) {
 };
 
 StartRoom.addLights = function(gameScene) {
-    var light1 = new THREE.PointLight(0xFFFFFF, 15, 300); 
-    light1.position.set(200, 20, -100); 
+    var light1 = new THREE.PointLight(0xFFFFFF, 15, 500); 
+    light1.position.set(200, 30, 0); 
     gameScene.getThreeJsScene().add(light1);    
 };
 
