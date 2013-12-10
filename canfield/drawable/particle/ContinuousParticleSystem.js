@@ -43,7 +43,7 @@ ContinuousParticleSystem.prototype.superUpdate = ContinuousParticleSystem.protot
 ContinuousParticleSystem.prototype.update = function(deltaTime) {
     if ((this.releaseTimeCounter + deltaTime) > this.timePerRelease)
     {
-        for (var i = 0; i < particlesPerRelease; ++i)
+        for (var i = 0; i < this.particlesPerRelease; ++i)
         {
             this.addParticle();
         }

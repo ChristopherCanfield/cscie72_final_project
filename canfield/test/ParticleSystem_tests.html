@@ -23,7 +23,7 @@
 			Successful tests return true in the console.
 
 			<script>
-			  var particleSystem = new ParticleSystem();
+			  var particleSystem = new ParticleSystem(null, null);
 			
 		      var position1 = new THREE.Vector3(10, 10, 10);
 		      var speed1 = new THREE.Vector3(0.25, 0.25, 0.25);
@@ -99,13 +99,15 @@
               // ExplosionParticleSystem test
               var position1 = new THREE.Vector3(5, 2, 8);
               var speed1 = new THREE.Vector3(10, 15, 20);
-              var explosionSystem = new ExplosionParticleSystem(null, null, 10, 5, position1, speed1, 
-                    new THREE.Color("rgb(255,0,0)"), 2, true);
+              // zone: Zone, threeJsScene: Object, lifetime: int, particleCount: int, position: THREE.Vector3, 
+              // particleSpeed: THREE.Vector3, particleSize: int, particleColor: THREE.Color, particleLifetime: int, particleSpread: ParticleSpread, debug: boolean
+              var explosionSystem = new ExplosionParticleSystem(null, null, 10, 5, position1, speed1, 2,
+                    new THREE.Color("rgb(255,0,0)"), 2, ParticleSpread.SMALL, true);
               
               testResult = (explosionSystem.particles.length === 5);
               console.log("exposionSystem.particles.length: " + testResult);
               
-              explosionSystem.update(4);
+              explosionSystem.update(6);
               testResult = (explosionSystem.particles.length === 0);
               console.log("explosionSystem.update(): " + testResult);
               
@@ -115,14 +117,20 @@
               				(randomDirection.z === 0 || randomDirection.z === 1 || randomDirection.z === -1));
               console.log("explosionSystem.getRandomDirection: " + testResult);
               
+              var explosionSystem2 = new ExplosionParticleSystem(null, null, 10, 5, position1, speed1, 2,
+                    new THREE.Color("rgb(255,0,0)"), 2, ParticleSpread.SMALL, true);
+              explosionSystem2.update(13);
+              testResult = (explosionSystem2.particles.length === 0);
+              console.log("explosionSystem.update() (system time exceeded): " + testResult);
+              
               // ContinuousParticleSystem test
-              var continuousSystem = new ContinuousParticleSystem(null, null, 10, 4, particle1, true);
+              var continuousSystem = new ContinuousParticleSystem(null, null, 10, 4, particle1, ParticleSpread.SMALL, true);
               
               testResult = (continuousSystem.particles.length === 10);
               console.log("continuousSystem.particles.length: " + testResult);
               
-              explosionSystem.update(5);
-              testResult = (explosionSystem.particles.length > 10);
+              continuousSystem.update(5);
+              testResult = (continuousSystem.particles.length > 10);
               console.log("continuousSystem.update(): " + testResult);
               
 			</script>

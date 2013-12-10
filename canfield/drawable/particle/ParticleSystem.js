@@ -26,6 +26,10 @@ function ParticleSystem(zone, threeJsScene) {
 
 ParticleSystem.prototype.add = function(particle) {
     this.particles.push(particle);
+    if (this.threeJsScene !== null)
+    {
+        this.threeJsScene.add(particles.threeJsDrawable);
+    }
 };
 
 ParticleSystem.prototype.remove = function(particle) {
@@ -44,13 +48,21 @@ ParticleSystem.prototype.remove = function(particle) {
 ParticleSystem.prototype.update = function(deltaTime) {
     for (var i = 0; i < this.particles.length; ++i)
     {
-        this.particles[i].update(deltaTime);
+        if (this.particles[i].update(deltaTime))
+        {
+            --i;
+        }
     }
 };
 
 
 ParticleSystem.prototype.setDone = function(done) {
     this.done = done;
+    // Remove all particles when this particle system has finished.
+    for (var i = this.particles.length - 1; i >= 0; --i)
+    {
+        this.remove(this.particles[i]);
+    }
 };
 
 ParticleSystem.prototype.isDone = function() {
@@ -76,6 +88,6 @@ ParticleSystem.prototype.adjustForSpread = function(position, spread) {
     }
     else
     {
-        throw "ContinousParticleSystem.adjustForSpread: Invalid ParticleSpread value: " + this.spread;
+        throw "ParticleSystem.adjustForSpread: Invalid ParticleSpread value: " + this.spread;
     }
 };

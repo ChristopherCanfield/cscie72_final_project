@@ -55,17 +55,23 @@ Particle.prototype = Object.create(Drawable.prototype);
 Particle.prototype.constructor = Particle;
 
 
+/**
+ *  
+ * @param {int} deltaTime
+ * @return {boolean} true if the particle was removed, or false otherwise.
+ */
 Particle.prototype.update = function(deltaTime) {
     if ((this.lifeMillis + deltaTime) > this.lifetime)
     {
         this.particleSystem.remove(this);
-        return;
+        return true;
     }
     this.lifeMillis += deltaTime;
     
     this.position.x += (this.speed.x * this.direction.x * deltaTime);
     this.position.y += (this.speed.y * this.direction.y * deltaTime);
     this.position.z += (this.speed.z * this.direction.z * deltaTime);
+    return false;
 };
 
 Particle.prototype.equals = function(particle) {
