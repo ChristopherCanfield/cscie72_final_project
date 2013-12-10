@@ -40,7 +40,7 @@ function BuildingWall(xLeft, zBack, width, height, depth, texturePath, textureRe
     if (typeof debug !== "undefined" && debug)
     {
         console.log("BuildingWall: (" + mesh.position.x + "," + mesh.position.y + "," + mesh.position.z + ") | (" + xLeft + ",0," + zBack + ")");
-        console.log("BuildingWall Width,Height,Depth: " + mesh.width + "," + mesh.height + "," + mesh.depth);
+        console.log("BuildingWall Width,Height,Depth: " + width + "," + height + "," + depth);
     }
 }
 

@@ -46,6 +46,8 @@ GameScene.prototype.createScene = function() {
     StartRoom.create(this, this.zones);
     
     
+    // Attach the scene to the three.js scene graph.
+    this.addToThreeJsScene(this.threeJsScene);
     
     // The moon.
     // this.add(new Sphere(200, 700, 1600, 16, 0.3, Colors.MOON_1));
@@ -88,8 +90,8 @@ GameScene.prototype.createScene = function() {
 //     
     // this.addLights();
 //     
-    // // Attach the scene to the three.js scene graph.
-     this.addToThreeJsScene(this.threeJsScene);
+    // 
+     
 };
 
 

@@ -15,9 +15,9 @@ function StartRoom() {}
  * @param {Zones} zones 
  */
 StartRoom.create = function(gameScene, zones) {
-    var zone = new Zone(new BoundingBox(Room1.X_LEFT, Room1.X_WIDTH, 
+    var zone = new Zone(new BoundingBox(StartRoom.X_LEFT, StartRoom.X_WIDTH, 
                         0, 1000, 
-                        Room1.Z_BACK, Room1.Z_DEPTH));
+                        StartRoom.Z_BACK, StartRoom.Z_DEPTH));
     zones.add(zone);
     
     StartRoom.addWallsFloorsCeiling(gameScene, zone);
@@ -36,15 +36,15 @@ StartRoom.addWallsFloorsCeiling = function(gameScene, zone) {
     // TODO: change wall textures.
     
     // Back wall.
-    var backWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK, 
-            Room1.X_WIDTH, 200, 30,
+    var backWall = new BuildingWall(StartRoom.X_LEFT, StartRoom.Z_BACK, 
+            StartRoom.X_WIDTH, 200, 30,
             Textures.WALL_5, 14, 7,
             zone, true);
     gameScene.add(backWall);
     
     // Front wall.
-    var frontWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK + Room1.Z_DEPTH, 
-            Room1.X_WIDTH, 200, 30,
+    var frontWall = new BuildingWall(StartRoom.X_LEFT, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
+            StartRoom.X_WIDTH, 200, 30,
             Textures.WALL_2, 10, 4,
             zone);
     gameScene.add(frontWall);
@@ -58,7 +58,7 @@ StartRoom.addWallsFloorsCeiling = function(gameScene, zone) {
 StartRoom.addLights = function(gameScene) {
     var light1 = new THREE.PointLight(0xFFFFFF, 15, 300); 
     light1.position.set(200, 20, -100); 
-    this.threeJsScene.add(light1);    
+    gameScene.getThreeJsScene().add(light1);    
 };
 
 StartRoom.addParticleSystems = function(gameScene, zone) {

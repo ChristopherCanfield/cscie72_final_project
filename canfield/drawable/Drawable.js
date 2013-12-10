@@ -38,13 +38,20 @@ function Drawable() {
     this.rotationY = 0.0;
 }
 
+Drawable.prototype.isDrawable = function() {
+    return true;    
+};
+
 
 /**
  * Attaches a Drawable to this scene object.
  * @param {Drawable} drawable the Drawable to add to this scene object.
  */
 Drawable.prototype.add = function(drawable) {
-    this.drawables.push(drawable);
+    if (typeof drawable.isDrawable !== "undefined")
+    {
+        this.drawables.push(drawable);
+    }
 };
 
 

@@ -38,15 +38,15 @@ CenterRoom.addWallsFloorsCeiling = function(gameScene, zone) {
     // TODO: change this to the correct layout.
     
     // Back wall.
-    var backWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK, 
-            Room1.X_WIDTH, 200, 30,
+    var backWall = new BuildingWall(CenterRoom.X_LEFT, CenterRoom.Z_BACK, 
+            CenterRoom.X_WIDTH, 200, 30,
             Textures.WALL_5, 14, 7,
             zone, true);
     gameScene.add(backWall);
     
     // Front wall.
-    var frontWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK + Room1.Z_DEPTH, 
-            Room1.X_WIDTH, 200, 30,
+    var frontWall = new BuildingWall(CenterRoom.X_LEFT, CenterRoom.Z_BACK + CenterRoom.Z_DEPTH, 
+            CenterRoom.X_WIDTH, 200, 30,
             Textures.WALL_2, 10, 4,
             zone);
     gameScene.add(frontWall);
@@ -61,7 +61,7 @@ CenterRoom.addLights = function(gameScene) {
     // TODO: update and add to this.
     var light1 = new THREE.PointLight(0xFFFFFF, 15, 300); 
     light1.position.set(200, 20, -100); 
-    this.threeJsScene.add(light1);    
+    gameScene.add(light1);    
 };
 
 CenterRoom.addParticleSystems = function(gameScene, zone) {
