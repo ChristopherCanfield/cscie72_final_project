@@ -40,8 +40,7 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     mesh.position.set(position.x, position.y, position.z);
     this.threeJsDrawable = mesh;
     
-    // TODO: inherit from drawable, create geometry object, and add
-    // to scene object. Get three.js scene from ParticleSystem.
+    // TODO: add to scene object. Get three.js scene from ParticleSystem.
 }
 
 Particle.prototype = Object.create(Drawable.prototype);

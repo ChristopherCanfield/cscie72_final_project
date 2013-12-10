@@ -10,6 +10,8 @@ function ParticleSystem(zone, threeJsScene) {
     this.particles = [];
     this.zone = zone;
     this.threeJsScene = threeJsScene;
+    
+    this.done = false;
 }
 
 
@@ -35,4 +37,13 @@ ParticleSystem.prototype.update = function(deltaTime) {
     {
         this.particles[i].update(deltaTime);
     }
+};
+
+
+ParticleSystem.prototype.setDone = function(done) {
+    this.done = done;
+};
+
+ParticleSystem.prototype.isDone = function() {
+    return this.done;
 };
