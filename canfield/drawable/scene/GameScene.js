@@ -18,6 +18,17 @@ function GameScene() {
 GameScene.prototype = Object.create(Drawable.prototype);
 GameScene.prototype.constructor = GameScene;
 
+GameScene.prototype.superUpdate = GameScene.prototype.update;
+
+GameScene.prototype.update = function(deltaTime) {
+    for (var i = 0; i < this.zones.length; ++i)
+    {
+        this.zones[i].updateParticles(deltaTime);
+    }
+    
+    this.superUpdate(deltaTime);
+};
+
 GameScene.prototype.createScene = function() {
     // TODO: do the following:
     // - Add the zones

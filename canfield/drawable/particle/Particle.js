@@ -47,8 +47,6 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     var mesh = new THREE.Mesh(this.geometry, material);
     mesh.position.set(position.x, position.y, position.z);
     this.threeJsDrawable = mesh;
-    
-    // TODO: add to scene object. Get three.js scene from ParticleSystem.
 }
 
 Particle.prototype = Object.create(Drawable.prototype);

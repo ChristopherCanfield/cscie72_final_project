@@ -37,6 +37,7 @@ ParticleSystem.prototype.remove = function(particle) {
     {
         if (this.particles[i].equals(particle))
         {
+            this.removeFromScene(particle);
             this.particles.splice(i, 1);
             return;
         }
@@ -55,7 +56,6 @@ ParticleSystem.prototype.update = function(deltaTime) {
     }
 };
 
-
 ParticleSystem.prototype.setDone = function(done) {
     this.done = done;
     // Remove all particles when this particle system has finished.
@@ -67,6 +67,13 @@ ParticleSystem.prototype.setDone = function(done) {
 
 ParticleSystem.prototype.isDone = function() {
     return this.done;
+};
+
+ParticleSystem.prototype.removeFromScene = function(particle) {
+    if (this.threeJsScene != null)
+    {
+        this.threeJsScene.remove(particle.threeJsDrawable);   
+    }    
 };
 
 /**
