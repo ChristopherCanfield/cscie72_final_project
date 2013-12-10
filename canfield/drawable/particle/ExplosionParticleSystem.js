@@ -16,9 +16,10 @@
  * @param {Object} particleSize
  * @param {Object} particleColor
  * @param {Object} particleLifetime
+ * @param {boolean} debug Set to true if particles should not be added to the scene (Optional).
  */
 function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount, 
-        position, particleSpeed, particleSize, particleColor, particleLifetime) {
+        position, particleSpeed, particleSize, particleColor, particleLifetime, debug) {
     ParticleSystem.call(this);
     
     this.particles = [];
@@ -33,7 +34,10 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
     this.particleColor = particleColor;
     this.particleLifetime = particleLifetime;
     
-    // TODO: add particles.
+    if (typeof debug !== "undefined" && debug)
+    {
+        // TODO: add particles.
+    }
 }
 
 ExplosionParticleSystem.prototype = Object.create(ParticleSystem.prototype);

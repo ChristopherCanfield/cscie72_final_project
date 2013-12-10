@@ -13,8 +13,8 @@
  * @param {ParticleSystem} particleSystem
  * @param {THREE.Vector3} position
  * @param {THREE.Vector3} speed Speed per millisecond.
- * @param {THREE.Vector3} direction
- * @param {float} size
+ * @param {THREE.Vector3} direction -1, 0, or 1 for each direction.
+ * @param {float} size The particle's radius.
  * @param {THREE.Color} color
  * @param {float} lifetime The number of milliseconds before the particle disappears.
  */
@@ -26,16 +26,24 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     this.position = position;
     this.speed = speed;
     this.direction = direction;
-    this.size = size;
     this.color = color;
     this.lifetime = lifetime;
     this.lifeMillis = 0;
     
     this.id = Particle.nextId++;
     
-    var radius = 2; // TODO: change this after testing.
+    // Create the drawable object.
+    var radius = size;
     var numberOfSegments = 5;
     this.geometry = new THREE.SphereGeometry(radius, numberOfSegments, numberOfSegments);
+    for (var i = 0; i < this.geometry.faces.length; ++i)
+    {
+        this.geometry.faces[i].vertexColors.push(color, color, color);
+    }
+    
+    var material = new THREE.MeshBasicMaterial({ 
+        vertexColors: THREE.VertexColors
+    });
     var mesh = new THREE.Mesh(this.geometry, material);
     mesh.position.set(position.x, position.y, position.z);
     this.threeJsDrawable = mesh;

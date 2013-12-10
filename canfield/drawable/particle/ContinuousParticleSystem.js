@@ -12,8 +12,9 @@
  * @param {Object} particlesPerRelease
  * @param {Object} timePerRelease
  * @param {Particle} particle A prototypical particle.
+ * @param {boolean} debug Set to true if particles should not be added to the scene (Optional).
  */
-function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timePerRelease, particle) {
+function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timePerRelease, particle, debug) {
     ParticleSystem.call(this);
     
     this.particles = [];
@@ -23,7 +24,10 @@ function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timeP
     
     this.lastRelease = 0;
     
-    // TODO: add particles.
+    if (typeof debug !== "undefined" && debug)
+    {
+        // TODO: add particles.
+    }
 }
 
 ContinuousParticleSystem.prototype = Object.create(ParticleSystem.prototype);

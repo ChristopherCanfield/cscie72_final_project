@@ -6,7 +6,7 @@
 		<title>ParticleSystem_tests</title>
 		<meta name="description" content="Tests for ParticleSystem and related classes">
 		<meta name="author" content="Christopher D. Canfield">
-		<script type="text/javascript" src="../../Common/three.js"
+		<script type="text/javascript" src="../../Common/three.js"></script>
 		<script type="text/javascript" src="../drawable/Drawable.js"></script>
 		<script type="text/javascript" src="../drawable/particle/Particle.js"></script>
 		<script type="text/javascript" src="../drawable/particle/ParticleSystem.js"></script>
@@ -86,10 +86,15 @@
               // ExplosionParticleSystem test
               // constructor: zone, threeJsScene, lifetime, particleCount, 
               //       position, particleSpeed, particleSize, particleColor, particleLifetime
-              //var explosionSystem = new ExplosionSystem(null, null)
+              var position1 = new THREE.Vector3(5, 2, 8);
+              var speed1 = new THREE.Vector3(10, 15, 20);
+              var explosionSystem = new ExplosionParticleSystem(null, null, 10, 5, position1, speed1, 
+                    new THREE.Color("rgb(255,0,0)"), 2, false);
+              
               
               // ContinuousParticleSystem test
               // constructor: zone, threeJsScene, particlesPerRelease, timePerRelease, particle
+              var continuousSystem = new ContinuousParticleSystem(null, null, 10, 4, particle1);
               
               
 			</script>
