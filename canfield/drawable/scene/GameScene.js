@@ -45,6 +45,9 @@ GameScene.prototype.createScene = function() {
     
     StartRoom.create(this, this.zones);
     
+    // Add weak ambient light to scene.
+    var ambientLight = new THREE.AmbientLight(0x222222);
+    this.getThreeJsScene().add(ambientLight);
     
     // Attach the scene to the three.js scene graph.
     this.addToThreeJsScene(this.threeJsScene);
