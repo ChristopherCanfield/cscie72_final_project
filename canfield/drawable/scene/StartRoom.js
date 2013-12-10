@@ -15,39 +15,62 @@ function StartRoom() {}
  * @param {Zones} zones 
  */
 StartRoom.create = function(gameScene, zones) {
-    this.zone = new Zone(new BoundingBox(Room1.X_LEFT, Room1.X_WIDTH, 
+    var zone = new Zone(new BoundingBox(Room1.X_LEFT, Room1.X_WIDTH, 
                         0, 1000, 
                         Room1.Z_BACK, Room1.Z_DEPTH));
-    zones.add(this.zone);
+    zones.add(zone);
     
-    // TODO: change wall textures.
-    
+    StartRoom.addWallsFloorsCeiling(gameScene, zone);
+    StartRoom.addParticleSystems(gameScene, zone);
+    StartRoom.addLights(gameScene);
+    StartRoom.addInsideObjects(gameScene, zone);
+    StartRoom.addOutsideObjects(gameScene, zone);
+};
+
+StartRoom.addWallsFloorsCeiling = function(gameScene, zone) {
     // BuildingWall constructor parameters:
     // BuildingWall(xLeft: float, zBack: float, width: float, height: float, depth: 
          // float, texturePath: String, textureRepeatX: int, textureRepeatY: int, zone: 
          // Zone): BuildingWall
     
+    // TODO: change wall textures.
+    
     // Back wall.
     var backWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK, 
             Room1.X_WIDTH, 200, 30,
             Textures.WALL_5, 14, 7,
-            this.zone, true);
+            zone, true);
     gameScene.add(backWall);
     
     // Front wall.
     var frontWall = new BuildingWall(Room1.X_LEFT, Room1.Z_BACK + Room1.Z_DEPTH, 
             Room1.X_WIDTH, 200, 30,
             Textures.WALL_2, 10, 4,
-            this.zone);
+            zone);
     gameScene.add(frontWall);
     
     // East wall.
     
     
     // West wall.
-    
-    
-    // TODO: add lights, door, models, particle systems.
+};
+
+StartRoom.addLights = function(gameScene) {
+    var light1 = new THREE.PointLight(0xFFFFFF, 15, 300); 
+    light1.position.set(200, 20, -100); 
+    this.threeJsScene.add(light1);    
+};
+
+StartRoom.addParticleSystems = function(gameScene, zone) {
+    // TODO: complete this.
+};
+
+StartRoom.addOutsideObjects = function(gameScene, zone) {
+    // TODO: complete this.
+};
+
+StartRoom.addInsideObjects = function(gameScene, zone) {
+    // TODO: complete this.
 };
 
 StartRoom.X_LEFT = -400;
