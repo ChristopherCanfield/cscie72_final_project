@@ -29,11 +29,11 @@ MathHelper.radiansToDegrees = function(radians) {
  * @param {Object} max
  */
 MathHelper.randomInt = function(min, max) {
-    if (typeof min == "undefined")
+    if (typeof min === "undefined")
     {
         min = 0;
     }
-    if (typeof max == "undefined")
+    if (typeof max === "undefined")
     {
         max = Number.MAX_VALUE - 10;
     }
@@ -41,3 +41,24 @@ MathHelper.randomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+/**
+ * From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
+ * @param {Object} min
+ * @param {Object} max
+ */
+MathHelper.randomNumber = function(min, max) {
+  return Math.random() * (max - min) + min;
+};
+
+/**
+ * 
+ * @param {Object} vec3
+ * @param {Object} minPctAdjustment
+ * @param {Object} maxPctAdjustment
+ */
+MathHelper.adjustVector3 = function(vec3, minPctAdjustment, maxPctAdjustment) {
+    var x = vec3.x * MathHelper.randomNumber(minPctAdjustment, maxPctAdjustment);
+    var y = vec3.y * MathHelper.randomNumber(minPctAdjustment, maxPctAdjustment);
+    var z = vec3.z * MathHelper.randomNumber(minPctAdjustment, maxPctAdjustment);
+    return new THREE.Vector3(x, y, z);
+};

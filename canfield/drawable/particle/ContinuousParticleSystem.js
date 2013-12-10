@@ -16,11 +16,12 @@
  */
 function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timePerRelease, particle, debug) {
     ParticleSystem.call(this);
+
+    this.debug = debug;
     
-    this.particles = [];
-    this.zone = zone;
-    this.threeJsScene = threeJsScene;
     this.prototypicalParticle = particle;
+    this.particlesPerRelease = particlesPerRelease;
+    this.timePerRelease = timePerRelease;
     
     this.lastRelease = 0;
     
@@ -38,9 +39,14 @@ ContinuousParticleSystem.prototype.superUpdate = ContinuousParticleSystem.protot
 ContinuousParticleSystem.prototype.update = function(deltaTime) {
     if ((this.lastRelease + deltaTime) > this.timePerRelease)
     {
-        // TODO: add particles.
+        // particleSystem, position, speed, direction, size, color, lifetime
+        // TODO: adjust the position, speed, and lifetime of the particle.
+        var p = new Particle(this, this.particle.position, this.particle.speed, this.particle.direction,
+                this.particle.size, this.particle.color, this.particle.lifetime);
+        this.add(p);
     }
     this.lastRelease += deltaTime;
     
     this.superUpdate(deltaTime);
 };
+
