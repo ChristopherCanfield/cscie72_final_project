@@ -24,6 +24,7 @@ MathHelper.radiansToDegrees = function(radians) {
 
 
 /**
+ * Returns a random integer between min and max, inclusive of each.
  * From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FMath%2Frandom
  * @param {Object} min
  * @param {Object} max

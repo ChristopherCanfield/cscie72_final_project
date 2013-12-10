@@ -22,10 +22,9 @@
 function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount, 
         position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread, debug) {
     ParticleSystem.call(this);
-    
-    this.particles = [];
-    this.zone = zone;
-    this.threeJsScene = threeJsScene;
+
+    this.threeJsScene = (debug) ? null : threeJsScene;
+
     this.lifetime = lifetime;
     this.lifeMillis = 0;
     this.position = position;
@@ -35,15 +34,11 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
     this.particleColor = particleColor;
     this.particleLifetime = particleLifetime;
     
-    if (typeof debug !== "undefined" && !debug)
-    {
-        var position = this.adjustForSpread(this.position, this.spread);
-        var speed = MathHelper.adjustVector3(this.particleSpeed, 0.8, 1.2);
-        var direction = this.getRandomDirection();
-        var lifetime = MathHelper.adjustVector3(this.particleLifetime, 0.8, 1.2);
-        var p = new Particle(this, position, speed, direction, particleSize, this.prototypicalParticle.color, lifetime);
-        this.add(p);
-    }
+    var position = this.adjustForSpread(this.position, this.spread);
+    var speed = MathHelper.adjustVector3(this.particleSpeed, 0.8, 1.2);
+    var direction = this.getRandomDirection();
+    var lifetime = MathHelper.adjustVector3(this.particleLifetime, 0.8, 1.2);
+    var p = new Particle(this, position, speed, direction, particleSize, this.prototypicalParticle.color, lifetime);
 }
 
 ExplosionParticleSystem.prototype = Object.create(ParticleSystem.prototype);
@@ -59,7 +54,7 @@ ExplosionParticleSystem.prototype.update = function(deltaTime) {
     }
     this.lifeMillis += deltaTime;
     
-    // TODO: test this.
+    // Call ParticleSystem's update method.
     this.superUpdate(deltaTime);
 };
 
