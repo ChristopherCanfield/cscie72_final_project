@@ -45,7 +45,7 @@ StartRoom.addWallsFloorsCeiling = function(gameScene, zone) {
     // Front wall.
     var frontWall = new BuildingWall(StartRoom.X_LEFT, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
             StartRoom.X_WIDTH, 200, 30,
-            Textures.WALL_2, 10, 4,
+            Textures.WALL_5, 14, 7,
             zone);
     gameScene.add(frontWall);
     

@@ -38,7 +38,7 @@ function Camera(zones, window, glCanvasWidth, glCanvasHeight) {
     this.yawObject.position.z = 0;
     this.yawObject.rotation.x = 0;
     this.yawObject.position.y = 20;
-    this.yawObject.rotation.y = 0;
+    this.yawObject.rotation.y = Math.PI;
     this.yawObject.add(this.pitchObject);
     
     // Movement & rotation speed.
@@ -124,12 +124,10 @@ Camera.prototype.rotateRight = function(amount) {
     this.updateMovement();
 };
 
-
+/**
+ * Rotates the camera 180 degrees around the Y axis. 
+ */
 Camera.prototype.rotate180 = function() {
-    //var rotation = new THREE.Euler(0, Math.PI / 2.0, 0, "XYZ");
-    //this.yawObject.rotation.applyEuler(rotation);
-
-    //this.yawObject.applyAxisAngle("y", Math.PI / 2.0);
     this.yawObject.rotation.y += (this.yawObject.rotation.y > Math.PI) ? -Math.PI : Math.PI;
     this.velocity.x = 0;
     this.velocity.y = 0;
