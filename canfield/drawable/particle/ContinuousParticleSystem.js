@@ -24,7 +24,7 @@ function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timeP
     
     this.lastRelease = 0;
     
-    if (typeof debug !== "undefined" && debug)
+    if (typeof debug !== "undefined" && !debug)
     {
         // TODO: add particles.
     }

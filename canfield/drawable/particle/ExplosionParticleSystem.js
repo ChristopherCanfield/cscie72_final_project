@@ -34,7 +34,7 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
     this.particleColor = particleColor;
     this.particleLifetime = particleLifetime;
     
-    if (typeof debug !== "undefined" && debug)
+    if (typeof debug !== "undefined" && !debug)
     {
         // TODO: add particles.
     }

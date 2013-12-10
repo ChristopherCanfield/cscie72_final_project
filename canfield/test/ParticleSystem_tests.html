@@ -84,18 +84,18 @@
               console.log("particleSystem.remove: " + testResult);
               
               // ExplosionParticleSystem test
-              // constructor: zone, threeJsScene, lifetime, particleCount, 
-              //       position, particleSpeed, particleSize, particleColor, particleLifetime
               var position1 = new THREE.Vector3(5, 2, 8);
               var speed1 = new THREE.Vector3(10, 15, 20);
               var explosionSystem = new ExplosionParticleSystem(null, null, 10, 5, position1, speed1, 
-                    new THREE.Color("rgb(255,0,0)"), 2, false);
+                    new THREE.Color("rgb(255,0,0)"), 2, true);
+                    
+              explosionSystem.update(2);
               
               
               // ContinuousParticleSystem test
-              // constructor: zone, threeJsScene, particlesPerRelease, timePerRelease, particle
-              var continuousSystem = new ContinuousParticleSystem(null, null, 10, 4, particle1);
+              var continuousSystem = new ContinuousParticleSystem(null, null, 10, 4, particle1, true);
               
+              continuousSystem.update(3);
               
 			</script>
 
