@@ -36,7 +36,7 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
     // TODO: add particles.
 }
 
-ExplosionParticleSystem.prototype = Object.create(Drawable.prototype);
+ExplosionParticleSystem.prototype = Object.create(ParticleSystem.prototype);
 ExplosionParticleSystem.prototype.constructor = Particle;
 
 ExplosionParticleSystem.prototype.superUpdate = ExplosionParticleSystem.prototype.update;

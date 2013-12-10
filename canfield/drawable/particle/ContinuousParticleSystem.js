@@ -26,7 +26,7 @@ function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timeP
     // TODO: add particles.
 }
 
-ContinuousParticleSystem.prototype = Object.create(Drawable.prototype);
+ContinuousParticleSystem.prototype = Object.create(ParticleSystem.prototype);
 ContinuousParticleSystem.prototype.constructor = Particle;
 
 ContinuousParticleSystem.prototype.superUpdate = ContinuousParticleSystem.prototype.update;
