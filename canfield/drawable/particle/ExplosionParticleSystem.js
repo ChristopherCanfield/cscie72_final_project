@@ -7,19 +7,20 @@
 
 /**
  * A particle system that creates an explosion effect.
- * @param {Object} zone
+ * @param {Zone} zone
  * @param {Object} threeJsScene
- * @param {Object} lifetime
- * @param {Object} particleCount
- * @param {Object} position The position of the particle system.
- * @param {Object} particleSpeed
- * @param {Object} particleSize
- * @param {Object} particleColor
- * @param {Object} particleLifetime
+ * @param {int} lifetime
+ * @param {int} particleCount
+ * @param {THREE.Vector3} position The position of the particle system.
+ * @param {THREE.Vector3} particleSpeed
+ * @param {int} particleSize
+ * @param {THREE.Color} particleColor
+ * @param {int} particleLifetime
+ * @param {ParticleSpread} particleSpread
  * @param {boolean} debug Set to true if particles should not be added to the scene (Optional).
  */
 function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount, 
-        position, particleSpeed, particleSize, particleColor, particleLifetime, debug) {
+        position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread, debug) {
     ParticleSystem.call(this);
     
     this.particles = [];
@@ -36,7 +37,12 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
     
     if (typeof debug !== "undefined" && !debug)
     {
-        // TODO: add particles.
+        var position = this.adjustForSpread(this.position, this.spread);
+        var speed = MathHelper.adjustVector3(this.particleSpeed, 0.8, 1.2);
+        var direction = this.getRandomDirection();
+        var lifetime = MathHelper.adjustVector3(this.particleLifetime, 0.8, 1.2);
+        var p = new Particle(this, position, speed, direction, particleSize, this.prototypicalParticle.color, lifetime);
+        this.add(p);
     }
 }
 
@@ -55,4 +61,23 @@ ExplosionParticleSystem.prototype.update = function(deltaTime) {
     
     // TODO: test this.
     this.superUpdate(deltaTime);
+};
+
+/**
+ * 
+ * @param {boolean} returnInteger true to return an integer, false or undefined to return a THREE.Vector3 (optional).
+ */
+ExplosionParticleSystem.prototype.getRandomDirection = function(returnInteger) {
+    if (typeof returnInteger === 'undefined' || !returnInteger)
+    {
+        var x = this.getRandomDirection(true);
+        var y = this.getRandomDirection(true);
+        var z = this.getRandomDirection(true);
+        return new THREE.Vector3(x, y, z);
+    }
+    else
+    {
+        var rand = MathHelper.randomInt(0, 2);
+        return rand - 1;
+    }      
 };

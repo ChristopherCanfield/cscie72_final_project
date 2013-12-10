@@ -12,9 +12,10 @@
  * @param {Object} particlesPerRelease
  * @param {Object} timePerRelease
  * @param {Particle} particle A prototypical particle.
+ * @param {ParticleSpread} particleSpread
  * @param {boolean} debug Set to true if particles should not be added to the scene (Optional).
  */
-function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timePerRelease, particle, debug) {
+function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timePerRelease, particle, particleSpread, debug) {
     ParticleSystem.call(this);
 
     this.debug = debug;
@@ -22,12 +23,13 @@ function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timeP
     this.prototypicalParticle = particle;
     this.particlesPerRelease = particlesPerRelease;
     this.timePerRelease = timePerRelease;
+    this.spread = particleSpread;
     
     this.lastRelease = 0;
     
     if (typeof debug !== "undefined" && !debug)
     {
-        // TODO: add particles.
+        this.addParticle();
     }
 }
 
@@ -36,17 +38,22 @@ ContinuousParticleSystem.prototype.constructor = Particle;
 
 ContinuousParticleSystem.prototype.superUpdate = ContinuousParticleSystem.prototype.update;
 
+
 ContinuousParticleSystem.prototype.update = function(deltaTime) {
     if ((this.lastRelease + deltaTime) > this.timePerRelease)
     {
-        // particleSystem, position, speed, direction, size, color, lifetime
-        // TODO: adjust the position, speed, and lifetime of the particle.
-        var p = new Particle(this, this.particle.position, this.particle.speed, this.particle.direction,
-                this.particle.size, this.particle.color, this.particle.lifetime);
-        this.add(p);
+        this.addParticle();
     }
     this.lastRelease += deltaTime;
     
     this.superUpdate(deltaTime);
 };
 
+ContinuousParticleSystem.prototype.addParticle = function() {
+    var position = this.adjustForSpread(this.prototypicalParticle.position, this.spread);
+    var speed = MathHelper.adjustVector3(this.prototypicalParticle.speed, 0.9, 1.1);
+    var lifetime = MathHelper.adjustVector3(this.prototypicalParticle.lifetime, 0.9, 1.1);
+    var p = new Particle(this, position, speed, this.prototypicalParticle.direction,
+            this.prototypicalParticle.size, this.prototypicalParticle.color, lifetime);
+    this.add(p);
+};
