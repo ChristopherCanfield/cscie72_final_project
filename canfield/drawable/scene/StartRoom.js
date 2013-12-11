@@ -84,17 +84,17 @@ StartRoom.addParticleSystems = function(gameScene, zone) {
     // TODO: complete this.
     
     // Create prototypical particle
-    var position1 = new THREE.Vector3(StartRoom.X_LEFT + 300, 30, StartRoom.Z_BACK + 400);
-    var speed1 = new THREE.Vector3(0.01, 0.01, 0.01);
-    var direction1 = new THREE.Vector3(-1, 1, 1);
-    var size1 = 10;
+    var position1 = new THREE.Vector3(StartRoom.X_LEFT + 300, 40, StartRoom.Z_BACK + 400);
+    var speed1 = new THREE.Vector3(0, 6, 0);
+    var direction1 = new THREE.Vector3(0, -1, 0);
+    var size1 = 0.4;
     var color1 = new THREE.Color("rgb(250, 0,0)");
-    var lifetime1 = 20000;
+    var lifetime1 = 5000;
     var protoParticle = new Particle(null, position1, speed1, direction1, 
           size1, color1, lifetime1);
     
     var continuousSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 
-            10, 4, protoParticle, ParticleSpread.SMALL);
+            10, 500, protoParticle, ParticleSpread.MEDIUM);
     zone.addParticleSystem(continuousSystem);
 };
 

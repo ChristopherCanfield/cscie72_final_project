@@ -9,13 +9,13 @@
  * A particle system that creates an explosion effect.
  * @param {Zone} zone
  * @param {Object} threeJsScene
- * @param {int} lifetime
+ * @param {int} lifetime The lifetime of the particle system, in milliseconds.
  * @param {int} particleCount
  * @param {THREE.Vector3} position The position of the particle system.
  * @param {THREE.Vector3} particleSpeed
  * @param {int} particleSize
  * @param {THREE.Color} particleColor
- * @param {int} particleLifetime
+ * @param {int} particleLifetime The lifetime of each particle, in milliseconds.
  * @param {ParticleSpread} particleSpread
  * @param {boolean} debug Set to true if particles should not be added to the scene (Optional).
  */
@@ -31,7 +31,7 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
     this.threeJsScene = (typeof debug === "undefined" || debug) ? null : threeJsScene;
     this.zone = zone;
 
-    this.lifetime = lifetime;
+    this.lifetime = lifetime / 1000;
     this.lifeMillis = 0;
     this.position = position;
     

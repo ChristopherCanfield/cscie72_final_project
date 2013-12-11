@@ -26,15 +26,16 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     this.position = position;
     this.speed = speed;
     this.direction = direction;
+    this.size = size;
     this.color = color;
-    this.lifetime = lifetime;
+    this.lifetime = lifetime / 1000;
     this.lifeMillis = 0;
     
     this.id = Particle.nextId++;
     
     // Create the drawable object.
     var radius = size;
-    var numberOfSegments = 5;
+    var numberOfSegments = 4;
     this.geometry = new THREE.SphereGeometry(radius, numberOfSegments, numberOfSegments);
     for (var i = 0; i < this.geometry.faces.length; ++i)
     {
@@ -66,9 +67,9 @@ Particle.prototype.update = function(deltaTime) {
     }
     this.lifeMillis += deltaTime;
     
-    this.position.x += (this.speed.x * this.direction.x * deltaTime);
-    this.position.y += (this.speed.y * this.direction.y * deltaTime);
-    this.position.z += (this.speed.z * this.direction.z * deltaTime);
+    this.threeJsDrawable.position.x += (this.speed.x * this.direction.x * deltaTime);
+    this.threeJsDrawable.position.y += (this.speed.y * this.direction.y * deltaTime);
+    this.threeJsDrawable.position.z += (this.speed.z * this.direction.z * deltaTime);
     return false;
 };
 

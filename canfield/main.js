@@ -92,9 +92,10 @@ function render()
     gl.render(cdc.scene.getThreeJsScene(), cdc.camera.getThreeJSCamera());
     
     // Process logic, movement and animation updates.
-    cdc.scene.update(cdc.timer.getDelta());
-    cdc.scene.getZones().updateParticles(cdc.timer.getDelta(), cdc.camera.getBoundingBox());
-    cdc.camera.update(cdc.timer.getDelta());
+    var deltaTime = cdc.timer.getDelta();
+    cdc.scene.update(deltaTime);
+    cdc.scene.getZones().updateParticles(deltaTime, cdc.camera.getBoundingBox());
+    cdc.camera.update(deltaTime);
     
     window.requestAnimationFrame(render);
 }
