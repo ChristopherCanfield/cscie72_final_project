@@ -35,15 +35,12 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     
     // Create the drawable object.
     var radius = size;
-    var numberOfSegments = 4;
+    // These need to run fast, since there are often quite a few of them.
+    var numberOfSegments = 3;
     this.geometry = new THREE.SphereGeometry(radius, numberOfSegments, numberOfSegments);
-    for (var i = 0; i < this.geometry.faces.length; ++i)
-    {
-        this.geometry.faces[i].vertexColors.push(color, color, color);
-    }
     
     var material = new THREE.MeshBasicMaterial({ 
-        vertexColors: THREE.VertexColors
+        color : color
     });
     var mesh = new THREE.Mesh(this.geometry, material);
     mesh.position.set(position.x, position.y, position.z);

@@ -75,8 +75,8 @@ StartRoom.addFloorCeiling = function(gameScene, zone) {
 };
 
 StartRoom.addLights = function(gameScene) {
-    var light1 = new THREE.PointLight(0xFFFFFF, 10, 500); 
-    light1.position.set(200, 30, 200); 
+    var light1 = new THREE.PointLight(0xFFF42B, 10, 500); 
+    light1.position.set(StartRoom.X_LEFT + 300, 40, StartRoom.Z_BACK + 400); 
     gameScene.getThreeJsScene().add(light1);
 };
 
@@ -87,14 +87,14 @@ StartRoom.addParticleSystems = function(gameScene, zone) {
     var position1 = new THREE.Vector3(StartRoom.X_LEFT + 300, 40, StartRoom.Z_BACK + 400);
     var speed1 = new THREE.Vector3(0, 6, 0);
     var direction1 = new THREE.Vector3(0, -1, 0);
-    var size1 = 0.4;
-    var color1 = new THREE.Color("rgb(250, 0,0)");
-    var lifetime1 = 5000;
+    var size1 = 0.18;
+    var color1 = new THREE.Color("rgb(76, 255,0)");
+    var lifetime1 = 3000;
     var protoParticle = new Particle(null, position1, speed1, direction1, 
           size1, color1, lifetime1);
     
     var continuousSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 
-            10, 500, protoParticle, ParticleSpread.MEDIUM);
+            20, 500, protoParticle, ParticleSpread.MEDIUM);
     zone.addParticleSystem(continuousSystem);
 };
 
