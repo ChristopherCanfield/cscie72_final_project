@@ -61,6 +61,11 @@ function Camera(zones, window, glCanvasWidth, glCanvasHeight) {
     this.tick = 0;
     this.lastRotateTick = 0;
     
+    // The bounding box should only be accessed through the getBoundingBox() method.
+    this.boundingBox = null;
+    // Specifies whether the camera has moved since the last call to getBoundingBox().
+    this.boundingBoxMoved = false;
+    
     // Specifies whether additional debug information is printed to the console.
     this.debug = false;
 }
@@ -90,8 +95,9 @@ Camera.prototype.getRotationSpeed = function() {
 Camera.prototype.updateMovement = function() {
     var MIN_Y = 0;
     
-    this.yawObject.translateX(this.velocity.x);
+    this.boundingBoxMoved = true;
     
+    this.yawObject.translateX(this.velocity.x);
     if (this.yawObject.position.y + this.velocity.y > MIN_Y)
     {
         this.yawObject.translateY(this.velocity.y);
@@ -232,6 +238,16 @@ Camera.prototype.strafeRight = function() {
 
 Camera.prototype.getCameraTarget = function() {
     return this.cameraTarget;   
+};
+
+Camera.prototype.getBoundingBox = function() {
+    if (this.boundingBoxMoved || this.boundingBox == null)
+    {
+        this.boundingBox = new BoundingBox(this.yawObject.position.x, this.width,
+                this.yawObject.position.y, this.height,
+                this.yawObject.position.z, this.depth);
+    }
+    return this.boundingBox;
 };
 
 /**

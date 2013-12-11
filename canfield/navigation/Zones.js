@@ -43,3 +43,11 @@ Zones.prototype.getCurrentZones = function(boundingBox) {
     }
     return currentZones;
 };
+
+Zones.prototype.updateParticles = function(deltaTime, boundingBox) {
+    var currentZones = this.getCurrentZones(boundingBox);
+    for (var i = 0; i < currentZones.length; ++i)
+    {
+        currentZones[i].updateParticles(deltaTime);
+    }
+};

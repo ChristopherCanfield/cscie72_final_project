@@ -93,6 +93,7 @@ function render()
     
     // Process logic, movement and animation updates.
     cdc.scene.update(cdc.timer.getDelta());
+    cdc.scene.getZones().updateParticles(cdc.timer.getDelta(), cdc.camera.getBoundingBox());
     cdc.camera.update(cdc.timer.getDelta());
     
     window.requestAnimationFrame(render);

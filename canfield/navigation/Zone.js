@@ -87,15 +87,15 @@ Zone.prototype.addParticleSystem = function(particleSystem) {
 };
 
 Zone.prototype.updateParticles = function(deltaTime) {
-    for (var i = 0; i < this.particleSystems; ++i)
+    for (var i = 0; i < this.particleSystems.length; ++i)
     {
         this.particleSystems[i].update(deltaTime);
     }
 };
 
-Zone.prototype.renderParticles = function(glContext, threeJsScene, threeJsCamera) {
-    for (var i = 0; i < this.particleSystems; ++i)
-    {
-        this.particleSystems[i].render(glContext, threeJsScene, threeJsCamera);
-    }
-};
+// Zone.prototype.renderParticles = function(glContext, threeJsScene, threeJsCamera) {
+    // for (var i = 0; i < this.particleSystems; ++i)
+    // {
+        // this.particleSystems[i].render(glContext, threeJsScene, threeJsCamera);
+    // }
+// };

@@ -20,20 +20,19 @@ StartRoom.create = function(gameScene, zones) {
                         StartRoom.Z_BACK - 30, StartRoom.Z_DEPTH + 60));
     zones.add(zone);
     
-    StartRoom.addWallsFloorsCeiling(gameScene, zone);
+    StartRoom.addWalls(gameScene, zone);
+    StartRoom.addFloorCeiling(gameScene, zone);
     StartRoom.addParticleSystems(gameScene, zone);
     StartRoom.addLights(gameScene);
     StartRoom.addInsideObjects(gameScene, zone);
     StartRoom.addOutsideObjects(gameScene, zone);
 };
 
-StartRoom.addWallsFloorsCeiling = function(gameScene, zone) {
+StartRoom.addWalls = function(gameScene, zone) {
     // BuildingWall constructor parameters:
         // BuildingWall(xLeft: float, zBack: float, 
         // width: float, height: float, depth: float, 
         // texturePath: String, textureRepeatX: int, textureRepeatY: int, zone: Zone): BuildingWall
-    
-    // TODO: change wall textures.
     
     // Back wall.
     var backWall = new BuildingWall(StartRoom.X_LEFT, StartRoom.Y_BOTTOM, StartRoom.Z_BACK, 
@@ -71,6 +70,10 @@ StartRoom.addWallsFloorsCeiling = function(gameScene, zone) {
     gameScene.add(westWall);
 };
 
+StartRoom.addFloorCeiling = function(gameScene, zone) {
+    
+};
+
 StartRoom.addLights = function(gameScene) {
     var light1 = new THREE.PointLight(0xFFFFFF, 10, 500); 
     light1.position.set(200, 30, 200); 
@@ -79,6 +82,20 @@ StartRoom.addLights = function(gameScene) {
 
 StartRoom.addParticleSystems = function(gameScene, zone) {
     // TODO: complete this.
+    
+    // Create prototypical particle
+    var position1 = new THREE.Vector3(StartRoom.X_LEFT + 300, 30, StartRoom.Z_BACK + 400);
+    var speed1 = new THREE.Vector3(0.01, 0.01, 0.01);
+    var direction1 = new THREE.Vector3(-1, 1, 1);
+    var size1 = 10;
+    var color1 = new THREE.Color("rgb(250, 0,0)");
+    var lifetime1 = 20000;
+    var protoParticle = new Particle(null, position1, speed1, direction1, 
+          size1, color1, lifetime1);
+    
+    var continuousSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 
+            10, 4, protoParticle, ParticleSpread.SMALL);
+    zone.addParticleSystem(continuousSystem);
 };
 
 StartRoom.addOutsideObjects = function(gameScene, zone) {

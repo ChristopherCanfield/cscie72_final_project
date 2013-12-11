@@ -20,6 +20,7 @@ function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timeP
 
     this.debug = debug;
     this.threeJsScene = (debug) ? null : threeJsScene;
+    this.zone = zone;
     
     this.prototypicalParticle = particle;
     this.particlesPerRelease = particlesPerRelease;
@@ -35,7 +36,7 @@ function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timeP
 }
 
 ContinuousParticleSystem.prototype = Object.create(ParticleSystem.prototype);
-ContinuousParticleSystem.prototype.constructor = Particle;
+ContinuousParticleSystem.prototype.constructor = ContinuousParticleSystem;
 
 ContinuousParticleSystem.prototype.superUpdate = ContinuousParticleSystem.prototype.update;
 
@@ -50,7 +51,7 @@ ContinuousParticleSystem.prototype.update = function(deltaTime) {
         this.releaseTimeCounter = 0;
     }
     this.releaseTimeCounter += deltaTime;
-    
+    console.log("PS called");
     // Call ParticleSystem's update method.
     this.superUpdate(deltaTime);
 };
