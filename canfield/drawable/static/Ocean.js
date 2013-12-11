@@ -1,6 +1,6 @@
 /**
  * @author Christopher D. Canfield
- * Ground.js
+ * Ocean.js
  */
 
 
@@ -56,7 +56,7 @@ function Ocean() {
 }
 
 Ocean.prototype = Object.create(Drawable.prototype);
-Ocean.prototype.constructor = Ground;
+Ocean.prototype.constructor = Ocean;
 
 Ocean.WIDTH = 10000.0;
 
