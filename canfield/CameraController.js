@@ -1,6 +1,6 @@
 /**
  * @author Christopher D. Canfield
- * InputManager.js
+ * CameraController.js
  * November 2013
  */
 
@@ -12,7 +12,7 @@
  * @param {int} canvasHeight The height of the canvas.
  * @param {Camera} camera Reference to the Camera object.
  */
-function InputManager(canvasWidth, canvasHeight, camera) {    
+function CameraView(canvasWidth, canvasHeight, camera) {    
     this.camera = camera;
     
     this.lastMouseX = canvasWidth / 2.0;
@@ -35,7 +35,7 @@ function InputManager(canvasWidth, canvasHeight, camera) {
  * Processes key down events.
  * @param {Object} e A keydown event object.
  */
-InputManager.prototype.keyDown = function(e) {
+CameraView.prototype.keyDown = function(e) {
     if (typeof KeyEvent == "undefined") {
         var KeyEvent = {
             DOM_VK_LEFT: 37,
@@ -98,7 +98,7 @@ InputManager.prototype.keyDown = function(e) {
  * Processes mouse move events.
  * @param {Object} e A mousemove event object.
  */
-InputManager.prototype.mouseMove = function(e) {
+CameraView.prototype.mouseMove = function(e) {
     if (e.clientX > (this.canvasWidth / 2 + 5) && e.clientX > this.lastMouseX)
     {
         if (this.debug) console.log("mouse move x right: " + e.clientX);

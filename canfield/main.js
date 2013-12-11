@@ -34,7 +34,7 @@ var cdc = {
     /**
      * Processes user input.
      */
-    inputManager: null,
+    cameraController: null,
     
     /**
      * Timer used for logic, movement & animation.
@@ -70,7 +70,7 @@ function init()
     // Create the camera so it can be moved.
     cdc.camera = new Camera(cdc.scene.getZones(), window, glCanvas.width, glCanvas.height);
     cdc.camera.debug = true;
-    cdc.inputManager = new InputManager(glCanvas.width, glCanvas.height, cdc.camera);
+    cdc.cameraController = new CameraController(glCanvas.width, glCanvas.height, cdc.camera);
     
     cdc.scene.getThreeJsScene().add(cdc.camera.yawObject);
     
