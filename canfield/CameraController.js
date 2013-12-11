@@ -12,7 +12,7 @@
  * @param {int} canvasHeight The height of the canvas.
  * @param {Camera} camera Reference to the Camera object.
  */
-function CameraView(canvasWidth, canvasHeight, camera) {    
+function CameraController(canvasWidth, canvasHeight, camera) {    
     this.camera = camera;
     
     this.lastMouseX = canvasWidth / 2.0;
@@ -35,7 +35,7 @@ function CameraView(canvasWidth, canvasHeight, camera) {
  * Processes key down events.
  * @param {Object} e A keydown event object.
  */
-CameraView.prototype.keyDown = function(e) {
+CameraController.prototype.keyDown = function(e) {
     if (typeof KeyEvent == "undefined") {
         var KeyEvent = {
             DOM_VK_LEFT: 37,
@@ -98,7 +98,7 @@ CameraView.prototype.keyDown = function(e) {
  * Processes mouse move events.
  * @param {Object} e A mousemove event object.
  */
-CameraView.prototype.mouseMove = function(e) {
+CameraController.prototype.mouseMove = function(e) {
     if (e.clientX > (this.canvasWidth / 2 + 5) && e.clientX > this.lastMouseX)
     {
         if (this.debug) console.log("mouse move x right: " + e.clientX);
