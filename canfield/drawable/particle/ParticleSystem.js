@@ -49,9 +49,9 @@ ParticleSystem.prototype.remove = function(particle) {
 ParticleSystem.prototype.update = function(deltaTime) {
     for (var i = 0; i < this.particles.length; ++i)
     {
-        if (this.particles[i].update(deltaTime))
+        if (this.particles[i].isActive())
         {
-            --i;
+            this.particles[i].update(deltaTime);
         }
     }
 };

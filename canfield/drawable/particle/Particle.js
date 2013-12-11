@@ -31,6 +31,8 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     this.lifetime = lifetime / 1000;
     this.lifeMillis = 0;
     
+    this.active = true;
+    
     this.id = Particle.nextId++;
     
     // Create the drawable object.
@@ -52,22 +54,45 @@ Particle.prototype.constructor = Particle;
 
 
 /**
+ * @param {THREE.Vector3} position
+ * @param {THREE.Vector3} speed Speed per millisecond.
+ * @param {THREE.Vector3} direction -1, 0, or 1 for each direction.
+ * @param {int} lifetime The max life of the particle, in milliseconds.
+ */
+Particle.prototype.reset = function(position, speed, direction, lifetime) {
+    this.position = position;
+    this.speed = speed;
+    this.direction = direction;
+    this.lifetime = lifetime / 1000;
+    this.lifeMillis = 0;
+    
+    this.threeJsDrawable.position.x = position.x;
+    this.threeJsDrawable.position.y = position.y;
+    this.threeJsDrawable.position.z = position.z;
+    
+    this.setActive(true);
+};
+
+/**
  *  
  * @param {int} deltaTime
  * @return {boolean} true if the particle was removed, or false otherwise.
  */
 Particle.prototype.update = function(deltaTime) {
-    if ((this.lifeMillis + deltaTime) > this.lifetime)
+    if (this.active)
     {
-        this.particleSystem.remove(this);
-        return true;
+        if ((this.lifeMillis + deltaTime) > this.lifetime)
+        {
+            this.setActive(false);
+            //this.particleSystem.remove(this);
+            return;
+        }
+        this.lifeMillis += deltaTime;
+        
+        this.threeJsDrawable.position.x += (this.speed.x * this.direction.x * deltaTime);
+        this.threeJsDrawable.position.y += (this.speed.y * this.direction.y * deltaTime);
+        this.threeJsDrawable.position.z += (this.speed.z * this.direction.z * deltaTime);
     }
-    this.lifeMillis += deltaTime;
-    
-    this.threeJsDrawable.position.x += (this.speed.x * this.direction.x * deltaTime);
-    this.threeJsDrawable.position.y += (this.speed.y * this.direction.y * deltaTime);
-    this.threeJsDrawable.position.z += (this.speed.z * this.direction.z * deltaTime);
-    return false;
 };
 
 Particle.prototype.equals = function(particle) {
@@ -76,6 +101,15 @@ Particle.prototype.equals = function(particle) {
 
 Particle.prototype.getId = function() {
     return this.id;
+};
+
+Particle.prototype.isActive = function() {
+    return this.active;
+};
+
+Particle.prototype.setActive = function(active) {
+    this.active = active;
+    this.threeJsDrawable.visible = active;
 };
 
 Particle.nextId = 0;
