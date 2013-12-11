@@ -41,7 +41,7 @@ GameScene.prototype.createScene = function() {
     // Create the navigation graph.
     this.createNavGraph();
     
-    this.add(new Ground());
+    //this.add(new Ground());
     
     StartRoom.create(this, this.zones);
     

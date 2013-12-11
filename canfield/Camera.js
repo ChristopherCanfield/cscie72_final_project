@@ -37,7 +37,7 @@ function Camera(zones, window, glCanvasWidth, glCanvasHeight) {
     this.yawObject = new THREE.Object3D();
     this.yawObject.position.z = 0;
     this.yawObject.rotation.x = 0;
-    this.yawObject.position.y = 20;
+    this.yawObject.position.y = 25;
     this.yawObject.rotation.y = Math.PI;
     this.yawObject.add(this.pitchObject);
     
@@ -117,7 +117,6 @@ Camera.prototype.rotateRight = function(amount) {
     var rotation = this.rotationSpeed * amount;
     if (rotation > 0.25) rotation = 0.25;
     this.yawObject.rotation.y -= rotation;
-    console.log("rotation: " + this.yawObject.rotation.y);
     this.velocity.x = 0;
     this.velocity.y = 0;
     this.velocity.z = 0;

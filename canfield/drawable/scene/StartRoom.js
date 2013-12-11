@@ -15,9 +15,9 @@ function StartRoom() {}
  * @param {Zones} zones 
  */
 StartRoom.create = function(gameScene, zones) {
-    var zone = new Zone(new BoundingBox(StartRoom.X_LEFT, StartRoom.X_WIDTH, 
+    var zone = new Zone(new BoundingBox(StartRoom.X_LEFT - 30, StartRoom.X_WIDTH + 60, 
                         0, 1000, 
-                        StartRoom.Z_BACK, StartRoom.Z_DEPTH));
+                        StartRoom.Z_BACK - 30, StartRoom.Z_DEPTH + 60));
     zones.add(zone);
     
     StartRoom.addWallsFloorsCeiling(gameScene, zone);
@@ -29,30 +29,46 @@ StartRoom.create = function(gameScene, zones) {
 
 StartRoom.addWallsFloorsCeiling = function(gameScene, zone) {
     // BuildingWall constructor parameters:
-    // BuildingWall(xLeft: float, zBack: float, width: float, height: float, depth: 
-         // float, texturePath: String, textureRepeatX: int, textureRepeatY: int, zone: 
-         // Zone): BuildingWall
+        // BuildingWall(xLeft: float, zBack: float, 
+        // width: float, height: float, depth: float, 
+        // texturePath: String, textureRepeatX: int, textureRepeatY: int, zone: Zone): BuildingWall
     
     // TODO: change wall textures.
     
     // Back wall.
     var backWall = new BuildingWall(StartRoom.X_LEFT, StartRoom.Z_BACK, 
-            StartRoom.X_WIDTH, 200, 30,
-            Textures.WALL_5, 14, 7,
+            StartRoom.X_WIDTH, StartRoom.Y_HEIGHT, 30,
+            Textures.WALL_5, 20, 5,
             zone, true);
     gameScene.add(backWall);
     
     // Front wall.
     var frontWall = new BuildingWall(StartRoom.X_LEFT, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
-            StartRoom.X_WIDTH, 200, 30,
-            Textures.WALL_5, 14, 7,
+            StartRoom.X_WIDTH, // Width
+            StartRoom.Y_HEIGHT, // Height
+            30, // Depth
+            Textures.WALL_5, 
+            20, 5,
             zone);
     gameScene.add(frontWall);
     
     // East wall.
-    
+    var eastWall = new BuildingWall(StartRoom.X_LEFT, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
+            30, // Width
+            StartRoom.Y_HEIGHT, // Height
+            StartRoom.Z_DEPTH + StartRoom.Z_BACK + 150, // Depth
+            Textures.WALL_5, 20, 5,
+            zone);
+    gameScene.add(eastWall);
     
     // West wall.
+        var westWall = new BuildingWall(StartRoom.X_LEFT + StartRoom.X_WIDTH, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
+            30, // Width
+            StartRoom.Y_HEIGHT, // Height
+            StartRoom.Z_DEPTH + StartRoom.Z_BACK + 150, // Depth
+            Textures.WALL_5, 20, 5,
+            zone);
+    gameScene.add(westWall);
 };
 
 StartRoom.addLights = function(gameScene) {
@@ -75,5 +91,6 @@ StartRoom.addInsideObjects = function(gameScene, zone) {
 
 StartRoom.X_LEFT = -400;
 StartRoom.X_WIDTH = 800;
+StartRoom.Y_HEIGHT = 80;
 StartRoom.Z_BACK = -150;
-StartRoom.Z_DEPTH = 1100;
+StartRoom.Z_DEPTH = 800;

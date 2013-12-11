@@ -78,10 +78,6 @@ CameraController.prototype.keyDown = function(e) {
         if (this.debug) console.log("Key: Down");
         return this.camera.moveBackward();
     }
-    
-    // TODO (2013-11-09): The next lines allow vertical movement. Remove this 
-    // if they remain unused.
-    
     else if (keyCode == KeyEvent.DOM_VK_Q)
     {
         this.camera.rotate180();
