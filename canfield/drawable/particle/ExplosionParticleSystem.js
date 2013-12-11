@@ -28,7 +28,7 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
         throw "ExplosionParticleSystem: Invalid lifetime type. Expected number, found " + (typeof lifetime);
     }
 
-    this.threeJsScene = (typeof debug === "undefined" || debug) ? null : threeJsScene;
+    this.threeJsScene = (typeof debug !== "undefined" && debug) ? null : threeJsScene;
     this.zone = zone;
 
     this.lifetime = lifetime / 1000;

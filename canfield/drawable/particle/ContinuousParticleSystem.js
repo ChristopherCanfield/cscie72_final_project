@@ -19,7 +19,7 @@ function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timeP
     ParticleSystem.call(this);
 
     this.debug = debug;
-    this.threeJsScene = (debug) ? null : threeJsScene;
+    this.threeJsScene = (typeof debug !== "undefined" && debug) ? null : threeJsScene;
     this.zone = zone;
     
     this.prototypicalParticle = particle;
