@@ -20,10 +20,16 @@ function ParticleSystem(zone, threeJsScene) {
     this.zone = zone;
     this.threeJsScene = threeJsScene;
     
+    // An stack of the inactive particles.
+    this.inactiveParticles = [];
+    
     this.done = false;
 }
 
-
+/**
+ * Adds a particle to the particle system and the three.js scene.
+ * @param {Particle} particle The particle to add.
+ */
 ParticleSystem.prototype.add = function(particle) {
     this.particles.push(particle);
     if (this.threeJsScene !== null)
@@ -32,6 +38,11 @@ ParticleSystem.prototype.add = function(particle) {
     }
 };
 
+/**
+ * Completely removes a particle. For particle systems that generate additional
+ * particles, this is less efficient than setting the particle to inactive, since
+ * a removed particle cannot be reused.
+ */
 ParticleSystem.prototype.remove = function(particle) {
     for (var i = 0; i < this.particles.length; ++i)
     {
@@ -98,4 +109,27 @@ ParticleSystem.prototype.adjustForSpread = function(position, spread) {
     {
         throw "ParticleSystem.adjustForSpread: Invalid ParticleSpread value: " + this.spread;
     }
+};
+
+/**
+ * Returns an inactive particle, if one exists, or null.
+ */
+ParticleSystem.prototype.findInactive = function() {
+    if (this.inactiveParticles.length > 0)
+    {
+        return this.inactiveParticles.pop();
+        // for (var i = 0; i < this.particles.length; ++i)
+        // {
+            // if (!this.particles[i].isActive())
+            // {
+                // --this.inactiveParticleCount;
+                // return this.particles[i];
+            // }
+        // }
+    }
+    return null;
+};
+
+ParticleSystem.prototype.addToInactive = function(particle) {
+    this.inactiveParticles.push(particle);
 };

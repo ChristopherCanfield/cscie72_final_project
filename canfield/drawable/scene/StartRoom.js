@@ -38,7 +38,7 @@ StartRoom.addWalls = function(gameScene, zone) {
     var backWall = new BuildingWall(StartRoom.X_LEFT, StartRoom.Y_BOTTOM, StartRoom.Z_BACK, 
             StartRoom.X_WIDTH, StartRoom.Y_HEIGHT, 30,
             Textures.WALL_5, 20, 5,
-            zone, true);
+            zone);
     gameScene.add(backWall);
     
     // Front wall.
@@ -94,7 +94,7 @@ StartRoom.addParticleSystems = function(gameScene, zone) {
           size1, color1, lifetime1);
     
      var continuousSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 
-             120, 500, protoParticle, ParticleSpread.MEDIUM);
+             80, 500, protoParticle, ParticleSpread.MEDIUM);
     zone.addParticleSystem(continuousSystem);
     
     // Add explosion.

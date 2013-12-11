@@ -110,6 +110,11 @@ Particle.prototype.isActive = function() {
 Particle.prototype.setActive = function(active) {
     this.active = active;
     this.threeJsDrawable.visible = active;
+    if (!active)
+    {
+        this.particleSystem.addToInactive(this);
+    }
 };
+
 
 Particle.nextId = 0;

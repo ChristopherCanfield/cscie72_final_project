@@ -62,7 +62,16 @@ ContinuousParticleSystem.prototype.addParticle = function() {
     // The lifetime needs to be multiplied by 1000, because the particle constructor takes milliseconds, but the particle
     // stores the value in fractions of a second, in order to be consistent with THREE.Clock.
     var lifetime = MathHelper.randomInt(this.prototypicalParticle.lifetime * 1000 * 0.8, this.prototypicalParticle.lifetime * 1000 * 1.2);
-    var p = new Particle(this, position, speed, this.prototypicalParticle.direction,
+    
+    var p = this.findInactive();
+    if (p !== null)
+    {
+        p.reset(position, speed, this.prototypicalParticle.direction, lifetime);
+    }
+    else
+    {
+        p = new Particle(this, position, speed, this.prototypicalParticle.direction,
             this.prototypicalParticle.size, this.prototypicalParticle.color, lifetime);
-    this.add(p);
+        this.add(p);
+    }
 };
