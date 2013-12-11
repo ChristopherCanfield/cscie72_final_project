@@ -93,9 +93,18 @@ StartRoom.addParticleSystems = function(gameScene, zone) {
     var protoParticle = new Particle(null, position1, speed1, direction1, 
           size1, color1, lifetime1);
     
-    var continuousSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 
-            120, 500, protoParticle, ParticleSpread.MEDIUM);
-    zone.addParticleSystem(continuousSystem);
+    // var continuousSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 
+            // 120, 500, protoParticle, ParticleSpread.MEDIUM);
+    //zone.addParticleSystem(continuousSystem);
+    
+    // Add explosion.
+    var explosionPosition = new THREE.Vector3(StartRoom.X_LEFT + 300, 30, StartRoom.Z_BACK + 400);
+    var explosionSpeed = new THREE.Vector3(5, 5, 5);
+    var particleSize = 0.45;
+    var explosionSystem = new ExplosionParticleSystem(zone, gameScene.getThreeJsScene(), 
+                    5000, 400, explosionPosition, explosionSpeed, particleSize,
+                    new THREE.Color("rgb(244,93,70)"), 5000, ParticleSpread.SMALL);
+    zone.addParticleSystem(explosionSystem);
 };
 
 StartRoom.addOutsideObjects = function(gameScene, zone) {
