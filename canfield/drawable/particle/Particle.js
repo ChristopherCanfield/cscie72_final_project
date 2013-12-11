@@ -17,8 +17,10 @@
  * @param {float} size The particle's radius.
  * @param {THREE.Color} color
  * @param {float} lifetime The number of milliseconds before the particle disappears.
+ * @param {boolean} speedIncreasesWithDistance true if the speed of the particle 
+ * increases with distance from the start point (optional).
  */
-function Particle(particleSystem, position, speed, direction, size, color, lifetime) {
+function Particle(particleSystem, position, speed, direction, size, color, lifetime, speedIncreasesWithDistance) {
     Drawable.call(this);
     
     this.particleSystem = particleSystem;
@@ -30,6 +32,13 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     this.color = color;
     this.lifetime = lifetime / 1000;
     this.lifeMillis = 0;
+    
+    this.speedIncreasesWithDistance = (typeof speedIncreasesWithDistance !== "undefined") ? 
+                                        speedIncreasesWithDistance : false;
+    if (this.speedIncreasesWithDistance)
+    {
+        this.speedAdjustment = MathHelper.randomNumber(1.005, 1.05);
+    }
     
     this.active = true;
     
@@ -92,6 +101,13 @@ Particle.prototype.update = function(deltaTime) {
         this.threeJsDrawable.position.x += (this.speed.x * this.direction.x * deltaTime);
         this.threeJsDrawable.position.y += (this.speed.y * this.direction.y * deltaTime);
         this.threeJsDrawable.position.z += (this.speed.z * this.direction.z * deltaTime);
+        
+        if (this.speedIncreasesWithDistance)
+        {
+            this.speed.x *= this.speedAdjustment;
+            this.speed.y *= this.speedAdjustment;
+            this.speed.z *= this.speedAdjustment;
+        }
     }
 };
 

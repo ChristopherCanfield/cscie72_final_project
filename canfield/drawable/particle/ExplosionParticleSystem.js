@@ -44,10 +44,10 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
     for (var i = 0; i < particleCount; ++i)
     {
         var position = this.adjustForSpread(this.position, this.spread);
-        var speed = MathHelper.adjustVector3(this.particleSpeed, 0.8, 1.2);
+        var speed = MathHelper.adjustVector3(this.particleSpeed, 0.4, 1.6);
         var direction = this.getRandomDirection();
         var lifetime = MathHelper.randomInt(0.8 * this.particleLifetime, 1.2 * this.particleLifetime);
-        var p = new Particle(this, position, speed, direction, particleSize, this.particleColor, lifetime);
+        var p = new Particle(this, position, speed, direction, particleSize, this.particleColor, lifetime, true);
         this.add(p);
     }
 }
