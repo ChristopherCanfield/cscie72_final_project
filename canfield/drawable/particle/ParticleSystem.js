@@ -28,7 +28,7 @@ ParticleSystem.prototype.add = function(particle) {
     this.particles.push(particle);
     if (this.threeJsScene !== null)
     {
-        this.threeJsScene.add(particles.threeJsDrawable);
+        this.threeJsScene.add(particle.threeJsDrawable);
     }
 };
 
