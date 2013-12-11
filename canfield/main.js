@@ -39,7 +39,9 @@ var cdc = {
     /**
      * Timer used for logic, movement & animation.
      */
-    timer: null
+    timer: null,
+    
+    lastUpdate: 0
 };
 
 init();
@@ -87,15 +89,23 @@ function init()
 function render()
 {
     // TODO: get the current zone, plus all adjacent zones, and render them.
-    
-    gl.clear(glCOLOR_BUFFER_BIT, glDEPTH_BUFFER_BIT); //gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.render(cdc.scene.getThreeJsScene(), cdc.camera.getThreeJSCamera());
-    
-    // Process logic, movement and animation updates.
     var deltaTime = cdc.timer.getDelta();
-    cdc.scene.update(deltaTime);
-    cdc.scene.getZones().updateParticles(deltaTime, cdc.camera.getBoundingBox());
+    cdc.lastUpdate += deltaTime;
+    
+    // process camera movements.
     cdc.camera.update(deltaTime);
+    
+    if (cdc.lastUpdate > 0.033)
+    {
+        // Process logic, particle/object movements and animation updates.
+        cdc.scene.update(deltaTime);
+        cdc.scene.getZones().updateParticles(deltaTime, cdc.camera.getBoundingBox());
+
+        // Clear & render the scene.
+        gl.clear(glCOLOR_BUFFER_BIT, glDEPTH_BUFFER_BIT); //gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        gl.render(cdc.scene.getThreeJsScene(), cdc.camera.getThreeJSCamera());
+        cdc.lastUpdate = 0;
+    }
     
     window.requestAnimationFrame(render);
 }

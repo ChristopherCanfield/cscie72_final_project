@@ -94,7 +94,7 @@ StartRoom.addParticleSystems = function(gameScene, zone) {
           size1, color1, lifetime1);
     
     var continuousSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 
-            20, 500, protoParticle, ParticleSpread.MEDIUM);
+            120, 500, protoParticle, ParticleSpread.MEDIUM);
     zone.addParticleSystem(continuousSystem);
 };
 
