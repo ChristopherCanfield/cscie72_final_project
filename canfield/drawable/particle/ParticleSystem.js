@@ -61,8 +61,9 @@ ParticleSystem.prototype.setDone = function(done) {
     // Remove all particles when this particle system has finished.
     for (var i = this.particles.length - 1; i >= 0; --i)
     {
-        this.remove(this.particles[i]);
+        this.removeFromScene(this.particles[i]);
     }
+    this.particles.length = 0;
 };
 
 ParticleSystem.prototype.isDone = function() {
