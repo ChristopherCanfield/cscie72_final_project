@@ -7,7 +7,7 @@
 
 
 /**
- * Processes user input.
+ * Processes user input that is related to the Camera.
  * @param {int} canvasWidth The width of the canvas.
  * @param {int} canvasHeight The height of the canvas.
  * @param {Camera} camera Reference to the Camera object.
@@ -23,7 +23,7 @@ function CameraController(canvasWidth, canvasHeight, camera) {
     
     // Set the keydown event handler, and bind this object's "this" pointer to it. 
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
-    window.onkeydown = this.keyDown.bind(this);
+    window.addEventListener("keydown", this.keyDown.bind(this), false);
     window.onmousemove = this.mouseMove.bind(this);
     
     // Specifies whether additional debug information is printed to the console.
@@ -83,11 +83,6 @@ CameraController.prototype.keyDown = function(e) {
         this.camera.rotate180();
         return true;
     }
-    // else if (keyCode == KeyEvent.DOM_VK_E)
-    // {
-        // this.downY();
-        // return false;
-    // }
 };
 
 /**
