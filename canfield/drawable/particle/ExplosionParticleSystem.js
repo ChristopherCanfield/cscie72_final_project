@@ -17,10 +17,12 @@
  * @param {THREE.Color} particleColor
  * @param {int} particleLifetime The lifetime of each particle, in milliseconds.
  * @param {ParticleSpread} particleSpread
+ * @param {boolean} particlePoolMember 
  * @param {boolean} debug Set to true if particles should not be added to the scene (Optional).
  */
 function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount, 
-        position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread, debug) {
+        position, particleSpeed, particleSize, particleColor, particleLifetime, 
+        particleSpread, particlePoolMember, debug) {
     ParticleSystem.call(this);
 
     this.threeJsScene = (typeof debug !== "undefined" && debug) ? null : threeJsScene;
@@ -35,6 +37,8 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
     this.particleColor = particleColor;
     this.particleLifetime = particleLifetime;
     this.spread = particleSpread;
+    
+    this.particlePoolMember = particlePoolMember;
     
     for (var i = 0; i < particleCount; ++i)
     {
@@ -83,7 +87,7 @@ ExplosionParticleSystem.prototype.reset = function(zone, lifetime, particleCount
 ExplosionParticleSystem.prototype.update = function(deltaTime) {
     if ((this.lifeMillis + deltaTime) > this.lifetime)
     {
-        this.setDone(true);
+        this.setDone(true, this.particleColor);
         return;
     }
     this.lifeMillis += deltaTime;

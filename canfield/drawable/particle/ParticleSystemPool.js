@@ -42,7 +42,7 @@ ParticleSystemPool.prototype.getExplosionSystem = function(zone, lifetime, parti
     if (this.explosionParticleSystems.length < poolSize)
     {
         var e = new ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
-                position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread);
+                position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread, true);
         this.poolSize.push(e);
         return e;
     }

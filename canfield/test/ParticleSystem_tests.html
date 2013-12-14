@@ -24,6 +24,7 @@
 
 			<script>
 			  var particleSystem = new ParticleSystem(null, null);
+			  particleSystem.debug = true;
 			
 		      var position1 = new THREE.Vector3(10, 10, 10);
 		      var speed1 = new THREE.Vector3(0.25, 0.25, 0.25);
@@ -51,8 +52,8 @@
               testResult = !particle2.equals(particle1);
               console.log("!Particle.equals 2: " + testResult);
               
-              particle1.update(5);
-              testResult = (particle1.lifeMillis === 5);
+              particle1.update(0.005);
+              testResult = (particle1.lifeSeconds === 0.005);
               console.log("Particle.update: " + testResult);
               
               testResult = (particle1.getId() === 0);
@@ -62,26 +63,26 @@
               console.log("Particle.getId 2: " + testResult);
               
               // Particle System tests
-              particle1.lifeMillis = 0;
+              particle1.lifeSeconds = 0;
               particleSystem.add(particle1);
               testResult = (particleSystem.particles.length === 1);
               console.log("ParticleSystem.add: " + testResult);
               
-              particle2.lifeMillis = 0;
+              particle2.lifeSeconds = 0;
               particleSystem.add(particle2);
               testResult = (particleSystem.particles.length === 2);
               console.log("ParticleSystem.add 2: " + testResult);
               
-              particleSystem.update(6);
+              particleSystem.update(0.006);
               testResult = (particleSystem.particles.length === 2);
               console.log("ParticleSystem.update: " + testResult);
               
-              particleSystem.update(5);
-              testResult = (particleSystem.particles.length === 1);
+              particleSystem.update(0.005);
+              testResult = (particleSystem.inactiveParticles.length === 1);
               console.log("ParticleSystem.update 2: " + testResult);
               
               particleSystem.remove(particle2);
-              testResult = (particleSystem.particles.length === 0);
+              testResult = (particleSystem.particles.length === 1);
               console.log("particleSystem.remove: " + testResult);
               
               testResult = !particleSystem.isDone();
@@ -102,13 +103,13 @@
               // zone: Zone, threeJsScene: Object, lifetime: int, particleCount: int, position: THREE.Vector3, 
               // particleSpeed: THREE.Vector3, particleSize: int, particleColor: THREE.Color, particleLifetime: int, particleSpread: ParticleSpread, debug: boolean
               var explosionSystem = new ExplosionParticleSystem(null, null, 10, 5, position1, speed1, 2,
-                    new THREE.Color("rgb(255,0,0)"), 2, ParticleSpread.SMALL, true);
+                    new THREE.Color("rgb(255,0,0)"), 2, ParticleSpread.SMALL, false, true);
               
               testResult = (explosionSystem.particles.length === 5);
               console.log("exposionSystem.particles.length: " + testResult);
               
-              explosionSystem.update(6);
-              testResult = (explosionSystem.particles.length === 0);
+              explosionSystem.update(0.006);
+              testResult = (explosionSystem.inactiveParticles.length === explosionSystem.particles.length);
               console.log("explosionSystem.update(): " + testResult);
               
               var randomDirection = explosionSystem.getRandomDirection();
@@ -118,9 +119,9 @@
               console.log("explosionSystem.getRandomDirection: " + testResult);
               
               var explosionSystem2 = new ExplosionParticleSystem(null, null, 10, 5, position1, speed1, 2,
-                    new THREE.Color("rgb(255,0,0)"), 2, ParticleSpread.SMALL, true);
-              explosionSystem2.update(13);
-              testResult = (explosionSystem2.particles.length === 0);
+                    new THREE.Color("rgb(255,0,0)"), 2, ParticleSpread.SMALL, false, true);
+              explosionSystem2.update(0.013);
+              testResult = (explosionSystem2.inactiveParticles.length === explosionSystem2.particles.length);
               console.log("explosionSystem.update() (system time exceeded): " + testResult);
               
               // ContinuousParticleSystem test
@@ -129,7 +130,7 @@
               testResult = (continuousSystem.particles.length === 10);
               console.log("continuousSystem.particles.length: " + testResult);
               
-              continuousSystem.update(5);
+              continuousSystem.update(0.005);
               testResult = (continuousSystem.particles.length > 10);
               console.log("continuousSystem.update(): " + testResult);
               

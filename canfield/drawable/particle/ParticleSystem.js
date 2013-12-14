@@ -24,6 +24,7 @@ function ParticleSystem(zone, threeJsScene) {
     this.inactiveParticles = [];
     
     this.done = false;
+    this.debug = false;
     
     this.id = ParticleSystem.nextId++;
 }
@@ -71,15 +72,28 @@ ParticleSystem.prototype.update = function(deltaTime) {
     }
 };
 
-ParticleSystem.prototype.setDone = function(done) {
+ParticleSystem.prototype.setDone = function(done, isParticlePoolMember) {
     this.done = done;
     // Remove all particles when this particle system has finished.
-    for (var i = this.particles.length - 1; i >= 0; --i)
+    if (typeof isParticlePoolMember === "undefined" || !isParticlePoolMember)
     {
-        this.removeFromScene(this.particles[i]);
-        this.zone.removeParticleSystem(this);
+        for (var i = this.particles.length - 1; i >= 0; --i)
+        {
+            if (!this.debug)
+            {
+                this.removeFromScene(this.particles[i]);
+                this.zone.removeParticleSystem(this);
+            }
+        }
+        this.particles.length = 0;
     }
-    this.particles.length = 0;
+    else
+    {
+        for (var i = 0; i < this.particles.length; ++i)
+        {
+            this.particles[i].setActive(false);
+        }
+    }
 };
 
 ParticleSystem.prototype.isDone = function() {

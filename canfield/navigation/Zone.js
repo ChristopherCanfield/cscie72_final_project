@@ -116,7 +116,7 @@ Zone.prototype.addDrawable = function(drawable) {
     this.drawableObjects.push(drawable.threeJsDrawable);
 };
 
-Zone.prototpe.setVisible = function(visible) {
+Zone.prototype.setVisible = function(visible) {
     if (visible != this.visible)
     {
         this.visible = visible;

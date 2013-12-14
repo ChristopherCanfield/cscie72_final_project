@@ -31,7 +31,7 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     this.size = size;
     this.color = color;
     this.lifetime = lifetime / 1000;
-    this.lifeMillis = 0;
+    this.lifeSeconds = 0;
     
     this.speedIncreasesWithDistance = (typeof speedIncreasesWithDistance !== "undefined") ? 
                                         speedIncreasesWithDistance : false;
@@ -75,7 +75,7 @@ Particle.prototype.reset = function(position, speed, direction, color, lifetime)
     this.speed = speed;
     this.direction = direction;
     this.lifetime = lifetime / 1000;
-    this.lifeMillis = 0;
+    this.lifeSeconds = 0;
     
     this.threeJsDrawable.position.x = position.x;
     this.threeJsDrawable.position.y = position.y;
@@ -90,19 +90,19 @@ Particle.prototype.reset = function(position, speed, direction, color, lifetime)
 
 /**
  *  
- * @param {int} deltaTime
+ * @param {float} deltaTime
  * @return {boolean} true if the particle was removed, or false otherwise.
  */
 Particle.prototype.update = function(deltaTime) {
     if (this.active)
     {
-        if ((this.lifeMillis + deltaTime) > this.lifetime)
+        if ((this.lifeSeconds + deltaTime) > this.lifetime)
         {
             this.setActive(false);
             //this.particleSystem.remove(this);
             return;
         }
-        this.lifeMillis += deltaTime;
+        this.lifeSeconds += deltaTime;
         
         this.threeJsDrawable.position.x += (this.speed.x * this.direction.x * deltaTime);
         this.threeJsDrawable.position.y += (this.speed.y * this.direction.y * deltaTime);
