@@ -30,6 +30,6 @@ Weapon.prototype.update = function(deltaTime) {
 };
 
 // Override in subclass.
-Weapon.prototype.shootProjectile = function(zone, location) {
+Weapon.prototype.shootProjectile = function(zone, location, rotation) {
     throw "Weapon.shootProjectile: method must be overridden.";
 };

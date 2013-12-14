@@ -8,6 +8,7 @@
 
 /**
  * Processes user input related to the character's weapon.
+ * @param {Object} threeJsScene
  * @param {Camera} camera Reference to the camera.
  */
 function WeaponController(threeJsScene, camera) {
@@ -23,7 +24,8 @@ function WeaponController(threeJsScene, camera) {
 };
 
 WeaponController.prototype.update = function(deltaTime) {
-    this.weapons[selectedWeaponIndex].update(deltaTime);
+    var zone = this.camera.zones.getCurrentZones(this.camera.getBoundingBox())[0];
+    this.weapons[this.selectedWeaponIndex].update(deltaTime, zone);
 };
 
 
@@ -45,8 +47,9 @@ WeaponController.prototype.keyDown = function(e) {
     {
         console.log("shot fired");
         
-        this.weapons[selectedWeaponIndex].shootProjectile(zone, camera.yawObject.position, 
-                camera.zones.getCurrentZones(camera.getBoundingBox()));
+        var zone = this.camera.zones.getCurrentZones(this.camera.getBoundingBox())[0];
+        this.weapons[this.selectedWeaponIndex].shootProjectile(zone, 
+                this.camera.yawObject.position, this.camera.yawObject.rotation);
         // TODO: Allow additional keys, such as a mouse click?
     }
     // TODO: add ability to select different weapons.

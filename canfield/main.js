@@ -32,9 +32,14 @@ var cdc = {
     textureManager: null,
     
     /**
-     * Processes user input.
+     * Processes user input related to the camera.
      */
     cameraController: null,
+    
+    /**
+     * Processes user input related to the weapon. 
+     */
+    weaponController: null,
     
     /**
      * Timer used for logic, movement & animation.
@@ -71,8 +76,9 @@ function init()
     
     // Create the camera so it can be moved.
     cdc.camera = new Camera(cdc.scene.getZones(), window, glCanvas.width, glCanvas.height);
-    cdc.camera.debug = true;
+    //cdc.camera.debug = true;
     cdc.cameraController = new CameraController(glCanvas.width, glCanvas.height, cdc.camera);
+    cdc.weaponController = new WeaponController(cdc.scene.getThreeJsScene(), cdc.camera);
     
     cdc.scene.getThreeJsScene().add(cdc.camera.yawObject);
     
@@ -94,13 +100,13 @@ function render()
     
     // process camera movements.
     cdc.camera.update(deltaTime);
+    // Process logic, particle/object movements and animation updates.
+    cdc.scene.update(deltaTime);
+    cdc.scene.getZones().updateParticles(deltaTime, cdc.camera.getBoundingBox());
+    cdc.weaponController.update(deltaTime);
     
     if (cdc.lastUpdate > 0.033)
     {
-        // Process logic, particle/object movements and animation updates.
-        cdc.scene.update(deltaTime);
-        cdc.scene.getZones().updateParticles(deltaTime, cdc.camera.getBoundingBox());
-
         // Clear & render the scene.
         gl.clear(glCOLOR_BUFFER_BIT, glDEPTH_BUFFER_BIT); //gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.render(cdc.scene.getThreeJsScene(), cdc.camera.getThreeJSCamera());
@@ -109,4 +115,3 @@ function render()
     
     window.requestAnimationFrame(render);
 }
-

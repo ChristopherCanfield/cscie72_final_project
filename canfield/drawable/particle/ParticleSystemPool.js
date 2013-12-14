@@ -10,6 +10,7 @@ function ParticleSystemPool(threeJsScene, poolSize, particlesPerSystem) {
     
     this.explosionParticleSystems = [];
     this.poolSize = poolSize;
+    this.particlesPerSystem = particlesPerSystem;
 };
 
 /**
@@ -32,8 +33,8 @@ ParticleSystemPool.prototype.getExplosionSystem = function(zone, lifetime, parti
         if (this.explosionParticleSystems[i].isDone())
         {
             var e = this.explosionParticleSystems[i];
-            e.reset(zone, lifetime, position, particleSpeed, particleSize, particleColor, 
-                    particleLifetime, particleSpread);
+            e.reset(zone, lifetime, this.particlesPerSystem, position, particleSpeed, 
+                    particleSize, particleColor, particleLifetime, particleSpread);
             return e;
         }
     }
