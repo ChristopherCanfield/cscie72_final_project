@@ -9,6 +9,7 @@
  * Creates a projectile.
  * @param {Zone} zone The zone that the projectile falls within.
  * @param {ParticleSystemPool} particleSystemPool 
+ * @param {Object} threeJsScene
  * @param {Camera} camera
  * @param {THREE.Vector3} movementVector
  * @param {THREE.Vector3} location

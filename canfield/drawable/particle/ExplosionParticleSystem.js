@@ -82,7 +82,7 @@ ExplosionParticleSystem.prototype.reset = function(zone, lifetime, particleCount
         // TODO: adjust direction to prevent particles from being lost against the wall that caused
         // the collision.
         var direction = this.getRandomDirection();
-        adjustDirection(direction, camera);
+        this.adjustDirection(direction, position, camera);
         var lifetime = MathHelper.randomInt(0.8 * this.particleLifetime, 1.2 * this.particleLifetime);
         var p = this.particles[i];
         p.reset(position, speed, direction, this.particleColor, lifetime);

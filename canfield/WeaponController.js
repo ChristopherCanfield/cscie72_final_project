@@ -13,7 +13,7 @@
  */
 function WeaponController(threeJsScene, camera) {
     this.weapons = [];
-    this.weapons.push(new LargeProjectileWeapon(threeJsScene));
+    this.weapons.push(new LargeProjectileWeapon(threeJsScene, camera));
     this.selectedWeaponIndex = 0;
     
     this.camera = camera;
