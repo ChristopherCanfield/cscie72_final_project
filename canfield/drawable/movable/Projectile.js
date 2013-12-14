@@ -4,7 +4,6 @@
  * December 2013
  */
 
-// TODO: Implement this.
 
 /**
  * Creates a projectile.
@@ -14,8 +13,12 @@
  * @param {THREE.Vector3} location
  * @param {float} size
  * @param {int} lifetime The max number of milliseconds that the project will live.
+ * @param {string} texturePath
+ * @param {int} textureRepeatX
+ * @param {int} textureRepeatY
  */
-function Projectile(zone, particleSystemPool, movementVector, location, size, lifetime) {
+function Projectile(zone, particleSystemPool, movementVector, rotation, location, size, lifetime, 
+        texturePath, textureRepeatX, textureRepeatY) {
     Drawable.call(this);
     zone.addDrawable(this);
     this.zone = zone;
@@ -29,9 +32,7 @@ function Projectile(zone, particleSystemPool, movementVector, location, size, li
     
     this.done = false;
     
-    // TODO: change the texture.
-    var texture = cdc.textureManager.getTexture(texturePath).clone();
-    texture.needsUpdate = true;
+    var texture = cdc.textureManager.getTexture(texturePath);
     var material = new THREE.MeshLambertMaterial({ 
         map: texture
     });
@@ -58,13 +59,14 @@ Projectile.prototype.update = function(deltaTime) {
     }
     ++this.lifeMillis;
     
-    this.threeJsDrawable.position.x += (this.movementVector.x * deltaTime);
-    this.threeJsDrawable.position.y += (this.movementVector.y * deltaTime);
-    this.threeJsDrawable.position.z += (this.movementVector.z * deltaTime);
+    this.threeJsDrawable.position.translateZ(this.movementVector.z * deltaTime);
+    // this.threeJsDrawable.position.x += (this.movementVector.x * deltaTime);
+    // this.threeJsDrawable.position.y += (this.movementVector.y * deltaTime);
+    // this.threeJsDrawable.position.z += (this.movementVector.z * deltaTime);
     
-    this.boundingBox.xLeft += (this.movementVector.x * deltaTime);
-    this.boundingBox.yBottom += (this.movementVector.y * deltaTime);
-    this.boundingBox.zBack += (this.movementVector.z * deltaTime);
+    this.boundingBox.xLeft += this.position.x;
+    this.boundingBox.yBottom += this.position.y;
+    this.boundingBox.zBack += this.position.z;
     
     var blockedAreas = this.zone.getBlockedAreas();
     for (var i = 0; i < blockedAreas.length; ++i)
@@ -79,13 +81,19 @@ Projectile.prototype.update = function(deltaTime) {
 Projectile.prototype.onHit = function() {
     this.setDone(true);
     
-    var position = new THREE.Vector3(StartRoom.X_LEFT + 375, 30, StartRoom.Z_BACK + 400);
-    var speed = new THREE.Vector3(13.5, 9.5, 13.5);
+    var position = position;
+    var speed = new THREE.Vector3(13.5, 10.5, 13.5);
     var particleSize = 0.4;
+    var particleLifetime = 1750;
+    var particleCount = 200;
 
-    var particleSystem = particleSystemPool.getExplosionSystem(this.zone, 1750, 200,
-            position, speed, new THREE.Color("rgb(180, 0, 0)"), 1750, ParticleSpread.MEDIUM);
-    
+    var p = this.particleSystemPool.getExplosionParticleSystem(this.zone, lifetime, particleCount, 
+            this.threeJsDrawable.position, particleSpeed, particleSize, 
+            new THREE.Color("rgb(180, 0, 0)"), particleLifetime, ParticleSpread.SMALL);
+    if (p !== null)
+    {
+        zone.addParticleSystem(p);
+    }
 };
 
 ParticleSystem.prototype.isDone = function() {
