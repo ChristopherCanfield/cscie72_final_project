@@ -82,6 +82,8 @@ Textures.CONCRETE_5 = "textures/concrete/concrete5.jpg";
 Textures.CONCRETE_6 = "textures/concrete/concrete6.jpg";
 Textures.CONCRETE_7 = "textures/concrete/concrete7.jpg";
 
+Textures.CONTROLS = "textures/instructions/controls.png";
+
 function TextureManager(glContext) {
     this.textures = {};
     this.gl = glContext;

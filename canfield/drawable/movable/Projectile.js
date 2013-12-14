@@ -87,7 +87,7 @@ Projectile.prototype.onHit = function() {
     
     var lifetime = 3250;
     var position = position;
-    var particleSpeed = new THREE.Vector3(8, 6, 8);
+    var particleSpeed = new THREE.Vector3(7, 5, 7);
     var particleSize = 0.55;
     var particleLifetime = 2050;
     var particleCount = 250;

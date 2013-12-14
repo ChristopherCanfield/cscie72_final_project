@@ -114,7 +114,7 @@ ParticleSystem.prototype.removeFromScene = function(particle) {
 ParticleSystem.prototype.adjustForSpread = function(position, spread) {
     if (spread === ParticleSpread.SMALL)
     {
-        return MathHelper.adjustVector3(position, 0.95, 1.05);
+        return MathHelper.adjustVector3(position, 0.975, 1.025);
     }
     else if (spread === ParticleSpread.MEDIUM)
     {

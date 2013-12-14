@@ -16,11 +16,11 @@
 
 
 /**
- * 
  * @param {zones} zones Reference to the zones within the scene.
  * @param {Object} window
  * @param {int} glCanvasWidth
  * @param {int} glCanvasHeight
+ * 
  */
 function Camera(zones, window, glCanvasWidth, glCanvasHeight) {
     // Create the three.js camera.
@@ -40,6 +40,10 @@ function Camera(zones, window, glCanvasWidth, glCanvasHeight) {
     this.yawObject.position.y = 30;
     this.yawObject.rotation.y = Math.PI;
     this.yawObject.add(this.pitchObject);
+    
+    this.controlSheet = new GameControlSheet(10, -400);
+    this.yawObject.add(this.controlSheet);
+    this.controlSheetVisible = true;
     
     // Movement & rotation speed.
     this.rotationSpeed = 0.005;
@@ -233,6 +237,14 @@ Camera.prototype.strafeRight = function() {
     else
     {
         return false;
+    }
+};
+
+Camera.prototype.removeGameControlSheet = function() {
+    if (this.controlSheetVisible)
+    {
+        this.controlSheetVisible = false;
+        this.yawObject.remove(this.controlSheet);
     }
 };
 

@@ -45,12 +45,10 @@ WeaponController.prototype.keyDown = function(e) {
     
     if (keyCode === KeyEvent.DOM_VK_CONTROL || keyCode === KeyEvent.DOM_VK_TAB)
     {
-        console.log("shot fired");
-        
         var zone = this.camera.zones.getCurrentZones(this.camera.getBoundingBox())[0];
         this.weapons[this.selectedWeaponIndex].shootProjectile(zone, 
                 this.camera.yawObject.position, this.camera.yawObject.rotation);
-        // TODO: Allow additional keys, such as a mouse click?
+        this.camera.removeGameControlSheet();
     }
     // TODO: add ability to select different weapons.
 };
