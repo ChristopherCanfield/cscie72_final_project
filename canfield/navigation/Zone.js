@@ -8,8 +8,14 @@
 
 function Zone(boundingBox) {
     this.boundingBox = boundingBox;
+    // Areas in the zone that are impassable.
     this.blockedAreas = [];
+    // Zones that are adjacent to this Zone.
     this.adjacentZones = [];
+    // Whether the Zone is visible.
+    this.visible = false;
+    
+    this.drawableObjects = [];
     
     this.particleSystems = [];
 }
@@ -21,7 +27,6 @@ Zone.prototype.getBoundingBox = function() {
 Zone.prototype.setBoundingBox = function(boundingBox) {
     this.boundingBox = boundingBox;
 };
-
 
 
 Zone.prototype.getBlockedAreas = function() {
@@ -93,9 +98,21 @@ Zone.prototype.updateParticles = function(deltaTime) {
     }
 };
 
-// Zone.prototype.renderParticles = function(glContext, threeJsScene, threeJsCamera) {
-    // for (var i = 0; i < this.particleSystems; ++i)
-    // {
-        // this.particleSystems[i].render(glContext, threeJsScene, threeJsCamera);
-    // }
-// };
+Zone.prototype.addDrawable = function(drawable) {
+    this.drawableObjects.push(drawable.threeJsDrawable);
+};
+
+Zone.prototpe.setVisible = function(visible) {
+    if (visible != this.visible)
+    {
+        this.visible = visible;
+        for (var i = 0; i < this.drawableObjects.length; ++i)
+        {
+            this.drawableObjects.visible = visible;
+        }
+    }
+};
+
+Zone.prototype.isVisible = function() {
+    return this.visible;
+};
