@@ -61,6 +61,7 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
 Particle.prototype = Object.create(Drawable.prototype);
 Particle.prototype.constructor = Particle;
 
+Particle.nextId = 0;
 
 /**
  * @param {THREE.Vector3} position
@@ -136,6 +137,3 @@ Particle.prototype.setActive = function(active) {
         this.particleSystem.addToInactive(this);
     }
 };
-
-
-Particle.nextId = 0;

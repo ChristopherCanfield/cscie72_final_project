@@ -55,6 +55,7 @@ ExplosionParticleSystem.prototype.superUpdate = ExplosionParticleSystem.prototyp
 ExplosionParticleSystem.prototype.reset = function(zone, lifetime, particleCount, 
         position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread) {
     this.zone = zone;
+    zone.addParticleSystem(this);
 
     this.lifetime = lifetime / 1000;
     this.lifeMillis = 0;
