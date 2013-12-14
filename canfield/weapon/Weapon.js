@@ -12,9 +12,12 @@
 function Weapon() {
     this.projectiles = [];
     this.particleSystemPool = null; // set in subclass.
+    this.cooldown = 0.0;
+    this.minCooldown = 0.35;
 }
 
 Weapon.prototype.update = function(deltaTime) {
+    this.cooldown += deltaTime;
     for (var i = 0; i < this.projectiles.length; ++i)
     {
         var projectile = this.projectiles[i];

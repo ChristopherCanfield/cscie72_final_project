@@ -74,6 +74,14 @@ Textures.WOODBOARD_1 = "textures/woodboard/woodboard1.jpg";
 Textures.WOODBOARD_2 = "textures/woodboard/woodboard2.jpg";
 Textures.WOODBOARD_3 = "textures/woodboard/woodboard3.jpg";
 
+Textures.CONCRETE_1 = "textures/concrete/concrete1.jpg";
+Textures.CONCRETE_2 = "textures/concrete/concrete2.jpg";
+Textures.CONCRETE_3 = "textures/concrete/concrete3.jpg";
+Textures.CONCRETE_4 = "textures/concrete/concrete4.jpg";
+Textures.CONCRETE_5 = "textures/concrete/concrete5.jpg";
+Textures.CONCRETE_6 = "textures/concrete/concrete6.jpg";
+Textures.CONCRETE_7 = "textures/concrete/concrete7.jpg";
+
 function TextureManager(glContext) {
     this.textures = {};
     this.gl = glContext;

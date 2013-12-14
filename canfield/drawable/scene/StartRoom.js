@@ -71,13 +71,19 @@ StartRoom.addWalls = function(gameScene, zone) {
 };
 
 StartRoom.addFloorCeiling = function(gameScene, zone) {
+    // Floor.
     gameScene.add(new FloorCeiling(StartRoom.X_LEFT + StartRoom.X_WIDTH, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
             StartRoom.X_WIDTH, 1, StartRoom.Z_DEPTH, 
             Textures.WOODBOARD_1, 6, 6));
+            
+    // Ceiling.
+    gameScene.add(new FloorCeiling(StartRoom.X_LEFT + StartRoom.X_WIDTH, StartRoom.Y_BOTTOM + StartRoom.Y_HEIGHT, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
+            StartRoom.X_WIDTH, 1, StartRoom.Z_DEPTH, 
+            Textures.CONCRETE_7, 8, 8));
 };
 
 StartRoom.addLights = function(gameScene) {
-    var light1 = new THREE.PointLight(0xE5E5CD, 5, 1000);
+    var light1 = new THREE.PointLight(0xE5E5CD, 3, 1000);
     light1.rotation.x = Math.PI / 4;
     light1.position.set(StartRoom.X_LEFT + 300, 50, StartRoom.Z_BACK + 400); 
     var scene = gameScene.getThreeJsScene();
