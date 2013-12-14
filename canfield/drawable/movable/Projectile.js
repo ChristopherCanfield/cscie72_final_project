@@ -9,6 +9,7 @@
  * Creates a projectile.
  * @param {Zone} zone The zone that the projectile falls within.
  * @param {ParticleSystemPool} particleSystemPool 
+ * @param {Camera} camera
  * @param {THREE.Vector3} movementVector
  * @param {THREE.Vector3} location
  * @param {float} size
@@ -17,12 +18,14 @@
  * @param {int} textureRepeatX
  * @param {int} textureRepeatY
  */
-function Projectile(zone, particleSystemPool, threeJsScene, movementVector, rotation, location, size, lifetime, 
+function Projectile(zone, particleSystemPool, threeJsScene, camera,
+        movementVector, rotation, location, size, lifetime, 
         texturePath, textureRepeatX, textureRepeatY) {
     Drawable.call(this);
     zone.addDrawable(this);
     this.zone = zone;
     this.threeJsScene = threeJsScene;
+    this.camera = camera;
     
     this.movementVector = movementVector;
     this.particleSystemPool = particleSystemPool;
@@ -94,7 +97,7 @@ Projectile.prototype.onHit = function() {
 
     var p = this.particleSystemPool.getExplosionSystem(this.zone, lifetime, particleCount, 
             this.threeJsDrawable.position, particleSpeed, particleSize, 
-            new THREE.Color("rgb(180, 0, 0)"), particleLifetime, ParticleSpread.SMALL);
+            new THREE.Color("rgb(180, 0, 0)"), particleLifetime, ParticleSpread.SMALL, this.camera);
     if (p !== null)
     {
         this.zone.addParticleSystem(p);

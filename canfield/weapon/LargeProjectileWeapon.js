@@ -5,10 +5,11 @@
  */
 
 
-function LargeProjectileWeapon(threeJsScene) {
+function LargeProjectileWeapon(threeJsScene, camera) {
     Weapon.call(this);
     
     this.threeJsScene = threeJsScene;
+    this.camera;
     this.particleSystemPool = new ParticleSystemPool(threeJsScene, 5, 200);
 }
 
@@ -30,7 +31,7 @@ LargeProjectileWeapon.prototype.shootProjectile = function(zone, location, rotat
     var size = 7.5;
     var lifetime = 1500;
 
-    var projectile = new Projectile(zone, this.particleSystemPool, this.threeJsScene,
+    var projectile = new Projectile(zone, this.particleSystemPool, this.threeJsScene, this.camera,
             movementVector, rotation, position, size, lifetime,
             Textures.FIRE_1, 1, 1);
     
