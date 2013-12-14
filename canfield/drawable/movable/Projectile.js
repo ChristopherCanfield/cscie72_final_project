@@ -33,7 +33,7 @@ function Projectile(zone, particleSystemPool, threeJsScene, movementVector, rota
     this.done = false;
     
     var texture = cdc.textureManager.getTexture(texturePath);
-    var material = new THREE.MeshLambertMaterial({ 
+    var material = new THREE.MeshPhongMaterial({ 
         map: texture
     });
     texture.repeat.set(textureRepeatX, textureRepeatY);
@@ -88,7 +88,7 @@ Projectile.prototype.onHit = function() {
     var lifetime = 3250;
     var position = position;
     var particleSpeed = new THREE.Vector3(13.5, 10.5, 13.5);
-    var particleSize = 0.4;
+    var particleSize = 0.5;
     var particleLifetime = 2250;
     var particleCount = 200;
 

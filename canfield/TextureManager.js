@@ -65,7 +65,14 @@ Textures.WALL_4 = "textures/wall/stonewall.jpg";
 Textures.WALL_5 = "textures/wall/stonewall2.jpg";
 
 Textures.FIRE_1 = "textures/fire/fire1.jpg";
+Textures.FIRE_2 = "textures/fire/fire2.jpg";
+Textures.FIRE_3 = "textures/fire/fire3.jpg";
+Textures.FIRE_4 = "textures/fire/fire4.jpg";
+Textures.FIRE_5 = "textures/fire/fire5.jpg";
 
+Textures.WOODBOARD_1 = "textures/woodboard/woodboard1.jpg";
+Textures.WOODBOARD_2 = "textures/woodboard/woodboard2.jpg";
+Textures.WOODBOARD_3 = "textures/woodboard/woodboard3.jpg";
 
 function TextureManager(glContext) {
     this.textures = {};
