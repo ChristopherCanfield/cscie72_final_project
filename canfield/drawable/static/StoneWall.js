@@ -4,8 +4,10 @@
  */
 
 
-function StoneWall(x, z, width, height, depth, texturePath, textureRepeatX, textureRepeatY, textureRepeatXTop) {
+function StoneWall(zone, x, z, width, height, depth, 
+        texturePath, textureRepeatX, textureRepeatY, textureRepeatXTop) {
     Drawable.call(this);
+    zone.addDrawable(this);
     
     // Front & Back
     var texture = cdc.textureManager.getTexture(texturePath);
@@ -31,8 +33,6 @@ function StoneWall(x, z, width, height, depth, texturePath, textureRepeatX, text
     var mesh2 = new THREE.Mesh(geometry2, material2);
     mesh2.position.set(0, 15, 0);
     this.threeJsDrawable.add(mesh2);
-    
-    // TODO: fix textures on the ends.
 }
 
 StoneWall.prototype = Object.create(Drawable.prototype);

@@ -5,10 +5,11 @@
  */
 
 
-function BallGuy(scene, navGraph, initialNavPointTarget, lastNavPointId, x, z) {
+function BallGuy(zone, scene, navGraph, initialNavPointTarget, lastNavPointId, x, z) {
     Drawable.call(this);
     
     this.scene = scene;
+    zone.addDrawable(this);
     
     this.wrapper = new THREE.Object3D();
     this.wrapper.position.x = x;

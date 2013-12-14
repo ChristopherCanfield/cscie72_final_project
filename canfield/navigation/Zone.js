@@ -95,6 +95,16 @@ Zone.prototype.addParticleSystem = function(particleSystem) {
     this.particleSystems.push(particleSystem);
 };
 
+Zone.prototype.removeParticleSystem = function(particleSystem) {
+    for (var i = 0; i < this.particleSystems.length; ++i)
+    {
+        if (this.particleSystems[i].id = particleSystem.id)
+        {
+            this.particleSystems.splice(i, 1);
+        }
+    }
+};
+
 Zone.prototype.updateParticles = function(deltaTime) {
     for (var i = 0; i < this.particleSystems.length; ++i)
     {

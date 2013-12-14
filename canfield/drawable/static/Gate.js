@@ -23,6 +23,7 @@ function Gate(xLeft, yBottom, zBack,
         texturePath, textureRepeatX, textureRepeatY, 
         zone, debug) {
     Drawable.call(this);
+    zone.addDrawable(this);
     
     var texture = cdc.textureManager.getTexture(texturePath).clone();
     texture.needsUpdate = true;
@@ -38,7 +39,6 @@ function Gate(xLeft, yBottom, zBack,
     
     // Prevent camera from walking through wall.
     this.blockedArea = new BlockedArea(new BoundingBox(xLeft, width, yBottom, height, zBack - depth, depth));
-    zone.addBlockedArea(this.blockedArea);
     
     if (typeof debug !== "undefined" && debug)
     {

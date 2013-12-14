@@ -24,7 +24,11 @@ function ParticleSystem(zone, threeJsScene) {
     this.inactiveParticles = [];
     
     this.done = false;
+    
+    this.id = ParticleSystem.nextId++;
 }
+
+ParticleSystem.nextId = 0;
 
 /**
  * Adds a particle to the particle system and the three.js scene.
@@ -73,6 +77,7 @@ ParticleSystem.prototype.setDone = function(done) {
     for (var i = this.particles.length - 1; i >= 0; --i)
     {
         this.removeFromScene(this.particles[i]);
+        this.zone.removeParticleSystem(this);
     }
     this.particles.length = 0;
 };
@@ -118,14 +123,6 @@ ParticleSystem.prototype.findInactive = function() {
     if (this.inactiveParticles.length > 0)
     {
         return this.inactiveParticles.pop();
-        // for (var i = 0; i < this.particles.length; ++i)
-        // {
-            // if (!this.particles[i].isActive())
-            // {
-                // --this.inactiveParticleCount;
-                // return this.particles[i];
-            // }
-        // }
     }
     return null;
 };

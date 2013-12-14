@@ -6,6 +6,7 @@
 
 /**
  * A tree.
+ * @param {Zone} zone The zone that the tree belongs to.
  * @param {Object} x
  * @param {Object} z
  * @param {Object} height 
@@ -13,7 +14,6 @@
  * @param {Object} leavesRadius
  * @param {Object} leavesTexturePath
  * @param {integer} leavesTextureRepeat The number of times to repeat the leaves texture.
- * @param {Zone} zone The zone that the tree belongs to.
  */
 function Tree(x, z, height, barkTexturePath, 
         leavesRadius, leavesTexturePath, leavesTextureRepeat,
@@ -49,6 +49,8 @@ function Tree(x, z, height, barkTexturePath,
     leavesMesh.position.x = x;
     leavesMesh.position.y = Ground.Y_TOP + height;
     leavesMesh.position.z = z;
+    
+    zone.addDrawable(this);
     
     // TODO: set the blockedArea for this true.
     if (typeof zone != 'undefined' && this.blockedArea != null)

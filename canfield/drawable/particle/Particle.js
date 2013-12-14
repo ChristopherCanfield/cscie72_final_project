@@ -66,9 +66,10 @@ Particle.prototype.constructor = Particle;
  * @param {THREE.Vector3} position
  * @param {THREE.Vector3} speed Speed per millisecond.
  * @param {THREE.Vector3} direction -1, 0, or 1 for each direction.
+ * @param {THREE.Color} color
  * @param {int} lifetime The max life of the particle, in milliseconds.
  */
-Particle.prototype.reset = function(position, speed, direction, lifetime) {
+Particle.prototype.reset = function(position, speed, direction, color, lifetime) {
     this.position = position;
     this.speed = speed;
     this.direction = direction;
@@ -78,6 +79,10 @@ Particle.prototype.reset = function(position, speed, direction, lifetime) {
     this.threeJsDrawable.position.x = position.x;
     this.threeJsDrawable.position.y = position.y;
     this.threeJsDrawable.position.z = position.z;
+    
+    var material = this.threeJsDrawable.material;
+    material.color = color;
+    material.needsUpdate = true;
     
     this.setActive(true);
 };

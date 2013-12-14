@@ -23,6 +23,7 @@ function BuildingWall(xLeft, yBottom, zBack,
         texturePath, textureRepeatX, textureRepeatY, 
         zone, debug) {
     Drawable.call(this);
+    zone.addDrawable(this);
     
     var texture = cdc.textureManager.getTexture(texturePath).clone();
     texture.needsUpdate = true;

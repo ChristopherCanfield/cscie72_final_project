@@ -4,6 +4,7 @@
  * October 2013
  */
 
+// TODO: remove this or add it to a zone.
 
 function BallChild(ballGuy, x, z) {
     Drawable.call(this);

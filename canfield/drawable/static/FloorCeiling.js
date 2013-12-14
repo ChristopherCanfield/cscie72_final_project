@@ -23,6 +23,8 @@ function FloorCeiling(xLeft, yBottom, zBack, width, height, depth, texturePath, 
     mesh.position.set(xLeft + (width / 2), yBottom + (height / 2) - 0.5, zBack - (depth / 2));
     
     this.threeJsDrawable = mesh;
+    
+    zone.addDrawable(this);
 }
 
 FloorCeiling.prototype = Object.create(Drawable.prototype);

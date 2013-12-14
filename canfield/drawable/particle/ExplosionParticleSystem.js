@@ -22,11 +22,6 @@
 function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount, 
         position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread, debug) {
     ParticleSystem.call(this);
-    
-    if (typeof lifetime !== "number")
-    {
-        throw "ExplosionParticleSystem: Invalid lifetime type. Expected number, found " + (typeof lifetime);
-    }
 
     this.threeJsScene = (typeof debug !== "undefined" && debug) ? null : threeJsScene;
     this.zone = zone;
@@ -57,8 +52,31 @@ ExplosionParticleSystem.prototype.constructor = ExplosionParticleSystem;
 
 ExplosionParticleSystem.prototype.superUpdate = ExplosionParticleSystem.prototype.update;
 
-ExplosionParticleSystem.prototype.reset = function() {
-    // TODO: implement this.
+ExplosionParticleSystem.prototype.reset = function(zone, lifetime, particleCount, 
+        position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread) {
+    this.zone = zone;
+
+    this.lifetime = lifetime / 1000;
+    this.lifeMillis = 0;
+    this.position = position;
+    
+    this.particleSpeed = particleSpeed;
+    this.particleSize = particleSize;
+    this.particleColor = particleColor;
+    this.particleLifetime = particleLifetime;
+    this.spread = particleSpread;
+    
+    var finalParticleCount = (particleCount > this.particles.length) ? this.particles.length : particleCount;
+    
+    for (var i = 0; i < finalParticleCount; ++i)
+    {
+        var position = this.adjustForSpread(this.position, this.spread);
+        var speed = MathHelper.adjustVector3(this.particleSpeed, 0.4, 1.6);
+        var direction = this.getRandomDirection();
+        var lifetime = MathHelper.randomInt(0.8 * this.particleLifetime, 1.2 * this.particleLifetime);
+        var p = this.particles[i];
+        p.reset(position, speed, direction, this.particleColor, lifetime);
+    }
 };
 
 ExplosionParticleSystem.prototype.update = function(deltaTime) {
