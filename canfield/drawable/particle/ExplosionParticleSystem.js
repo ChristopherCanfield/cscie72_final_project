@@ -17,7 +17,7 @@
  * @param {THREE.Color} particleColor
  * @param {int} particleLifetime The lifetime of each particle, in milliseconds.
  * @param {ParticleSpread} particleSpread
- * @param {boolean} particlePoolMember 
+ * @param {boolean} particlePoolMember (Optional)
  * @param {boolean} debug Set to true if particles should not be added to the scene (Optional).
  */
 function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount, 
@@ -57,8 +57,9 @@ ExplosionParticleSystem.prototype.constructor = ExplosionParticleSystem;
 
 ExplosionParticleSystem.prototype.superUpdate = ExplosionParticleSystem.prototype.update;
 
+
 ExplosionParticleSystem.prototype.reset = function(zone, lifetime, particleCount, 
-        position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread) {
+        position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread, projectile) {
     this.zone = zone;
     zone.addParticleSystem(this);
 
@@ -78,6 +79,8 @@ ExplosionParticleSystem.prototype.reset = function(zone, lifetime, particleCount
     {
         var position = this.adjustForSpread(this.position, this.spread);
         var speed = MathHelper.adjustVector3(this.particleSpeed, 0.4, 1.6);
+        // TODO: adjust direction to prevent particles from being lost against the wall that caused
+        // the collision.
         var direction = this.getRandomDirection();
         var lifetime = MathHelper.randomInt(0.8 * this.particleLifetime, 1.2 * this.particleLifetime);
         var p = this.particles[i];

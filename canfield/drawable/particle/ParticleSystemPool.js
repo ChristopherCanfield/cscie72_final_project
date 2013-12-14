@@ -26,7 +26,7 @@ function ParticleSystemPool(threeJsScene, poolSize, particlesPerSystem) {
  * @param {ParticleSpread} particleSpread
  */
 ParticleSystemPool.prototype.getExplosionSystem = function(zone, lifetime, particleCount, 
-        position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread) {
+        position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread, projectile) {
     // Search for an initialized but currently unused particle system.
     for (var i = 0; i < this.explosionParticleSystems.length; ++i)
     {
@@ -34,7 +34,7 @@ ParticleSystemPool.prototype.getExplosionSystem = function(zone, lifetime, parti
         {
             var e = this.explosionParticleSystems[i];
             e.reset(zone, lifetime, this.particlesPerSystem, position, particleSpeed, 
-                    particleSize, particleColor, particleLifetime, particleSpread);
+                    particleSize, particleColor, particleLifetime, particleSpread, projectile);
             return e;
         }
     }
