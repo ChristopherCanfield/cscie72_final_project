@@ -17,8 +17,12 @@ function Zone(boundingBox) {
     
     this.drawableObjects = [];
     
+    this.id = Zone.nextId++;
+    
     this.particleSystems = [];
 }
+
+Zone.nextId = 0;
 
 Zone.prototype.getBoundingBox = function() {
     return this.boundingBox;
