@@ -17,14 +17,14 @@
  * @param {int} textureRepeatX
  * @param {int} textureRepeatY
  */
-function Projectile(zone, particleSystemPool, movementVector, rotation, location, size, lifetime, 
+function Projectile(zone, particleSystemPool, threeJsScene, movementVector, rotation, location, size, lifetime, 
         texturePath, textureRepeatX, textureRepeatY) {
     Drawable.call(this);
     zone.addDrawable(this);
     this.zone = zone;
+    this.threeJsScene = threeJsScene;
     
     this.movementVector = movementVector;
-    this.location = location;
     this.particleSystemPool;
     
     this.lifetime = lifetime;
@@ -38,9 +38,10 @@ function Projectile(zone, particleSystemPool, movementVector, rotation, location
     });
     texture.repeat.set(textureRepeatX, textureRepeatY);
     
-    this.geometry = new THREE.CubeGeometry(width, height, depth);
+    this.geometry = new THREE.SphereGeometry(size, 16, 12);
     var mesh = new THREE.Mesh(this.geometry, material);
-    mesh.position.set(location.x + (size / 2), location.y + (size / 2), location.z - (size / 2));
+    mesh.position.set(location.x, location.y, location.z);
+    mesh.rotation.set(rotation.x, rotation.y, rotation.z);
     this.threeJsDrawable = mesh;
     
     this.boundingBox = new BoundingBox(location.x, size, location.y, size, location.z, size);
@@ -50,6 +51,9 @@ Projectile.prototype = Object.create(Drawable.prototype);
 Projectile.prototype.constructor = Projectile;
 
 Projectile.prototype.update = function(deltaTime) {
+    // TODO: remove this.
+    return;
+    
     if (this.done) return;
     
     if ((this.lifeMillis + deltaTime) > this.lifetime)
@@ -59,14 +63,14 @@ Projectile.prototype.update = function(deltaTime) {
     }
     ++this.lifeMillis;
     
-    this.threeJsDrawable.position.translateZ(this.movementVector.z * deltaTime);
+    this.threeJsDrawable.translateZ(this.movementVector.z * deltaTime);
     // this.threeJsDrawable.position.x += (this.movementVector.x * deltaTime);
     // this.threeJsDrawable.position.y += (this.movementVector.y * deltaTime);
     // this.threeJsDrawable.position.z += (this.movementVector.z * deltaTime);
     
-    this.boundingBox.xLeft += this.position.x;
-    this.boundingBox.yBottom += this.position.y;
-    this.boundingBox.zBack += this.position.z;
+    this.boundingBox.xLeft += this.threeJsDrawable.position.x;
+    this.boundingBox.yBottom += this.threeJsDrawable.position.y;
+    this.boundingBox.zBack += this.threeJsDrawable.position.z;
     
     var blockedAreas = this.zone.getBlockedAreas();
     for (var i = 0; i < blockedAreas.length; ++i)
@@ -94,12 +98,14 @@ Projectile.prototype.onHit = function() {
     {
         zone.addParticleSystem(p);
     }
+    
+    this.threeJsScene.remove(this);
 };
 
-ParticleSystem.prototype.isDone = function() {
+Projectile.prototype.isDone = function() {
     return this.done;
 };
 
-ParticleSystem.prototype.setDone = function(done) {
+Projectile.prototype.setDone = function(done) {
     this.done = done;
 };

@@ -8,6 +8,7 @@
 function LargeProjectileWeapon(threeJsScene) {
     Weapon.call(this);
     
+    this.threeJsScene = threeJsScene;
     this.particleSystemPool = new ParticleSystemPool(threeJsScene, 5, 200);
 }
 
@@ -20,12 +21,13 @@ LargeProjectileWeapon.prototype.shootProjectile = function(zone, location, rotat
     var rotation = new THREE.Vector3(rotation.x, rotation.y, rotation.z);
     var movementVector = new THREE.Vector3(0, 0, 5);
 
-    var size = 0.4;
+    var size = 10;
     var lifetime = 1500;
 
-    var projectile = new Projectile(zone, this.particleSystemPool, movementVector, rotation,
-            position, size, lifetime,
-            cdc.textureManager.getTexture(Textures.FIRE_1), 1, 1);
+    var projectile = new Projectile(zone, this.particleSystemPool, this.threeJsScene,
+            movementVector, rotation, position, size, lifetime,
+            Textures.FIRE_1, 1, 1);
     
     this.projectiles.push(projectile);
+    projectile.addToThreeJsScene(this.threeJsScene);
 };

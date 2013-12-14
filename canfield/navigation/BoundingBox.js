@@ -43,11 +43,6 @@ BoundingBox.prototype.equals = function(otherBox) {
  * @return boolean specifying whether the two BoundingBoxes intersect.
  */
 BoundingBox.prototype.intersects = function(otherBox) {
-    if (typeof otherBox === "undefined")
-    {
-        console.log("t");
-    }
-    
     if (this.id === otherBox.id || this.equals(otherBox))
     {
         return true;
