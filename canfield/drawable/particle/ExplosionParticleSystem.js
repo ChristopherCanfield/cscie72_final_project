@@ -78,12 +78,12 @@ ExplosionParticleSystem.prototype.reset = function(zone, lifetime, particleCount
     for (var i = 0; i < finalParticleCount; ++i)
     {
         var position = this.adjustForSpread(this.position, this.spread);
-        var speed = MathHelper.adjustVector3(this.particleSpeed, 0.4, 1.6);
+        var speed = MathHelper.adjustVector3(this.particleSpeed, 0.3, 1.4);
         // TODO: adjust direction to prevent particles from being lost against the wall that caused
         // the collision.
         var direction = this.getRandomDirection();
         this.adjustDirection(direction, position, camera);
-        var lifetime = MathHelper.randomInt(0.8 * this.particleLifetime, 1.2 * this.particleLifetime);
+        var lifetime = MathHelper.randomInt(0.8 * this.particleLifetime, 1.3 * this.particleLifetime);
         var p = this.particles[i];
         p.reset(position, speed, direction, this.particleColor, lifetime);
     }
@@ -121,10 +121,10 @@ ExplosionParticleSystem.prototype.getRandomDirection = function(returnInteger) {
 };
 
 ExplosionParticleSystem.prototype.adjustDirection = function(direction, position, camera) {
-    var cameraPosition = camera.position;
+    var cameraPosition = camera.yawObject.position;
     if (direction.x !== 0)
     {
-        direction.x = (cameraPosition.x - (direction.x * position.x) > 0) ? 1 : -1;
+        direction.x = (cameraPosition.x - (direction.x * position.x) > 0) ? -1 : 1;
     }
     if (direction.z !== 0)
     {
