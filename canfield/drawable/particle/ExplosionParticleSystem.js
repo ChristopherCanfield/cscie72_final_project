@@ -57,6 +57,10 @@ ExplosionParticleSystem.prototype.constructor = ExplosionParticleSystem;
 
 ExplosionParticleSystem.prototype.superUpdate = ExplosionParticleSystem.prototype.update;
 
+ExplosionParticleSystem.prototype.reset = function() {
+    // TODO: implement this.
+};
+
 ExplosionParticleSystem.prototype.update = function(deltaTime) {
     if ((this.lifeMillis + deltaTime) > this.lifetime)
     {
