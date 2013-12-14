@@ -37,7 +37,7 @@ function Camera(zones, window, glCanvasWidth, glCanvasHeight) {
     this.yawObject = new THREE.Object3D();
     this.yawObject.position.z = 0;
     this.yawObject.rotation.x = 0;
-    this.yawObject.position.y = 25;
+    this.yawObject.position.y = 30;
     this.yawObject.rotation.y = Math.PI;
     this.yawObject.add(this.pitchObject);
     

@@ -40,11 +40,12 @@ ParticleSystemPool.prototype.getExplosionSystem = function(zone, lifetime, parti
     }
 
     // If pool hasn't yet grown to maximum size, add another particle system to it.
-    if (this.explosionParticleSystems.length < poolSize)
+    if (this.explosionParticleSystems.length < this.poolSize)
     {
-        var e = new ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
+        var e = new ExplosionParticleSystem(zone, this.threeJsScene, lifetime, particleCount,
                 position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread, true);
-        this.poolSize.push(e);
+        ++this.poolSize;
+        this.explosionParticleSystems.push(e);
         return e;
     }
     

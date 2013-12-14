@@ -82,10 +82,10 @@ ParticleSystem.prototype.setDone = function(done, isParticlePoolMember) {
             if (!this.debug)
             {
                 this.removeFromScene(this.particles[i]);
-                this.zone.removeParticleSystem(this);
             }
         }
         this.particles.length = 0;
+        this.zone.removeParticleSystem(this);
     }
     else
     {

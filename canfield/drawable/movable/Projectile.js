@@ -25,7 +25,7 @@ function Projectile(zone, particleSystemPool, threeJsScene, movementVector, rota
     this.threeJsScene = threeJsScene;
     
     this.movementVector = movementVector;
-    this.particleSystemPool;
+    this.particleSystemPool = particleSystemPool;
     
     this.lifetime = lifetime;
     this.lifeMillis = 0;
@@ -39,10 +39,14 @@ function Projectile(zone, particleSystemPool, threeJsScene, movementVector, rota
     texture.repeat.set(textureRepeatX, textureRepeatY);
     
     this.geometry = new THREE.SphereGeometry(size, 16, 12);
-    var mesh = new THREE.Mesh(this.geometry, material);
-    mesh.position.set(location.x, location.y, location.z);
-    mesh.rotation.set(rotation.x, rotation.y, rotation.z);
-    this.threeJsDrawable = mesh;
+    var outerDrawable = new THREE.Object3D();
+    outerDrawable.position.set(location.x, location.y, location.z);
+    outerDrawable.rotation.set(rotation.x, rotation.y, rotation.z);
+    outerDrawable.translateZ(-15);
+    outerDrawable.translateY(-5);
+    this.mesh = new THREE.Mesh(this.geometry, material);
+    outerDrawable.add(this.mesh);
+    this.threeJsDrawable = outerDrawable;
     
     this.boundingBox = new BoundingBox(location.x, size, location.y, size, location.z, size);
 }
@@ -50,10 +54,7 @@ function Projectile(zone, particleSystemPool, threeJsScene, movementVector, rota
 Projectile.prototype = Object.create(Drawable.prototype);
 Projectile.prototype.constructor = Projectile;
 
-Projectile.prototype.update = function(deltaTime) {
-    // TODO: remove this.
-    return;
-    
+Projectile.prototype.update = function(deltaTime) {    
     if (this.done) return;
     
     if ((this.lifeMillis + deltaTime) > this.lifetime)
@@ -63,14 +64,12 @@ Projectile.prototype.update = function(deltaTime) {
     }
     ++this.lifeMillis;
     
-    this.threeJsDrawable.translateZ(this.movementVector.z * deltaTime);
-    // this.threeJsDrawable.position.x += (this.movementVector.x * deltaTime);
-    // this.threeJsDrawable.position.y += (this.movementVector.y * deltaTime);
-    // this.threeJsDrawable.position.z += (this.movementVector.z * deltaTime);
+    this.threeJsDrawable.translateZ(-this.movementVector.z * deltaTime);
+    this.mesh.rotation.x -= 0.05;
     
-    this.boundingBox.xLeft += this.threeJsDrawable.position.x;
-    this.boundingBox.yBottom += this.threeJsDrawable.position.y;
-    this.boundingBox.zBack += this.threeJsDrawable.position.z;
+    this.boundingBox.xLeft = this.threeJsDrawable.position.x;
+    this.boundingBox.yBottom = this.threeJsDrawable.position.y;
+    this.boundingBox.zBack = this.threeJsDrawable.position.z;
     
     var blockedAreas = this.zone.getBlockedAreas();
     for (var i = 0; i < blockedAreas.length; ++i)
@@ -78,6 +77,7 @@ Projectile.prototype.update = function(deltaTime) {
         if (blockedAreas[i].intersects(this.boundingBox))
         {
             this.onHit();
+            return;
         }
     }
 };
@@ -85,21 +85,20 @@ Projectile.prototype.update = function(deltaTime) {
 Projectile.prototype.onHit = function() {
     this.setDone(true);
     
+    var lifetime = 2000;
     var position = position;
-    var speed = new THREE.Vector3(13.5, 10.5, 13.5);
+    var particleSpeed = new THREE.Vector3(13.5, 10.5, 13.5);
     var particleSize = 0.4;
     var particleLifetime = 1750;
     var particleCount = 200;
 
-    var p = this.particleSystemPool.getExplosionParticleSystem(this.zone, lifetime, particleCount, 
+    var p = this.particleSystemPool.getExplosionSystem(this.zone, lifetime, particleCount, 
             this.threeJsDrawable.position, particleSpeed, particleSize, 
             new THREE.Color("rgb(180, 0, 0)"), particleLifetime, ParticleSpread.SMALL);
     if (p !== null)
     {
-        zone.addParticleSystem(p);
+        this.zone.addParticleSystem(p);
     }
-    
-    this.threeJsScene.remove(this);
 };
 
 Projectile.prototype.isDone = function() {
@@ -108,4 +107,5 @@ Projectile.prototype.isDone = function() {
 
 Projectile.prototype.setDone = function(done) {
     this.done = done;
+    this.threeJsScene.remove(this.threeJsDrawable);
 };
