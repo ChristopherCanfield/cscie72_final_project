@@ -71,13 +71,17 @@ StartRoom.addWalls = function(gameScene, zone) {
 };
 
 StartRoom.addFloorCeiling = function(gameScene, zone) {
-    
+    gameScene.add(new FloorCeiling(StartRoom.X_LEFT + StartRoom.X_WIDTH, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
+            StartRoom.X_WIDTH, 1, StartRoom.Z_DEPTH, 
+            Textures.WOODBOARD_1, 6, 6));
 };
 
 StartRoom.addLights = function(gameScene) {
-    var light1 = new THREE.PointLight(0xFFF42B, 10, 500); 
-    light1.position.set(StartRoom.X_LEFT + 300, 40, StartRoom.Z_BACK + 400); 
-    gameScene.getThreeJsScene().add(light1);
+    var light1 = new THREE.PointLight(0xE5E5CD, 5, 1000);
+    light1.rotation.x = Math.PI / 4;
+    light1.position.set(StartRoom.X_LEFT + 300, 50, StartRoom.Z_BACK + 400); 
+    var scene = gameScene.getThreeJsScene();
+    scene.add(light1);
 };
 
 StartRoom.addParticleSystems = function(gameScene, zone) {
@@ -98,13 +102,13 @@ StartRoom.addParticleSystems = function(gameScene, zone) {
    // zone.addParticleSystem(continuousSystem);
     
     // Add explosion.
-    var explosionPosition = new THREE.Vector3(StartRoom.X_LEFT + 375, 30, StartRoom.Z_BACK + 400);
-    var explosionSpeed = new THREE.Vector3(13.5, 9.5, 13.5);
-    var particleSize = 0.4;
-    var explosionSystem = new ExplosionParticleSystem(zone, gameScene.getThreeJsScene(), 
-                    1750, 500, explosionPosition, explosionSpeed, particleSize,
-                    new THREE.Color("rgb(244,93,70)"), 2500, ParticleSpread.SMALL);
-    zone.addParticleSystem(explosionSystem);
+    // var explosionPosition = new THREE.Vector3(StartRoom.X_LEFT + 375, 30, StartRoom.Z_BACK + 400);
+    // var explosionSpeed = new THREE.Vector3(13.5, 9.5, 13.5);
+    // var particleSize = 0.4;
+    // var explosionSystem = new ExplosionParticleSystem(zone, gameScene.getThreeJsScene(), 
+                    // 1750, 500, explosionPosition, explosionSpeed, particleSize,
+                    // new THREE.Color("rgb(244,93,70)"), 2500, ParticleSpread.SMALL);
+    // zone.addParticleSystem(explosionSystem);
 };
 
 StartRoom.addOutsideObjects = function(gameScene, zone) {
