@@ -21,7 +21,7 @@ LargeProjectileWeapon.prototype.shootProjectile = function(zone, location, rotat
     var rotation = new THREE.Vector3(rotation.x, rotation.y, rotation.z);
     var movementVector = new THREE.Vector3(0, 0, 42.5);
 
-    var size = 5;
+    var size = 7.5;
     var lifetime = 1500;
 
     var projectile = new Projectile(zone, this.particleSystemPool, this.threeJsScene,

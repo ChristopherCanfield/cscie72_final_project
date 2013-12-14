@@ -39,6 +39,7 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
     this.spread = particleSpread;
     
     this.particlePoolMember = particlePoolMember;
+    this.inactiveParticles.length = 0;
     
     for (var i = 0; i < particleCount; ++i)
     {

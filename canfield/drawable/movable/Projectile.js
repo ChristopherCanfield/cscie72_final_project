@@ -42,7 +42,7 @@ function Projectile(zone, particleSystemPool, threeJsScene, movementVector, rota
     var outerDrawable = new THREE.Object3D();
     outerDrawable.position.set(location.x, location.y, location.z);
     outerDrawable.rotation.set(rotation.x, rotation.y, rotation.z);
-    outerDrawable.translateZ(-15);
+    outerDrawable.translateZ(-20);
     outerDrawable.translateY(-5);
     this.mesh = new THREE.Mesh(this.geometry, material);
     outerDrawable.add(this.mesh);
@@ -65,7 +65,7 @@ Projectile.prototype.update = function(deltaTime) {
     ++this.lifeMillis;
     
     this.threeJsDrawable.translateZ(-this.movementVector.z * deltaTime);
-    this.mesh.rotation.x -= 0.05;
+    this.mesh.rotation.x -= 0.075;
     
     this.boundingBox.xLeft = this.threeJsDrawable.position.x;
     this.boundingBox.yBottom = this.threeJsDrawable.position.y;
@@ -85,11 +85,11 @@ Projectile.prototype.update = function(deltaTime) {
 Projectile.prototype.onHit = function() {
     this.setDone(true);
     
-    var lifetime = 2000;
+    var lifetime = 3250;
     var position = position;
     var particleSpeed = new THREE.Vector3(13.5, 10.5, 13.5);
     var particleSize = 0.4;
-    var particleLifetime = 1750;
+    var particleLifetime = 2250;
     var particleCount = 200;
 
     var p = this.particleSystemPool.getExplosionSystem(this.zone, lifetime, particleCount, 

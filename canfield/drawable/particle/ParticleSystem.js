@@ -85,7 +85,6 @@ ParticleSystem.prototype.setDone = function(done, isParticlePoolMember) {
             }
         }
         this.particles.length = 0;
-        this.zone.removeParticleSystem(this);
     }
     else
     {
@@ -94,6 +93,7 @@ ParticleSystem.prototype.setDone = function(done, isParticlePoolMember) {
             this.particles[i].setActive(false);
         }
     }
+    this.zone.removeParticleSystem(this);
 };
 
 ParticleSystem.prototype.isDone = function() {
