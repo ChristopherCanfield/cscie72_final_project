@@ -41,7 +41,7 @@ function Camera(zones, window, glCanvasWidth, glCanvasHeight) {
     this.yawObject.rotation.y = Math.PI;
     this.yawObject.add(this.pitchObject);
     
-    this.controlSheet = new GameControlSheet(10, -400);
+    this.controlSheet = new GameControlSheet(10, -350);
     this.yawObject.add(this.controlSheet);
     this.controlSheetVisible = true;
     

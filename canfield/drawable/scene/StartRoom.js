@@ -40,6 +40,10 @@ StartRoom.addWalls = function(gameScene, zone) {
             Textures.WALL_5, 20, 5,
             zone);
     gameScene.add(backWall);
+    // Add two windows.
+    backWall.threeJsDrawable.add(new WindowFancy(-200, 0, 0, true));
+    backWall.threeJsDrawable.add(new WindowFancy(+200, 0, 0, true));
+    backWall.threeJsDrawable.add(new WindowFancy(0, 0, 0, true));
     
     // Front wall.
     var frontWall = new BuildingWall(StartRoom.X_LEFT, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
