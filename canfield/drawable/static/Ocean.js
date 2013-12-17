@@ -1,10 +1,11 @@
 /**
  * @author Christopher D. Canfield
  * Ocean.js
+ * October 2013
  */
 
 
-function Ocean() {
+function Ocean(xLeft, yBottom, zBack, width, height, depth) {
     Drawable.call(this);
     
     this.geometry.vertices.push(

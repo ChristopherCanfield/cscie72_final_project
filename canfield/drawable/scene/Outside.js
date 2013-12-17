@@ -34,21 +34,21 @@ Outside.addWalls = function(gameScene, zone) {
     var wallTextureRepeatY = 2;
     
     // Back wall.
-    // var backWall1 = new BuildingWall(Outside.X_LEFT, StartRoom.Y_BOTTOM, Outside.Z_BACK + 10, 
-            // Outside.X_WIDTH / 2 - 25, // Width
-            // wallHeight, // Height
-            // 10, // Depth
-            // wallTexture, wallTextureRepeatX, wallTextureRepeatY,
-            // zone);
-    // gameScene.add(backWall1);
-//     
-    // var backWall2 = new BuildingWall(Outside.X_LEFT + Outside.X_WIDTH / 2 + 25, StartRoom.Y_BOTTOM, Outside.Z_BACK + 10, 
-            // Outside.X_WIDTH / 2 - 12.5, // Width
-            // wallHeight, // Height
-            // 10, // Depth
-            // wallTexture, wallTextureRepeatX, wallTextureRepeatY,
-            // zone);
-    // gameScene.add(backWall2);
+    var backWall1 = new BuildingWall(Outside.X_LEFT, StartRoom.Y_BOTTOM, Outside.Z_BACK + 10, 
+            Outside.X_WIDTH / 2 - 25, // Width
+            wallHeight, // Height
+            10, // Depth
+            wallTexture, wallTextureRepeatX / 2, wallTextureRepeatY,
+            zone);
+    gameScene.add(backWall1);
+    
+    var backWall2 = new BuildingWall(Outside.X_LEFT + Outside.X_WIDTH / 2 + 25, StartRoom.Y_BOTTOM, Outside.Z_BACK + 10, 
+            Outside.X_WIDTH / 2 - 12.5, // Width
+            wallHeight, // Height
+            10, // Depth
+            wallTexture, wallTextureRepeatX / 2, wallTextureRepeatY,
+            zone);
+    gameScene.add(backWall2);
     
     // Front wall side.
     var frontWall = new BuildingWall(Outside.X_LEFT, StartRoom.Y_BOTTOM, Outside.Z_BACK + Outside.Z_DEPTH, 
@@ -97,7 +97,7 @@ Outside.addLights = function(gameScene, zone) {
     var middle1 = new FloorLamp(Outside.X_LEFT + Outside.X_WIDTH / 2 - 200, 0, Outside.Z_BACK + 650, zone, gameScene, lampColor, 2, 550);
     gameScene.add(middle1);
     
-    var middle2 = new FloorLamp(Outside.X_LEFT + Outside.X_WIDTH / 2 + 200, 0, Outside.Z_BACK + 650, zone, gameScene, lampColor, 2, 550);
+    var middle2 = new FloorLamp(Outside.X_LEFT + Outside.X_WIDTH / 2 + 200, 0, Outside.Z_BACK + 850, zone, gameScene, lampColor, 2, 550);
     gameScene.add(middle2);
     
     var farLeft = new FloorLamp(Outside.X_LEFT + Outside.X_WIDTH + 375, 0, Outside.Z_BACK + 475, zone, gameScene, lampColor, 2, 550, true);
@@ -144,23 +144,23 @@ Outside.addObjects = function(gameScene, zone) {
     gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 285, Outside.Z_BACK + 600 + 235, 120, 
             Textures.BARK_4,
             25, Textures.LEAVES_3, 8, zone));
-    gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 265, Outside.Z_BACK + 600 + 200, 80, 
+    gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 265, Outside.Z_BACK + 600 + 180, 80, 
             Textures.BARK_4,
             20, Textures.LEAVES_3, 8, zone));
     gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 175, Outside.Z_BACK + 600 + 195, 75, 
             Textures.BARK_4,
             20, Textures.LEAVES_5, 8, zone));
-    gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 255, Outside.Z_BACK + 600 + 295, 110, 
+    gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 265, Outside.Z_BACK + 600 + 295, 110, 
             Textures.BARK_1,
             22, Textures.LEAVES_3, 8, zone));
             
-   gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 190, Outside.Z_BACK + 600 + 270, 75, 
+   gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 190, Outside.Z_BACK + 600 + 305, 75, 
             Textures.BARK_4,
             18, Textures.LEAVES_2, 8, zone));
-    gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 300, Outside.Z_BACK + 600 + 240, 105, 
+    gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 305, Outside.Z_BACK + 600 + 200, 105, 
             Textures.BARK_4,
             20, Textures.LEAVES_3, 8, zone));
-    gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 210, Outside.Z_BACK + 600 + 255, 65, 
+    gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 210, Outside.Z_BACK + 600 + 265, 65, 
             Textures.BARK_4,
             15, Textures.LEAVES_3, 8, zone));
     gameScene.add(new Tree(Outside.X_LEFT + Outside.X_WIDTH / 2 + 225, Outside.Z_BACK + 600 + 210, 85, 
