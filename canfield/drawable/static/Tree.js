@@ -16,8 +16,7 @@
  * @param {integer} leavesTextureRepeat The number of times to repeat the leaves texture.
  */
 function Tree(x, z, height, barkTexturePath, 
-        leavesRadius, leavesTexturePath, leavesTextureRepeat,
-        zone) {
+        leavesRadius, leavesTexturePath, leavesTextureRepeat, zone) {
     Drawable.call(this);
     
     var texture = cdc.textureManager.getTexture(barkTexturePath);
