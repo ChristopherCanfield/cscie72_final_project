@@ -45,7 +45,7 @@ StartRoom.addWalls = function(gameScene, zone) {
     backWall.threeJsDrawable.add(new WindowFancy(+200, 0, 17, true));
     backWall.threeJsDrawable.add(new WindowFancy(0, 0, 17, true));
     
-    // Front wall.
+    // Front wall side 1.
     var frontWall1 = new BuildingWall(StartRoom.X_LEFT, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
             StartRoom.X_WIDTH / 2 - 25, // Width
             StartRoom.Y_HEIGHT, // Height
@@ -55,6 +55,7 @@ StartRoom.addWalls = function(gameScene, zone) {
             zone);
     gameScene.add(frontWall1);
     
+    // Front wall side 2.
     var frontWall2 = new BuildingWall(StartRoom.X_LEFT + StartRoom.X_WIDTH / 2 + 25, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
             StartRoom.X_WIDTH, // Width
             StartRoom.Y_HEIGHT, // Height
@@ -64,6 +65,7 @@ StartRoom.addWalls = function(gameScene, zone) {
             zone);
     gameScene.add(frontWall2);
     
+    // Front door.
     var door = new Door(StartRoom.X_LEFT + StartRoom.X_WIDTH / 2 - 25, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH - 2.5,
             50, // Width
             StartRoom.Y_HEIGHT, // Height

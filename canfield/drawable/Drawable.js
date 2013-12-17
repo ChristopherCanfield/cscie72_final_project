@@ -107,6 +107,7 @@ Drawable.prototype.intersects = function(otherBox) {
 
 
 // TODO (11/13/2013): These should not be members of drawable.
+//      (12/15/2013): This won't be fixed for this project, by these should be moved out of this class.
 
 Drawable.prototype.setRandomNavPointTarget = function() {
     if (this.navGraph == null)

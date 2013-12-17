@@ -10,7 +10,7 @@ function LargeProjectileWeapon(threeJsScene, camera) {
     
     this.threeJsScene = threeJsScene;
     this.camera = camera;
-    this.particleSystemPool = new ParticleSystemPool(threeJsScene, 5, 200);
+    this.particleSystemPool = new ParticleSystemPool(threeJsScene, 6, 250);
 }
 
 LargeProjectileWeapon.prototype = Object.create(Weapon.prototype);

@@ -47,7 +47,9 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
         var speed = MathHelper.adjustVector3(this.particleSpeed, 0.4, 1.6);
         var direction = this.getRandomDirection();
         var lifetime = MathHelper.randomInt(0.8 * this.particleLifetime, 1.2 * this.particleLifetime);
-        var p = new Particle(this, position, speed, direction, particleSize, this.particleColor, lifetime, true);
+        var launchTime = MathHelper.randomInt(0, particleLifetime / 2);
+        
+        var p = new Particle(this, position, speed, direction, particleSize, this.particleColor, lifetime, false);
         this.add(p);
     }
 }
@@ -84,8 +86,10 @@ ExplosionParticleSystem.prototype.reset = function(zone, lifetime, particleCount
         var direction = this.getRandomDirection();
         // this.adjustDirection(direction, position, camera);
         var lifetime = MathHelper.randomInt(0.8 * this.particleLifetime, 1.3 * this.particleLifetime);
+        var launchTime = MathHelper.randomInt(0, particleLifetime / 2);
+        
         var p = this.particles[i];
-        p.reset(position, speed, direction, this.particleColor, lifetime);
+        p.reset(position, speed, direction, this.particleColor, lifetime, launchTime);
     }
 };
 

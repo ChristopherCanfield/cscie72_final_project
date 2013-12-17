@@ -89,9 +89,9 @@ Projectile.prototype.update = function(deltaTime) {
 Projectile.prototype.onHit = function() {
     this.setDone(true);
     
-    var lifetime = 3250;
+    var lifetime = 3500;
     var position = position;
-    var particleSpeed = new THREE.Vector3(7, 5, 7);
+    var particleSpeed = new THREE.Vector3(3, 1.5, 3);
     var particleSize = 0.65;
     var particleLifetime = 2250;
     var particleCount = 250;

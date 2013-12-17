@@ -19,8 +19,9 @@
  * @param {float} lifetime The number of milliseconds before the particle disappears.
  * @param {boolean} speedIncreasesWithDistance true if the speed of the particle 
  * increases with distance from the start point (optional).
+ * @param {int} launchTime The time that the particle appears, in milliseconds. 0 is the creation time. (optional)
  */
-function Particle(particleSystem, position, speed, direction, size, color, lifetime, speedIncreasesWithDistance) {
+function Particle(particleSystem, position, speed, direction, size, color, lifetime, speedIncreasesWithDistance, launchTime) {
     Drawable.call(this);
     
     this.particleSystem = particleSystem;
@@ -30,14 +31,15 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     this.direction = direction;
     this.size = size;
     this.color = color;
-    this.lifetime = lifetime / 1000;
     this.lifeSeconds = 0;
+    this.launchTime = (typeof launchTime === "undefined") ? 0 : launchTime / 1000;
+    this.lifetime = lifetime / 1000 + this.launchTime;
     
     this.speedIncreasesWithDistance = (typeof speedIncreasesWithDistance !== "undefined") ? 
                                         speedIncreasesWithDistance : false;
     if (this.speedIncreasesWithDistance)
     {
-        this.speedAdjustment = MathHelper.randomNumber(1.005, 1.05);
+        this.speedAdjustment = MathHelper.randomNumber(1.0005, 1.005);
     }
     
     this.active = true;
@@ -68,12 +70,14 @@ Particle.nextId = 0;
  * @param {THREE.Vector3} direction -1, 0, or 1 for each direction.
  * @param {THREE.Color} color
  * @param {int} lifetime The max life of the particle, in milliseconds.
+ * @param {int} launchTime The time that the particle appears, in milliseconds. 0 is the creation time. (optional)
  */
-Particle.prototype.reset = function(position, speed, direction, color, lifetime) {
+Particle.prototype.reset = function(position, speed, direction, color, lifetime, launchTime) {
     this.position = position;
     this.speed = speed;
     this.direction = direction;
-    this.lifetime = lifetime / 1000;
+    this.launchTime = (typeof launchTime === "undefined") ? 0 : launchTime / 1000;
+    this.lifetime = lifetime / 1000 + this.launchTime;
     this.lifeSeconds = 0;
     
     this.threeJsDrawable.position.x = position.x;
@@ -103,15 +107,18 @@ Particle.prototype.update = function(deltaTime) {
         }
         this.lifeSeconds += deltaTime;
         
-        this.threeJsDrawable.position.x += (this.speed.x * this.direction.x * deltaTime);
-        this.threeJsDrawable.position.y += (this.speed.y * this.direction.y * deltaTime);
-        this.threeJsDrawable.position.z += (this.speed.z * this.direction.z * deltaTime);
-        
-        if (this.speedIncreasesWithDistance)
+        if (this.lifeSeconds > this.launchTime)
         {
-            this.speed.x *= this.speedAdjustment;
-            this.speed.y *= this.speedAdjustment;
-            this.speed.z *= this.speedAdjustment;
+            this.threeJsDrawable.position.x += (this.speed.x * this.direction.x * deltaTime);
+            this.threeJsDrawable.position.y += (this.speed.y * this.direction.y * deltaTime);
+            this.threeJsDrawable.position.z += (this.speed.z * this.direction.z * deltaTime);
+            
+            if (this.speedIncreasesWithDistance)
+            {
+                this.speed.x *= this.speedAdjustment;
+                this.speed.y *= this.speedAdjustment;
+                this.speed.z *= this.speedAdjustment;
+            }
         }
     }
 };
