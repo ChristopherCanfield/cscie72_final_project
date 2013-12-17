@@ -13,9 +13,10 @@
  * @param {int} timePerRelease The time between particle releases, in milliseconds.
  * @param {Particle} particle A prototypical particle.
  * @param {ParticleSpread} particleSpread
+ * @param {float} particleSpreadDistanceModifier (Optional)
  * @param {boolean} debug Set to true if particles should not be added to the scene (Optional).
  */
-function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timePerRelease, particle, particleSpread, debug) {
+function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timePerRelease, particle, particleSpread, particleSpreadDistanceModifier, debug) {
     ParticleSystem.call(this);
 
     this.debug = debug;
@@ -26,6 +27,7 @@ function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timeP
     this.particlesPerRelease = particlesPerRelease;
     this.timePerRelease = timePerRelease / 1000;
     this.spread = particleSpread;
+    this.particleSpreadDistanceModifier = particleSpreadDistanceModifier;
     
     this.releaseTimeCounter = 0;
     
@@ -57,7 +59,7 @@ ContinuousParticleSystem.prototype.update = function(deltaTime) {
 };
 
 ContinuousParticleSystem.prototype.addParticle = function() {
-    var position = this.adjustForSpread(this.prototypicalParticle.position, this.spread);
+    var position = this.adjustForSpread(this.prototypicalParticle.position, this.spread, this.particleSpreadDistanceModifier);
     var speed = MathHelper.adjustVector3(this.prototypicalParticle.speed, 0.9, 1.1);
     // The lifetime needs to be multiplied by 1000, because the particle constructor takes milliseconds, but the particle
     // stores the value in fractions of a second, in order to be consistent with THREE.Clock.

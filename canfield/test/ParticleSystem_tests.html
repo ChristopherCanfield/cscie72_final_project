@@ -125,7 +125,7 @@
               console.log("explosionSystem.update() (system time exceeded): " + testResult);
               
               // ContinuousParticleSystem test
-              var continuousSystem = new ContinuousParticleSystem(null, null, 10, 4, particle1, ParticleSpread.SMALL, true);
+              var continuousSystem = new ContinuousParticleSystem(null, null, 10, 4, particle1, ParticleSpread.SMALL, undefined, true);
               
               testResult = (continuousSystem.particles.length === 10);
               console.log("continuousSystem.particles.length: " + testResult);

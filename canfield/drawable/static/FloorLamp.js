@@ -15,8 +15,9 @@
  * @param {hex} color The light's color, in hexadecimal. The default color is white. (optional)
  * @param {float} intensity The light's intensity (optional).
  * @param {float} distance The light's distance (optional).
+ * @param {boolean} noParticleSystem Prevents the particle system from being created (optional).
  */
-function FloorLamp(xLeft, yBottom, zBack, zone, gameScene, color, intensity, distance) {
+function FloorLamp(xLeft, yBottom, zBack, zone, gameScene, color, intensity, distance, noParticleSystem) {
     Drawable.call(this);
     zone.addDrawable(this);
     
@@ -48,14 +49,14 @@ function FloorLamp(xLeft, yBottom, zBack, zone, gameScene, color, intensity, dis
     var light = new THREE.PointLight(lightColor, lightIntensity, lightDistance);
     this.bulb.add(light);
     
-    var smokeParticle = new Particle(null, new THREE.Vector3(xLeft, yBottom + 47, zBack), new THREE.Vector3(0, 0.5, 0), new THREE.Vector3(0, 1, 0), 
-                                0.125, new THREE.Color("rgb(255, 216, 0)"), 3000);
-    var smokeSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 5, 500, smokeParticle, ParticleSpread.SMALL_MEDIUM);
-    zone.addParticleSystem(smokeSystem);
-    
-    // TODO: Add light & particle system (continuous, up)
-    
-    
+    if (typeof noParticleSystem === "undefined" || !noParticleSystem)
+    {
+        var smokeParticle = new Particle(null, new THREE.Vector3(xLeft, yBottom + 47, zBack), new THREE.Vector3(0, 0.5, 0), new THREE.Vector3(0, 1, 0), 
+                                    0.125, new THREE.Color("rgb(255, 216, 0)"), 3000);
+        var smokeSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 5, 500, smokeParticle, ParticleSpread.SMALL_MEDIUM, 10);
+        zone.addParticleSystem(smokeSystem);
+    }
+
     // Prevent camera from walking through light.
     this.blockedArea = new BlockedArea(new BoundingBox(xLeft, 6, yBottom, 50, zBack - 6, 6));
     zone.addBlockedArea(this.blockedArea);

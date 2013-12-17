@@ -115,23 +115,25 @@ ParticleSystem.prototype.removeFromScene = function(particle) {
 /**
  * 
  * @param {THREE.Vector3} position
+ * @param {ParticleSpread} spread
+ * @param {float} modifier (optional)
  */
-ParticleSystem.prototype.adjustForSpread = function(position, spread) {
+ParticleSystem.prototype.adjustForSpread = function(position, spread, modifier) {
     if (spread === ParticleSpread.SMALL)
     {
-        return MathHelper.adjustVector3(position, 0.975, 1.025);
+        return MathHelper.adjustVector3(position, 0.975, 1.025, modifier);
     }
     else if (spread === ParticleSpread.SMALL_MEDIUM)
     {
-        return MathHelper.adjustVector3(position, 0.95, 1.05);
+        return MathHelper.adjustVector3(position, 0.95, 1.05, modifier);
     }
     else if (spread === ParticleSpread.MEDIUM)
     {
-        return MathHelper.adjustVector3(position, 0.8, 1.2);
+        return MathHelper.adjustVector3(position, 0.8, 1.2, modifier);
     }
     else if (spread === ParticleSpread.LARGE)
     {
-        return MathHelper.adjustVector3(position, 0.65, 1.35);
+        return MathHelper.adjustVector3(position, 0.5, 1.5, modifier);
     }
     else
     {

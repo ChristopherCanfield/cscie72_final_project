@@ -144,19 +144,7 @@ StartRoom.addLights = function(gameScene, zone) {
 StartRoom.addParticleSystems = function(gameScene, zone) {
     // TODO: complete this.
     
-    // Create prototypical particle
-    var position1 = new THREE.Vector3(StartRoom.X_LEFT + 300, 40, StartRoom.Z_BACK + 400);
-    var speed1 = new THREE.Vector3(0, 6, 0);
-    var direction1 = new THREE.Vector3(0, -1, 0);
-    var size1 = 0.18;
-    var color1 = new THREE.Color("rgb(76, 255,0)");
-    var lifetime1 = 3000;
-    var protoParticle = new Particle(null, position1, speed1, direction1, 
-          size1, color1, lifetime1);
-    
-  //   var continuousSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 
-   //          80, 500, protoParticle, ParticleSpread.MEDIUM);
-   // zone.addParticleSystem(continuousSystem);
+
     
     // Add explosion.
     // var explosionPosition = new THREE.Vector3(StartRoom.X_LEFT + 375, 30, StartRoom.Z_BACK + 400);

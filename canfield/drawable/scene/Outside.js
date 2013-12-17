@@ -17,7 +17,7 @@ function Outside() {}
 Outside.create = function(gameScene, zones) {
     var zone = new Zone(new BoundingBox(Outside.X_LEFT - 30, Outside.X_WIDTH + 60, 
                         0, 1000, 
-                        Outside.Z_BACK + Outside.Z_DEPTH, Outside.Z_DEPTH + 60));
+                        Outside.Z_BACK - 150, Outside.Z_DEPTH + 60));
     zones.add(zone);
     
     Outside.addLights(gameScene, zone);
@@ -63,7 +63,7 @@ Outside.addWalls = function(gameScene, zone) {
     var eastWall = new BuildingWall(Outside.X_LEFT, StartRoom.Y_BOTTOM, Outside.Z_BACK + Outside.Z_DEPTH, 
             10, // Width
             wallHeight, // Height
-            Outside.Z_DEPTH + Outside.Z_BACK + 150, // Depth
+            Outside.Z_DEPTH + Outside.Z_BACK, // Depth
             wallTexture, wallTextureRepeatX, wallTextureRepeatY,
             zone);
     gameScene.add(eastWall);
@@ -72,7 +72,7 @@ Outside.addWalls = function(gameScene, zone) {
     var westWall = new BuildingWall(Outside.X_LEFT + Outside.X_WIDTH, StartRoom.Y_BOTTOM, Outside.Z_BACK + Outside.Z_DEPTH, 
             10, // Width
             wallHeight, // Height
-            Outside.Z_DEPTH + Outside.Z_BACK + 150, // Depth
+            Outside.Z_DEPTH + Outside.Z_BACK, // Depth
             wallTexture, wallTextureRepeatX, wallTextureRepeatY,
             zone);
     gameScene.add(westWall);
@@ -109,7 +109,7 @@ Outside.addLights = function(gameScene, zone) {
     var back = new FloorLamp(Outside.X_LEFT + Outside.X_WIDTH / 2 - 25, 0, Outside.Z_BACK + 1250, zone, gameScene, lampColor, 2, 450);
     gameScene.add(back);
     
-    var bigCenter = new FloorLamp(Outside.X_LEFT + Outside.X_WIDTH / 2, 0, Outside.Z_BACK + 750, zone, gameScene, 0xFFD846, 3, 650);
+    var bigCenter = new FloorLamp(Outside.X_LEFT + Outside.X_WIDTH / 2, 0, Outside.Z_BACK + 750, zone, gameScene, 0xFFD846, 3, 650, true);
     bigCenter.threeJsDrawable.scale.set(4, 4, 4);
     gameScene.add(bigCenter);
     
@@ -118,11 +118,24 @@ Outside.addLights = function(gameScene, zone) {
 };
 
 Outside.addParticleSystems = function(gameScene, zone) {
-    // TODO: complete this.
+    // Create prototypical particle
+    var position1 = new THREE.Vector3(Outside.X_LEFT + Outside.X_WIDTH / 2, 100, Outside.Z_BACK + 1000);
+    var speed1 = new THREE.Vector3(0.1, 6, 0.1);
+    var direction1 = new THREE.Vector3(1, -1, 1);
+    var size1 = 0.18;
+    var color1 = new THREE.Color("rgb(255, 255, 255)");
+    var lifetime1 = 6000;
+    var protoParticle = new Particle(null, position1, speed1, direction1, 
+          size1, color1, lifetime1);
+    
+    var continuousSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 
+            20, 1000, protoParticle, ParticleSpread.LARGE, 600);
+   zone.addParticleSystem(continuousSystem);
 };
 
 Outside.addObjects = function(gameScene, zone) {
-    // TODO: complete this.
+    // x, z, height, barkTexturePath, 
+        // leavesRadius, leavesTexturePath, leavesTextureRepeat, zone
 };
 
 
