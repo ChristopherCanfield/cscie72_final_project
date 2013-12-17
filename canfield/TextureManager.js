@@ -82,7 +82,7 @@ Textures.CONCRETE_5 = "textures/concrete/concrete5.jpg";
 Textures.CONCRETE_6 = "textures/concrete/concrete6.jpg";
 Textures.CONCRETE_7 = "textures/concrete/concrete7.jpg";
 
-Textures.CONTROLS = "textures/instructions/controls.png";
+Textures.CONTROLS = "textures/instructions/controls2.png";
 
 Textures.WALLDECORATION_1 = "textures/walldecoration/walldecoration1.png";
 Textures.WALLDECORATION_2 = "textures/walldecoration/walldecoration2.jpg";
