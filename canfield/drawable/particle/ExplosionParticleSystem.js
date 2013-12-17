@@ -91,12 +91,13 @@ ExplosionParticleSystem.prototype.reset = function(zone, lifetime, particleCount
         var p = this.particles[i];
         p.reset(position, speed, direction, this.particleColor, lifetime, launchTime);
     }
+    this.setDone(false);
 };
 
 ExplosionParticleSystem.prototype.update = function(deltaTime) {
     if ((this.lifeMillis + deltaTime) > this.lifetime)
     {
-        this.setDone(true, this.particleColor);
+        this.setDone(true, this.particlePoolMember);
         return;
     }
     this.lifeMillis += deltaTime;

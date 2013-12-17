@@ -74,26 +74,30 @@ ParticleSystem.prototype.update = function(deltaTime) {
 
 ParticleSystem.prototype.setDone = function(done, isParticlePoolMember) {
     this.done = done;
-    // Remove all particles when this particle system has finished.
-    if (typeof isParticlePoolMember === "undefined" || !isParticlePoolMember)
+    
+    if (done)
     {
-        for (var i = this.particles.length - 1; i >= 0; --i)
+        // Remove all particles when this particle system has finished.
+        if (typeof isParticlePoolMember === "undefined" || !isParticlePoolMember)
         {
-            if (!this.debug)
+            for (var i = this.particles.length - 1; i >= 0; --i)
             {
-                this.removeFromScene(this.particles[i]);
+                if (!this.debug)
+                {
+                    this.removeFromScene(this.particles[i]);
+                }
+            }
+            this.particles.length = 0;
+        }
+        else
+        {
+            for (var i = 0; i < this.particles.length; ++i)
+            {
+                this.particles[i].setActive(false);
             }
         }
-        this.particles.length = 0;
+        this.zone.removeParticleSystem(this);
     }
-    else
-    {
-        for (var i = 0; i < this.particles.length; ++i)
-        {
-            this.particles[i].setActive(false);
-        }
-    }
-    this.zone.removeParticleSystem(this);
 };
 
 ParticleSystem.prototype.isDone = function() {
