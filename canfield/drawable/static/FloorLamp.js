@@ -40,8 +40,11 @@ function FloorLamp(xLeft, yBottom, zBack, zone, gameScene, color, intensity, dis
     
     var bulbGeometry = new THREE.SphereGeometry(6, 10, 10);
     this.bulb = new THREE.Mesh(bulbGeometry, material);
-    this.bulb.position.set(0, 40, 0);
-    poleMesh.add(this.bulb);
+    this.bulb.position.set(0, 35, 0);
+    // Add a bit of variation to the rotation appearance, by pre-rotating the bulbs
+    // by varying amount.
+    this.bulb.rotation.y = MathHelper.randomNumber(0, 3);
+    poleMesh.add(this.bulb); 
     
     var lightColor = (typeof color !== "undefined") ? color : 0xffffff;
     var lightIntensity = (typeof intensity !== "undefined") ? intensity : 1.5;
@@ -68,5 +71,5 @@ FloorLamp.prototype.constructor = FloorLamp;
 
 // Inherited from Drawable
 FloorLamp.prototype.updateThis = function(deltaTime) {
-    this.bulb.rotation.y += 0.01;
+    this.bulb.rotation.y += 0.0025;
 };

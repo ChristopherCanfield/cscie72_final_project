@@ -37,7 +37,7 @@ function BuildingWall(xLeft, yBottom, zBack, width, height, depth,
     this.threeJsDrawable = mesh;
     
     // Prevent camera from walking through wall.
-    this.blockedArea = new BlockedArea(new BoundingBox(xLeft, width, yBottom, height, zBack - depth, depth));
+    this.blockedArea = new BlockedArea(new BoundingBox(xLeft, width, yBottom, height + 10, zBack - depth, depth));
     zone.addBlockedArea(this.blockedArea);
     
     if (typeof debug !== "undefined" && debug)

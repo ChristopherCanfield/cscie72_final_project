@@ -41,20 +41,20 @@ function Tree(x, z, height, barkTexturePath,
     });
     leavesTexture.repeat.set(leavesTextureRepeat, leavesTextureRepeat);
     
-    var leavesGeometry = new THREE.TetrahedronGeometry(leavesRadius, 2);
+    var leavesGeometry = new THREE.SphereGeometry(leavesRadius, 12, 8);
     var leavesMesh = new THREE.Mesh(leavesGeometry, leavesMaterial);
     this.threeJsDrawable.add(leavesMesh);
     
     leavesMesh.position.x = x;
-    leavesMesh.position.y = Ground.Y_TOP + height;
+    leavesMesh.position.y = height;
     leavesMesh.position.z = z;
     
     zone.addDrawable(this);
     
-    // TODO: set the blockedArea for this true.
+    this.blockedArea = new BlockedArea(new BoundingBox(x, 20, 0, height, z, 20));
     if (typeof zone != 'undefined' && this.blockedArea != null)
     {
-        zone.add(this.blockedArea);
+        zone.addBlockedArea(this.blockedArea);
     }
 }
 

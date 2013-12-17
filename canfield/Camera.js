@@ -58,9 +58,9 @@ function Camera(zones, window, glCanvasWidth, glCanvasHeight) {
     this.zones = zones;
     
     // For the blocked area bounding box.
-    this.width = 15;
+    this.width = 17.5;
     this.height = 20;
-    this.depth = 15;
+    this.depth = 17.5;
     
     this.tick = 0;
     this.lastRotateTick = 0;
