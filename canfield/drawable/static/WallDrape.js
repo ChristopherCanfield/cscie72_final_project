@@ -7,6 +7,25 @@
 function WallDrapeColor() {}
 WallDrapeColor.BLUE = 0;
 WallDrapeColor.RED = 1;
+WallDrapeColor.GOLDLEAF = 2;
+
+/**
+ * Converts a wall drape color into a texture path. 
+ */
+WallDrapeColor.colorToTexturePath = function(wallDrapeColor) {
+    if (typeof wallDrapeColor === "undefined" || wallDrapeColor === WallDrapeColor.BLUE)
+    {
+        return Textures.WALLDECORATION_2;
+    }
+    else if (wallDrapeColor === WallDrapeColor.RED)
+    {
+        return Textures.WALLDECORATION_3;
+    }
+    else if (wallDrapeColor === WallDrapeColor.GOLDLEAF)
+    {
+        return Textures.WALLDECORATION_4;
+    }
+};
 
 /**
  * 
@@ -19,9 +38,7 @@ WallDrapeColor.RED = 1;
 function WallDrape(x, y, z, northSouth, wallDrapeColor) {
     THREE.Mesh.call(this);
     
-    var texturePath = (typeof wallDrapeColor === "undefined" || wallDrapeColor === WallDrapeColor.BLUE) ? 
-            Textures.WALLDECORATION_2 : Textures.WALLDECORATION_3;
-    var texture = cdc.textureManager.getTexture(texturePath);
+    var texture = cdc.textureManager.getTexture(WallDrapeColor.colorToTexturePath(wallDrapeColor));
 
     this.material = new THREE.MeshBasicMaterial({ 
         map: texture

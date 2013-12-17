@@ -51,19 +51,21 @@ StartRoom.addWalls = function(gameScene, zone) {
             StartRoom.Y_HEIGHT, // Height
             10, // Depth
             Textures.WALL_5, 
-            20, 5,
+            10, 5,
             zone);
     gameScene.add(frontWall1);
+    frontWall1.threeJsDrawable.add(new WallDrape(155, 0, -12, true, WallDrapeColor.GOLDLEAF));
     
     // Front wall side 2.
     var frontWall2 = new BuildingWall(StartRoom.X_LEFT + StartRoom.X_WIDTH / 2 + 25, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
-            StartRoom.X_WIDTH, // Width
+            StartRoom.X_WIDTH / 2 - 25, // Width
             StartRoom.Y_HEIGHT, // Height
             10, // Depth
             Textures.WALL_5, 
-            20, 5,
+            10, 5,
             zone);
     gameScene.add(frontWall2);
+    frontWall2.threeJsDrawable.add(new WallDrape(-155, 0, -12, true, WallDrapeColor.GOLDLEAF));
     
     // Front door.
     var door = new Door(StartRoom.X_LEFT + StartRoom.X_WIDTH / 2 - 25, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH + 5,

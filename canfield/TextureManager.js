@@ -87,6 +87,7 @@ Textures.CONTROLS = "textures/instructions/controls.png";
 Textures.WALLDECORATION_1 = "textures/walldecoration/walldecoration1.png";
 Textures.WALLDECORATION_2 = "textures/walldecoration/walldecoration2.jpg";
 Textures.WALLDECORATION_3 = "textures/walldecoration/walldecoration3.jpg";
+Textures.WALLDECORATION_4 = "textures/walldecoration/walldecoration4.jpg";
 
 Textures.DOOR_1 = "textures/door/door1.jpg";
 
