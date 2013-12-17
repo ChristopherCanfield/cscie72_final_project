@@ -41,13 +41,13 @@ StartRoom.addWalls = function(gameScene, zone) {
             zone);
     gameScene.add(backWall);
     // Add three windows.
-    backWall.threeJsDrawable.add(new WindowFancy(-200, 0, 16, true));
-    backWall.threeJsDrawable.add(new WindowFancy(+200, 0, 16, true));
-    backWall.threeJsDrawable.add(new WindowFancy(0, 0, 16, true));
+    backWall.threeJsDrawable.add(new WindowFancy(-200, 0, 17, true));
+    backWall.threeJsDrawable.add(new WindowFancy(+200, 0, 17, true));
+    backWall.threeJsDrawable.add(new WindowFancy(0, 0, 17, true));
     
     // Front wall.
     var frontWall1 = new BuildingWall(StartRoom.X_LEFT, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
-            StartRoom.X_WIDTH / 2 - 50, // Width
+            StartRoom.X_WIDTH / 2 - 25, // Width
             StartRoom.Y_HEIGHT, // Height
             10, // Depth
             Textures.WALL_5, 
@@ -55,7 +55,7 @@ StartRoom.addWalls = function(gameScene, zone) {
             zone);
     gameScene.add(frontWall1);
     
-    var frontWall2 = new BuildingWall(StartRoom.X_LEFT + StartRoom.X_WIDTH / 2 + 50, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
+    var frontWall2 = new BuildingWall(StartRoom.X_LEFT + StartRoom.X_WIDTH / 2 + 25, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
             StartRoom.X_WIDTH, // Width
             StartRoom.Y_HEIGHT, // Height
             10, // Depth
@@ -64,14 +64,12 @@ StartRoom.addWalls = function(gameScene, zone) {
             zone);
     gameScene.add(frontWall2);
     
-    // var door = new Door(StartRoom.X_LEFT + StartRoom.X_WIDTH / 2, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_BACK,
-            // StartRoom.X_WIDTH,
-            // StartRoom.Y_HEIGHT,
-            // 10,
-            // TEXTURES.DOOR1,
-            // 20, 5,
-            // zone);
-    // game.add(door);
+    var door = new Door(StartRoom.X_LEFT + StartRoom.X_WIDTH / 2 - 25, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH - 2.5,
+            50, // Width
+            StartRoom.Y_HEIGHT, // Height
+            5, // Depth
+            zone);
+   gameScene.add(door);
     
     // East wall.
     var eastWall = new BuildingWall(StartRoom.X_LEFT, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
@@ -103,11 +101,11 @@ StartRoom.addWalls = function(gameScene, zone) {
     westWall.threeJsDrawable.add(new WindowFancy(-17, 0, 215, false));
     westWall.threeJsDrawable.add(new WindowFancy(-17, 0, -215, false));
     // Add wall drapes.
-    westWall.threeJsDrawable.add(new WallDrape(-17, 0, 0, false));
-    westWall.threeJsDrawable.add(new WallDrape(-17, 0, 15, false));
-    westWall.threeJsDrawable.add(new WallDrape(-17, 0, -15, false));
-    westWall.threeJsDrawable.add(new WallDrape(-17, 0, 40, false));
-    westWall.threeJsDrawable.add(new WallDrape(-17, 0, -40, false));
+    westWall.threeJsDrawable.add(new WallDrape(-17, 0, 0, false, WallDrapeColor.RED));
+    westWall.threeJsDrawable.add(new WallDrape(-17, 0, 15, false, WallDrapeColor.RED));
+    westWall.threeJsDrawable.add(new WallDrape(-17, 0, -15, false, WallDrapeColor.RED));
+    westWall.threeJsDrawable.add(new WallDrape(-17, 0, 40, false, WallDrapeColor.RED));
+    westWall.threeJsDrawable.add(new WallDrape(-17, 0, -40, false, WallDrapeColor.RED));
 };
 
 StartRoom.addFloorCeiling = function(gameScene, zone) {
@@ -127,7 +125,7 @@ StartRoom.addLights = function(gameScene) {
     light1.rotation.x = Math.PI / 4;
     light1.position.set(StartRoom.X_LEFT + 300, 50, StartRoom.Z_BACK + 400); 
     var scene = gameScene.getThreeJsScene();
-    scene.add(light1);
+    //scene.add(light1);
 };
 
 StartRoom.addParticleSystems = function(gameScene, zone) {

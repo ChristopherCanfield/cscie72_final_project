@@ -9,6 +9,7 @@
 /**
  * Creates an impassable wall.
  * @param {float} xLeft
+ * @param {float} yBottom
  * @param {float} zBack
  * @param {float} width
  * @param {float} height

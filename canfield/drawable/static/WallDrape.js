@@ -4,6 +4,9 @@
  * December 2013
  */
 
+function WallDrapeColor() {}
+WallDrapeColor.BLUE = 0;
+WallDrapeColor.RED = 1;
 
 /**
  * 
@@ -11,11 +14,14 @@
  * @param {float} y
  * @param {float} z
  * @param {boolean} northSouth
+ * @param {WallDrapeColor} wallDrapeColor (optional)
  */
-function WallDrape(x, y, z, northSouth) {
+function WallDrape(x, y, z, northSouth, wallDrapeColor) {
     THREE.Mesh.call(this);
     
-    var texture = cdc.textureManager.getTexture(Textures.WALLDECORATION_2);
+    var texturePath = (typeof wallDrapeColor === "undefined" || wallDrapeColor === WallDrapeColor.BLUE) ? 
+            Textures.WALLDECORATION_2 : Textures.WALLDECORATION_3;
+    var texture = cdc.textureManager.getTexture(texturePath);
 
     this.material = new THREE.MeshBasicMaterial({ 
         map: texture
