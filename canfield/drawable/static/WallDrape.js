@@ -15,21 +15,20 @@
 function WallDrape(x, y, z, northSouth) {
     THREE.Mesh.call(this);
     
-    var texture = cdc.textureManager.getTexture(Textures.WALLDECORATION_1);
-    texture.needsUpdate = true;
-    this.material = new THREE.MeshLambertMaterial({ 
-        map: texture,
-        transparent: true
+    var texture = cdc.textureManager.getTexture(Textures.WALLDECORATION_2);
+
+    this.material = new THREE.MeshBasicMaterial({ 
+        map: texture
     });
-    texture.repeat.set(1, 1);
+    texture.repeat.set(1, 6);
     
     if (northSouth)
     {
-        this.geometry = new THREE.CubeGeometry(30, 75, 0.15);
+        this.geometry = new THREE.CubeGeometry(15, 60, 0.15);
     }
     else
     {
-        this.geometry = new THREE.CubeGeometry(0.15, 75, 30);
+        this.geometry = new THREE.CubeGeometry(0.15, 60, 15);
     }
 
     this.position.set(x, y, z);

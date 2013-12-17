@@ -85,6 +85,11 @@ Textures.CONCRETE_7 = "textures/concrete/concrete7.jpg";
 Textures.CONTROLS = "textures/instructions/controls.png";
 
 Textures.WALLDECORATION_1 = "textures/walldecoration/walldecoration1.png";
+Textures.WALLDECORATION_2 = "textures/walldecoration/walldecoration2.jpg";
+Textures.WALLDECORATION_3 = "textures/walldecoration/walldecoration3.jpg";
+
+Textures.DOOR_1 = "textures/door/door1.png";
+
 
 function TextureManager(glContext) {
     this.textures = {};
