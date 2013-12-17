@@ -145,7 +145,6 @@ StartRoom.addParticleSystems = function(gameScene, zone) {
 };
 
 StartRoom.addObjects = function(gameScene, zone) {
-    // TODO: complete this.
 };
 
 

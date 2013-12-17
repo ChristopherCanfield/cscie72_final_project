@@ -65,7 +65,7 @@ Outside.addWalls = function(gameScene, zone) {
             wallHeight, // Height
             Outside.Z_DEPTH, // Depth
             wallTexture, wallTextureRepeatX, wallTextureRepeatY,
-            zone, true);
+            zone);
     gameScene.add(eastWall);
     
     // West wall.

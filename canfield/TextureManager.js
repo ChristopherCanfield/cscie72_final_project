@@ -91,6 +91,10 @@ Textures.WALLDECORATION_4 = "textures/walldecoration/walldecoration4.jpg";
 
 Textures.DOOR_1 = "textures/door/door1.jpg";
 
+Textures.MASK_1 = "textures/mask/mask1.jpg";
+Textures.MASK_2 = "textures/mask/mask2.jpg";
+Textures.MASK_3 = "textures/mask/mask3.png";
+
 
 function TextureManager(glContext) {
     this.textures = {};

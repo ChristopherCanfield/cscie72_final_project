@@ -9,7 +9,6 @@ function BallGuy(zone, scene, navGraph, initialNavPointTarget, lastNavPointId, x
     Drawable.call(this);
     
     this.scene = scene;
-    zone.addDrawable(this);
     
     this.wrapper = new THREE.Object3D();
     this.wrapper.position.x = x;
@@ -151,8 +150,6 @@ BallGuy.prototype.updateThis = function(deltaTime) {
         var lookAtVector = new THREE.Vector3(this.currentNavTarget.x, 0, this.currentNavTarget.z);
         this.wrapper.lookAt(lookAtVector);
     }
-    
-    this.checkForCollision();
 };
 
 
@@ -184,21 +181,4 @@ BallGuy.prototype.createLowerArm = function(x) {
     armMesh.position.set(x, 0, -5);
     
     return armMesh;
-};
-
-
-BallGuy.prototype.checkForCollision = function() {
-    for (var i = 0; i < this.scene.drawables.length; ++i)
-    {
-        if (this.intersects(this.scene.drawables[i].boundingBox))
-        {
-            if (typeof(this.scene.drawables[i].threeJsDrawable.speed) !== 'undefined')
-            {
-                console.log("Colision");
-                this.scene.drawables[i].navigationBoundingBox.xLeft += 5;
-                this.scene.drawables[i].threeJsDrawable.position.x += 5;
-                this.scene.drawables[i].boundingBox.position.xLeft += 5;
-            }
-        }
-    }    
 };
