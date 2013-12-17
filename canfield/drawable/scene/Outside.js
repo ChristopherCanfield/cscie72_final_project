@@ -127,9 +127,10 @@ Outside.addParticleSystems = function(gameScene, zone) {
     var lifetime1 = 6000;
     var protoParticle = new Particle(null, position1, speed1, direction1, 
           size1, color1, lifetime1);
+    var particleSpreadVector = new THREE.Vector3(500, 10, 500);      
     
     var continuousSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 
-            20, 1000, protoParticle, ParticleSpread.LARGE, 300);
+            20, 1000, protoParticle, particleSpreadVector, 300);
    zone.addParticleSystem(continuousSystem);
 };
 

@@ -4,11 +4,11 @@
  * November 2013
  */
 
-function ParticleSpread() {}
-ParticleSpread.SMALL = 0;
-ParticleSpread.SMALL_MEDIUM = 1;
-ParticleSpread.MEDIUM = 2;
-ParticleSpread.LARGE = 3;
+// function ParticleSpread() {}
+// ParticleSpread.SMALL = 0;
+// ParticleSpread.SMALL_MEDIUM = 1;
+// ParticleSpread.MEDIUM = 2;
+// ParticleSpread.LARGE = 3;
 
 
 /**
@@ -113,12 +113,10 @@ ParticleSystem.prototype.removeFromScene = function(particle) {
 };
 
 /**
- * 
  * @param {THREE.Vector3} position
- * @param {ParticleSpread} spread
  * @param {THREE.Vector3} max The maximum additional x, y and z values that can be applied
  */
-ParticleSystem.prototype.adjustForSpread = function(position, spread, max) {
+ParticleSystem.prototype.adjustForSpread = function(position, max) {
     if (typeof max === "undefined") throw "max must be specified in ParticleSystem.adjustForSpeed";
     
     return MathHelper.adjustVector3_2(position, new THREE.Vector3(), max);

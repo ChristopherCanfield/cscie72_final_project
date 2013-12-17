@@ -16,13 +16,13 @@
  * @param {int} particleSize
  * @param {THREE.Color} particleColor
  * @param {int} particleLifetime The lifetime of each particle, in milliseconds.
- * @param {ParticleSpread} particleSpread
+ * @param {THREE.Vector3} particleSpreadVector
  * @param {boolean} particlePoolMember (Optional)
  * @param {boolean} debug Set to true if particles should not be added to the scene (Optional).
  */
 function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount, 
         position, particleSpeed, particleSize, particleColor, particleLifetime, 
-        particleSpread, particlePoolMember, debug) {
+        particleSpreadVector, particlePoolMember, debug) {
     ParticleSystem.call(this);
 
     this.threeJsScene = (typeof debug !== "undefined" && debug) ? null : threeJsScene;
@@ -36,7 +36,7 @@ function ExplosionParticleSystem(zone, threeJsScene, lifetime, particleCount,
     this.particleSize = particleSize;
     this.particleColor = particleColor;
     this.particleLifetime = particleLifetime;
-    this.spread = particleSpread;
+    this.spread = particleSpreadVector;
     
     this.particlePoolMember = particlePoolMember;
     this.inactiveParticles.length = 0;
@@ -60,8 +60,9 @@ ExplosionParticleSystem.prototype.constructor = ExplosionParticleSystem;
 ExplosionParticleSystem.prototype.superUpdate = ExplosionParticleSystem.prototype.update;
 
 
+
 ExplosionParticleSystem.prototype.reset = function(zone, lifetime, particleCount, 
-        position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpread, camera) {
+        position, particleSpeed, particleSize, particleColor, particleLifetime, particleSpreadVector, camera) {
     this.zone = zone;
     zone.addParticleSystem(this);
 
@@ -73,7 +74,7 @@ ExplosionParticleSystem.prototype.reset = function(zone, lifetime, particleCount
     this.particleSize = particleSize;
     this.particleColor = particleColor;
     this.particleLifetime = particleLifetime;
-    this.spread = particleSpread;
+    this.spread = particleSpreadVector;
     
     var finalParticleCount = (particleCount > this.particles.length) ? this.particles.length : particleCount;
     

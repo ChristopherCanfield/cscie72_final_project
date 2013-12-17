@@ -142,18 +142,6 @@ StartRoom.addLights = function(gameScene, zone) {
 };
 
 StartRoom.addParticleSystems = function(gameScene, zone) {
-    // TODO: complete this.
-    
-
-    
-    // Add explosion.
-    // var explosionPosition = new THREE.Vector3(StartRoom.X_LEFT + 375, 30, StartRoom.Z_BACK + 400);
-    // var explosionSpeed = new THREE.Vector3(13.5, 9.5, 13.5);
-    // var particleSize = 0.4;
-    // var explosionSystem = new ExplosionParticleSystem(zone, gameScene.getThreeJsScene(), 
-                    // 1750, 500, explosionPosition, explosionSpeed, particleSize,
-                    // new THREE.Color("rgb(244,93,70)"), 2500, ParticleSpread.SMALL);
-    // zone.addParticleSystem(explosionSystem);
 };
 
 StartRoom.addObjects = function(gameScene, zone) {

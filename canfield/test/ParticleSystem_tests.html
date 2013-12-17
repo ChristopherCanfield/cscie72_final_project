@@ -93,7 +93,8 @@
               console.log("particleSystem.setDone: " + testResult);
               
               var vec = new THREE.Vector3(4, 2, 10);
-              var vec2 = particleSystem.adjustForSpread(vec, ParticleSpread.SMALL);
+              var particleSpreadVector = new THREE.Vector3();
+              var vec2 = particleSystem.adjustForSpread(vec, particleSpreadVector);
               var testResult = (vec.x != vec2.x && vec.y != vec2.y && vec.z != vec2.z);
               console.log("particleSystem.adjustForSpread: " + testResult);
               
@@ -103,7 +104,7 @@
               // zone: Zone, threeJsScene: Object, lifetime: int, particleCount: int, position: THREE.Vector3, 
               // particleSpeed: THREE.Vector3, particleSize: int, particleColor: THREE.Color, particleLifetime: int, particleSpread: ParticleSpread, debug: boolean
               var explosionSystem = new ExplosionParticleSystem(null, null, 10, 5, position1, speed1, 2,
-                    new THREE.Color("rgb(255,0,0)"), 2, ParticleSpread.SMALL, false, true);
+                    new THREE.Color("rgb(255,0,0)"), 2, new THREE.Vector3(), false, true);
               
               testResult = (explosionSystem.particles.length === 5);
               console.log("exposionSystem.particles.length: " + testResult);
@@ -119,13 +120,13 @@
               console.log("explosionSystem.getRandomDirection: " + testResult);
               
               var explosionSystem2 = new ExplosionParticleSystem(null, null, 10, 5, position1, speed1, 2,
-                    new THREE.Color("rgb(255,0,0)"), 2, ParticleSpread.SMALL, false, true);
+                    new THREE.Color("rgb(255,0,0)"), 2, new THREE.Vector3(), false, true);
               explosionSystem2.update(0.013);
               testResult = (explosionSystem2.inactiveParticles.length === explosionSystem2.particles.length);
               console.log("explosionSystem.update() (system time exceeded): " + testResult);
               
               // ContinuousParticleSystem test
-              var continuousSystem = new ContinuousParticleSystem(null, null, 10, 4, particle1, ParticleSpread.SMALL, undefined, true);
+              var continuousSystem = new ContinuousParticleSystem(null, null, 10, 4, particle1, new THREE.Vector3(), undefined, true);
               
               testResult = (continuousSystem.particles.length === 10);
               console.log("continuousSystem.particles.length: " + testResult);
