@@ -13,7 +13,7 @@
  * @param {int} timePerRelease The time between particle releases, in milliseconds.
  * @param {Particle} particle A prototypical particle.
  * @param {ParticleSpread} particleSpread
- * @param {float} particleSpreadDistanceModifier (Optional)
+ * @param {THREE.Vector3} particleSpreadDistanceModifier (Optional)
  * @param {boolean} debug Set to true if particles should not be added to the scene (Optional).
  */
 function ContinuousParticleSystem(zone, threeJsScene, particlesPerRelease, timePerRelease, particle, particleSpread, particleSpreadDistanceModifier, debug) {

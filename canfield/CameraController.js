@@ -88,10 +88,10 @@ CameraController.prototype.keyDown = function(e) {
     else if (keyCode === KeyEvent.DOM_VK_E)
     {
         var box = this.camera.getBoundingBox().clone();
-        box.xLeft -= 50;
-        box.width += 100;
-        box.zBack -= 50;
-        box.depth += 100;
+        box.xLeft -= 55;
+        box.width += 110;
+        box.zBack -= 55;
+        box.depth += 110;
         
         for (var i = 0; i < this.doors.length; ++i)
         {

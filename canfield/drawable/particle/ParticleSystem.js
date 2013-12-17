@@ -116,29 +116,33 @@ ParticleSystem.prototype.removeFromScene = function(particle) {
  * 
  * @param {THREE.Vector3} position
  * @param {ParticleSpread} spread
- * @param {float} modifier (optional)
+ * @param {THREE.Vector3} max The maximum additional x, y and z values that can be applied
  */
-ParticleSystem.prototype.adjustForSpread = function(position, spread, modifier) {
-    if (spread === ParticleSpread.SMALL)
-    {
-        return MathHelper.adjustVector3(position, 0.975, 1.025, modifier);
-    }
-    else if (spread === ParticleSpread.SMALL_MEDIUM)
-    {
-        return MathHelper.adjustVector3(position, 0.95, 1.05, modifier);
-    }
-    else if (spread === ParticleSpread.MEDIUM)
-    {
-        return MathHelper.adjustVector3(position, 0.8, 1.2, modifier);
-    }
-    else if (spread === ParticleSpread.LARGE)
-    {
-        return MathHelper.adjustVector3(position, 0.5, 1.5, modifier);
-    }
-    else
-    {
-        throw "ParticleSystem.adjustForSpread: Invalid ParticleSpread value: " + this.spread;
-    }
+ParticleSystem.prototype.adjustForSpread = function(position, spread, max) {
+    if (typeof max === "undefined") throw "max must be specified in ParticleSystem.adjustForSpeed";
+    
+    return MathHelper.adjustVector3_2(position, new THREE.Vector3(), max);
+    
+    // if (spread === ParticleSpread.SMALL)
+    // {
+        // return MathHelper.adjustVector3_2(position, 0, max);
+    // }
+    // else if (spread === ParticleSpread.SMALL_MEDIUM)
+    // {
+        // return MathHelper.adjustVector3_2(position, 0.95, 1.05, modifier);
+    // }
+    // else if (spread === ParticleSpread.MEDIUM)
+    // {
+        // return MathHelper.adjustVector3_2(position, 0.8, 1.2, modifier);
+    // }
+    // else if (spread === ParticleSpread.LARGE)
+    // {
+        // return MathHelper.adjustVector3_2(position, 0.5, 1.5, modifier);
+    // }
+    // else
+    // {
+        // throw "ParticleSystem.adjustForSpread: Invalid ParticleSpread value: " + this.spread;
+    // }
 };
 
 /**

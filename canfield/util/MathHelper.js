@@ -56,23 +56,35 @@ MathHelper.randomNumber = function(min, max) {
  * @param {THREE.Vector3} vec3
  * @param {float} minPctAdjustment
  * @param {float} maxPctAdjustment
- * @param {float} modifier An optional modifier value (optional)
  */
-MathHelper.adjustVector3 = function(vec3, minPctAdjustment, maxPctAdjustment, modifier) {
-    var x, y, z = 0;
+MathHelper.adjustVector3 = function(vec3, minPctAdjustment, maxPctAdjustment) {
+    var x, y, z;
     if (typeof modifier === "undefined")
     {
         x = vec3.x * MathHelper.randomNumber(minPctAdjustment, maxPctAdjustment);
         y = vec3.y * MathHelper.randomNumber(minPctAdjustment, maxPctAdjustment);
         z = vec3.z * MathHelper.randomNumber(minPctAdjustment, maxPctAdjustment);
+    }
+            
+    return new THREE.Vector3(x, y, z);
+};
+
+/**
+ * 
+ * @param {THREE.Vector3} vec3
+ * @param {THREE.Vector3} min
+ * @param {THREE.Vector3} max
+ */
+MathHelper.adjustVector3_2 = function(vec3, min, max) {
+    var x, y, z;
+    if (typeof modifier === "undefined")
     {
-    else
-    {
-        var dir = MathHelper.randomNumber(1, 2);
-        if (dir !== 1) dir = -1;
-        x = vec3.x + dir * modifier * MathHelper.randomNumber(minPctAdjustment, maxPctAdjustment);
-        y = vec3.y + dir * modifier * MathHelper.randomNumber(minPctAdjustment, maxPctAdjustment);
-        z = vec3.z + dir * modifier * MathHelper.randomNumber(minPctAdjustment, maxPctAdjustment);
+        var dirX = (MathHelper.randomInt(1, 2) === 1) ? 1 : -1;
+        var dirY = (MathHelper.randomInt(1, 2) === 1) ? 1 : -1;
+        var dirZ = (MathHelper.randomInt(1, 2) === 1) ? 1 : -1;
+        x = vec3.x + dirX * MathHelper.randomNumber(min.x, max.x);
+        y = vec3.y + dirY * MathHelper.randomNumber(min.y, max.y);
+        z = vec3.z + dirZ * MathHelper.randomNumber(min.z, max.z);
     }
             
     return new THREE.Vector3(x, y, z);
