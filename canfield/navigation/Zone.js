@@ -69,7 +69,7 @@ Zone.prototype.addBlockedArea = function(blockedArea) {
 Zone.prototype.removeBlockedArea = function(blockedArea) {
     for (var i = 0; i < this.blockedAreas.length; ++i)
     {
-        if (this.blockedArea[i].id == blockedArea.id)
+        if (this.blockedAreas[i].id === blockedArea.id)
         {
             this.blockedAreas.splice(i, 1);
             return;

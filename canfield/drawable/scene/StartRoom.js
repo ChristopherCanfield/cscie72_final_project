@@ -66,7 +66,7 @@ StartRoom.addWalls = function(gameScene, zone) {
     gameScene.add(frontWall2);
     
     // Front door.
-    var door = new Door(StartRoom.X_LEFT + StartRoom.X_WIDTH / 2 - 25, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH - 5,
+    var door = new Door(StartRoom.X_LEFT + StartRoom.X_WIDTH / 2 - 25, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH + 5,
             50, // Width
             StartRoom.Y_HEIGHT, // Height
             10, // Depth
