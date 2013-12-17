@@ -13,6 +13,10 @@ function ParticleSystemPool(threeJsScene, poolSize, particlesPerSystem) {
     this.particlesPerSystem = particlesPerSystem;
 };
 
+ParticleSystemPool.prototype.getMaxPoolSize = function() {
+    return this.poolSize();
+};
+
 /**
  * Gets a particle system from the pool. Note: returns null if no particle system is free.
  * @param {Zone} zone

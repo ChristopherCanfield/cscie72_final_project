@@ -49,13 +49,15 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     // Create the drawable object.
     var radius = size;
     // These need to run fast, since there are often quite a few of them.
-    this.geometry = new THREE.SphereGeometry(radius, 3, 2);
+     this.geometry = new THREE.SphereGeometry(radius, 3, 2);
+   // this.geometry = new THREE.CircleGeometry(radius, 3);
     
     var material = new THREE.MeshBasicMaterial({ 
         color : color
     });
     var mesh = new THREE.Mesh(this.geometry, material);
     mesh.position.set(position.x, position.y, position.z);
+    //mesh.rotation.y = MathHelper.randomNumber(0, 3);
     this.threeJsDrawable = mesh;
 }
 

@@ -11,28 +11,38 @@
  * @param {float} xLeft
  * @param {float} yBottom
  * @param {float} zBack
- * @param {float} width
- * @param {float} height
- * @param {float} depth
  * @param {Zone} zone The zone that the lamp falls within.
  */
-function FloorLamp(xLeft, yBottom, zBack, width, height, depth, zone) {
+function FloorLamp(xLeft, yBottom, zBack, zone) {
     Drawable.call(this);
     zone.addDrawable(this);
     
-    var texture = cdc.textureManager.getTexture(texturePath).clone();
-    texture.needsUpdate = true;
+    var poleTexture = cdc.textureManager.getTexture(texturePath);
     var material = new THREE.MeshLambertMaterial({ 
         map: texture
     });
-    texture.repeat.set(textureRepeatX, textureRepeatY);
+    poleTexture.repeat.set(textureRepeatX, textureRepeatY);
     
-    this.geometry = new THREE.CubeGeometry(width, height, depth);
-    var mesh = new THREE.Mesh(this.geometry, material);
-    mesh.position.set(xLeft + (width / 2), yBottom + (height / 2) - 0.5, zBack - (depth / 2));
-    this.threeJsDrawable = mesh;
+    this.poleGeometry = new THREE.CylinderGeometry(2, 6, 20, 8, 1, true);
+    var poleMesh = new THREE.Mesh(this.poleGeometry, material);
+    poleMesh.position.set(xLeft, yBottom, zBack);
+    this.threeJsDrawable = poleMesh;
     
-    // Prevent camera from walking through wall.
+    var bulbTexture = cdc.textureManager.getTexture(texturePath);
+    var material = new THREE.MeshBasicMaterial({ 
+        map: texture
+    });
+    bulbTexture.repeat.set(textureRepeatX, textureRepeatY);
+    
+    var bulbGeometry = new THREE.CubeGeometry(width, height, depth);
+    var bulbMesh = new THREE.Mesh(bulbGeometry, material);
+    bulbMesh.position.set(xLeft, yBottom, zBack);
+    poleMesh.add(bulbMesh);
+    
+    
+    
+    
+    // Prevent camera from walking through light.
     this.blockedArea = new BlockedArea(new BoundingBox(xLeft, width, yBottom, height, zBack - depth, depth));
     zone.addBlockedArea(this.blockedArea);
 }

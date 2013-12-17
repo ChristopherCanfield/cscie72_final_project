@@ -33,7 +33,7 @@ function Door(xLeft, yBottom, zBack, width, height, depth, zone, gameScene) {
     mesh.position.set(xLeft + (width / 2), yBottom + (height / 2) - 0.5, zBack - (depth / 2));
     this.threeJsDrawable = mesh;
     
-    // Prevent camera from walking through wall.
+    // Prevent camera from walking through door.
     this.boundingBox = new BoundingBox(xLeft, width, yBottom, height, zBack - depth, depth);
     this.blockedArea = new BlockedArea(this.boundingBox);
     zone.addBlockedArea(this.blockedArea);
