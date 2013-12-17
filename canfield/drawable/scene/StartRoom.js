@@ -132,17 +132,27 @@ StartRoom.addLights = function(gameScene, zone) {
     // var scene = gameScene.getThreeJsScene();
     //scene.add(light1);
     
-    var lamp1 = new FloorLamp(StartRoom.X_LEFT + 100, 0, 100, zone, gameScene);
-    gameScene.add(lamp1);
+    // var lamp1 = new FloorLamp(StartRoom.X_LEFT + 50, 0, 50, zone, gameScene);
+    // gameScene.add(lamp1);
+    // var lamp2 = new FloorLamp(StartRoom.X_LEFT + StartRoom.X_WIDTH - 50, 0, 50, zone, gameScene);
+    // gameScene.add(lamp2);
+//     
+    // var lamp3 = new FloorLamp(50, 0, StartRoom.Z_BACK + 50, zone, gameScene);
+    // gameScene.add(lamp3);    
+    var frontLeft = new FloorLamp(125, 0, StartRoom.Z_BACK + StartRoom.Z_DEPTH - 75, zone, gameScene);
+    gameScene.add(frontLeft);
+    var frontRight = new FloorLamp(-125, 0, StartRoom.Z_BACK + StartRoom.Z_DEPTH - 75, zone, gameScene);
+    gameScene.add(frontRight);
     
-    var lamp1 = new FloorLamp(StartRoom.X_LEFT + StartRoom.X_WIDTH - 100, 0, 100, zone, gameScene);
-    gameScene.add(lamp1);
+    var backLeft = new FloorLamp(200, 0, StartRoom.Z_BACK + 100, zone, gameScene);
+    gameScene.add(backLeft);
+    var backRight = new FloorLamp(-200, 0, StartRoom.Z_BACK + 100, zone, gameScene);
+    gameScene.add(backRight);
     
-    var lamp1 = new FloorLamp(100, 0, 100, zone, gameScene);
-    gameScene.add(lamp1);
-    
-    var lamp1 = new FloorLamp(100, 0, 100, zone, gameScene);
-    gameScene.add(lamp1);
+    var right = new FloorLamp(StartRoom.X_LEFT + 100, 0, StartRoom.Z_BACK + StartRoom.Z_DEPTH / 2, zone, gameScene);
+    gameScene.add(right);
+    var left = new FloorLamp(StartRoom.X_LEFT + StartRoom.X_WIDTH - 100, 0, StartRoom.Z_BACK + StartRoom.Z_DEPTH / 2, zone, gameScene);
+    gameScene.add(left);
 };
 
 StartRoom.addParticleSystems = function(gameScene, zone) {

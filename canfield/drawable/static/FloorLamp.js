@@ -39,12 +39,12 @@ function FloorLamp(xLeft, yBottom, zBack, zone, gameScene) {
     this.bulb.position.set(0, 40, 0);
     poleMesh.add(this.bulb);
     
-    var light = new THREE.PointLight(0xffffff, 2, 250);
+    var light = new THREE.PointLight(0xffffff, 1.5, 450);
     this.bulb.add(light);
     
     var smokeParticle = new Particle(null, new THREE.Vector3(xLeft, yBottom + 47, zBack), new THREE.Vector3(0, 0.5, 0), new THREE.Vector3(0, 1, 0), 
-                                0.075, new THREE.Color("rgb(160, 160, 160)"), 3000);
-    var smokeSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 10, 450, smokeParticle, ParticleSpread.SMALL_MEDIUM);
+                                0.125, new THREE.Color("rgb(255, 216, 0)"), 3000);
+    var smokeSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 5, 500, smokeParticle, ParticleSpread.SMALL_MEDIUM);
     zone.addParticleSystem(smokeSystem);
     
     // TODO: Add light & particle system (continuous, up)

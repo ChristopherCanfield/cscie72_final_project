@@ -123,7 +123,7 @@ ParticleSystem.prototype.adjustForSpread = function(position, spread) {
     }
     else if (spread === ParticleSpread.SMALL_MEDIUM)
     {
-        return MathHelper.adjustVector3(position, 0.935, 1.065);
+        return MathHelper.adjustVector3(position, 0.95, 1.05);
     }
     else if (spread === ParticleSpread.MEDIUM)
     {
