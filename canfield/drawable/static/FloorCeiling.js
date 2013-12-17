@@ -9,7 +9,7 @@ function FloorCeiling(xLeft, yBottom, zBack, width, height, depth, texturePath, 
     
     var texture = cdc.textureManager.getTexture(texturePath).clone();
     texture.needsUpdate = true;
-    var material = new THREE.MeshLambertMaterial({ 
+    var material = new THREE.MeshPhongMaterial({ 
         map: texture
     });
     texture.repeat.set(textureRepeatX, textureRepeatY);

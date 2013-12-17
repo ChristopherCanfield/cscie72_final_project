@@ -16,7 +16,7 @@
  * @param {THREE.Vector3} direction -1, 0, or 1 for each direction.
  * @param {float} size The particle's radius.
  * @param {THREE.Color} color
- * @param {float} lifetime The number of milliseconds before the particle disappears.
+ * @param {int} lifetime The number of milliseconds before the particle disappears.
  * @param {boolean} speedIncreasesWithDistance true if the speed of the particle 
  * increases with distance from the start point (optional).
  * @param {int} launchTime The time that the particle appears, in milliseconds. 0 is the creation time. (optional)
@@ -26,9 +26,9 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
     
     this.particleSystem = particleSystem;
     
-    this.position = position;
-    this.speed = speed;
-    this.direction = direction;
+    this.position = position.clone();
+    this.speed = speed.clone();
+    this.direction = direction.clone();
     this.size = size;
     this.color = color;
     this.lifeSeconds = 0;
@@ -53,7 +53,9 @@ function Particle(particleSystem, position, speed, direction, size, color, lifet
    // this.geometry = new THREE.CircleGeometry(radius, 3);
     
     var material = new THREE.MeshBasicMaterial({ 
-        color : color
+        color : color,
+        shading : THREE.NoShading,
+        fog : false
     });
     var mesh = new THREE.Mesh(this.geometry, material);
     mesh.position.set(position.x, position.y, position.z);
@@ -75,9 +77,9 @@ Particle.nextId = 0;
  * @param {int} launchTime The time that the particle appears, in milliseconds. 0 is the creation time. (optional)
  */
 Particle.prototype.reset = function(position, speed, direction, color, lifetime, launchTime) {
-    this.position = position;
-    this.speed = speed;
-    this.direction = direction;
+    this.position = position.clone();
+    this.speed = speed.clone();
+    this.direction = direction.clone();
     this.launchTime = (typeof launchTime === "undefined") ? 0 : launchTime / 1000;
     this.lifetime = lifetime / 1000 + this.launchTime;
     this.lifeSeconds = 0;
@@ -87,8 +89,11 @@ Particle.prototype.reset = function(position, speed, direction, color, lifetime,
     this.threeJsDrawable.position.z = position.z;
     
     var material = this.threeJsDrawable.material;
-    material.color = color;
-    material.needsUpdate = true;
+    if (material.color !== color)
+    {
+        material.color = color;
+        material.needsUpdate = true;
+    }
     
     this.setActive(true);
 };

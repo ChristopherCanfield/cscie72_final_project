@@ -23,7 +23,7 @@ StartRoom.create = function(gameScene, zones) {
     StartRoom.addWalls(gameScene, zone);
     StartRoom.addFloorCeiling(gameScene, zone);
     StartRoom.addParticleSystems(gameScene, zone);
-    StartRoom.addLights(gameScene);
+    StartRoom.addLights(gameScene, zone);
     StartRoom.addInsideObjects(gameScene, zone);
     StartRoom.addOutsideObjects(gameScene, zone);
 };
@@ -125,12 +125,24 @@ StartRoom.addFloorCeiling = function(gameScene, zone) {
             Textures.CONCRETE_7, 8, 8));
 };
 
-StartRoom.addLights = function(gameScene) {
-    var light1 = new THREE.PointLight(0xE5E5CD, 3, 1000);
-    light1.rotation.x = Math.PI / 4;
-    light1.position.set(StartRoom.X_LEFT + 300, 50, StartRoom.Z_BACK + 400); 
-    var scene = gameScene.getThreeJsScene();
+StartRoom.addLights = function(gameScene, zone) {
+    // var light1 = new THREE.PointLight(0xE5E5CD, 3, 1000);
+    // light1.rotation.x = Math.PI / 4;
+    // light1.position.set(StartRoom.X_LEFT + 300, 50, StartRoom.Z_BACK + 400); 
+    // var scene = gameScene.getThreeJsScene();
     //scene.add(light1);
+    
+    var lamp1 = new FloorLamp(StartRoom.X_LEFT + 100, 0, 100, zone, gameScene);
+    gameScene.add(lamp1);
+    
+    var lamp1 = new FloorLamp(StartRoom.X_LEFT + StartRoom.X_WIDTH - 100, 0, 100, zone, gameScene);
+    gameScene.add(lamp1);
+    
+    var lamp1 = new FloorLamp(100, 0, 100, zone, gameScene);
+    gameScene.add(lamp1);
+    
+    var lamp1 = new FloorLamp(100, 0, 100, zone, gameScene);
+    gameScene.add(lamp1);
 };
 
 StartRoom.addParticleSystems = function(gameScene, zone) {

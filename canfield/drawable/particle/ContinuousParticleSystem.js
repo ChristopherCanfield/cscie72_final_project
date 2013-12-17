@@ -7,10 +7,10 @@
 
 /**
  * Creates a paricle system that runs continuously.
- * @param {Object} zone
+ * @param {Zone} zone
  * @param {Object} threeJsScene
- * @param {Object} particlesPerRelease
- * @param {Object} timePerRelease The time between particle releases, in milliseconds.
+ * @param {int} particlesPerRelease
+ * @param {int} timePerRelease The time between particle releases, in milliseconds.
  * @param {Particle} particle A prototypical particle.
  * @param {ParticleSpread} particleSpread
  * @param {boolean} debug Set to true if particles should not be added to the scene (Optional).
@@ -66,7 +66,7 @@ ContinuousParticleSystem.prototype.addParticle = function() {
     var p = this.findInactive();
     if (p !== null)
     {
-        p.reset(position, speed, this.prototypicalParticle.direction, lifetime);
+        p.reset(position, speed, this.prototypicalParticle.direction, this.prototypicalParticle.color, lifetime);
     }
     else
     {

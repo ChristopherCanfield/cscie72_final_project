@@ -14,7 +14,7 @@ function ParticleSystemPool(threeJsScene, poolSize, particlesPerSystem) {
 };
 
 ParticleSystemPool.prototype.getMaxPoolSize = function() {
-    return this.poolSize();
+    return this.poolSize;
 };
 
 /**
