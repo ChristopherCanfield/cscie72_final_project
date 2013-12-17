@@ -94,7 +94,6 @@ function init()
  */
 function render()
 {
-    // TODO: get the current zone, plus all adjacent zones, and render them.
     var deltaTime = cdc.timer.getDelta();
     cdc.lastUpdate += deltaTime;
     

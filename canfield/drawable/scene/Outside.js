@@ -169,9 +169,6 @@ Outside.addObjects = function(gameScene, zone) {
 };
 
 
-
-
-// TODO: Update these values
 Outside.X_LEFT = StartRoom.X_LEFT;
 Outside.X_WIDTH = StartRoom.X_WIDTH;
 Outside.Z_BACK = StartRoom.Z_BACK + StartRoom.Z_DEPTH;
