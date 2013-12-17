@@ -14,7 +14,7 @@
  * @param {float} width
  * @param {float} height
  * @param {float} depth
- * @param {Zone} zone The zone that the wall falls within.
+ * @param {Zone} zone The zone that the door falls within.
  * @param {GameScene} gameScene Reference to the game scene.
  */
 function Door(xLeft, yBottom, zBack, width, height, depth, zone, gameScene) {
