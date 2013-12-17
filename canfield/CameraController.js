@@ -90,8 +90,8 @@ CameraController.prototype.keyDown = function(e) {
         var box = this.camera.getBoundingBox().clone();
         box.xLeft -= 55;
         box.width += 110;
-        box.zBack -= 55;
-        box.depth += 110;
+        box.zBack -= 65;
+        box.depth += 130;
         
         for (var i = 0; i < this.doors.length; ++i)
         {

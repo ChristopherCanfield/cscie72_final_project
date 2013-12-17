@@ -53,9 +53,8 @@ function FloorLamp(xLeft, yBottom, zBack, zone, gameScene, color, intensity, dis
     {
         var smokeParticle = new Particle(null, new THREE.Vector3(xLeft, yBottom + 47, zBack), new THREE.Vector3(0, 0.5, 0), new THREE.Vector3(0, 1, 0), 
                                     0.125, new THREE.Color("rgb(255, 216, 0)"), 3000);
-        var distanceModifier = new THREE.Vector3(30, 3, 30);
-        var particleSpreadVector = new THREE.Vector3(10, 5, 10);
-        var smokeSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 5, 500, smokeParticle, particleSpreadVector, distanceModifier);
+        var particleSpreadVector = new THREE.Vector3(5, 3, 5);
+        var smokeSystem = new ContinuousParticleSystem(zone, gameScene.getThreeJsScene(), 5, 500, smokeParticle, particleSpreadVector);
         zone.addParticleSystem(smokeSystem);
     }
 
