@@ -34,7 +34,7 @@ function Projectile(zone, particleSystemPool, threeJsScene, camera,
     this.lifetime = lifetime;
     this.lifeMillis = 0;
     
-    this.particleSpreadVector = new THREE.Vector3(size, size, size);
+    this.particleSpreadVector = new THREE.Vector3(size / 2, size / 2, size / 2);
     
     this.done = false;
     
