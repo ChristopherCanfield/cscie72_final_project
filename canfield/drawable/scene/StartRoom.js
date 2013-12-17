@@ -116,7 +116,7 @@ StartRoom.addFloorCeiling = function(gameScene, zone) {
     // Floor.
     gameScene.add(new FloorCeiling(StartRoom.X_LEFT + StartRoom.X_WIDTH, StartRoom.Y_BOTTOM, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 
             StartRoom.X_WIDTH, 1, StartRoom.Z_DEPTH, 
-            Textures.WOODBOARD_1, 6, 6));
+            Textures.WOODBOARD_1a, 12, 12));
             
     // Ceiling.
     gameScene.add(new FloorCeiling(StartRoom.X_LEFT + StartRoom.X_WIDTH, StartRoom.Y_BOTTOM + StartRoom.Y_HEIGHT, StartRoom.Z_BACK + StartRoom.Z_DEPTH, 

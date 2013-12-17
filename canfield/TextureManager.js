@@ -73,6 +73,7 @@ Textures.FIRE_5 = "textures/fire/fire5.jpg";
 Textures.WOODBOARD_1 = "textures/woodboard/woodboard1.jpg";
 Textures.WOODBOARD_2 = "textures/woodboard/woodboard2.jpg";
 Textures.WOODBOARD_3 = "textures/woodboard/woodboard3.jpg";
+Textures.WOODBOARD_1a = "textures/woodboard/woodboard1a.jpg";
 
 Textures.CONCRETE_1 = "textures/concrete/concrete1.jpg";
 Textures.CONCRETE_2 = "textures/concrete/concrete2.jpg";
