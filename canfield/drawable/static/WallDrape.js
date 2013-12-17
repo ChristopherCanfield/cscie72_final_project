@@ -1,6 +1,6 @@
 /**
  * @author Christopher D. Canfield
- * WindowFancy.js
+ * WallDrape.js
  * December 2013
  */
 
@@ -12,7 +12,7 @@
  * @param {float} z
  * @param {boolean} northSouth
  */
-function WindowFancy(x, y, z, northSouth) {
+function WallDrape(x, y, z, northSouth) {
     THREE.Mesh.call(this);
     
     var texture = cdc.textureManager.getTexture(Textures.WALLDECORATION_1);
@@ -35,5 +35,5 @@ function WindowFancy(x, y, z, northSouth) {
     this.position.set(x, y, z);
 };
 
-WindowFancy.prototype = Object.create(THREE.Mesh.prototype);
-WindowFancy.prototype.constructor = WindowFancy;
+WallDrape.prototype = Object.create(THREE.Mesh.prototype);
+WallDrape.prototype.constructor = WallDrape;

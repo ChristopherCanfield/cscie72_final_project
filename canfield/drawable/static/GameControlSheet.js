@@ -14,7 +14,7 @@ function GameControlSheet(y, z) {
     });
     texture.repeat.set(1, 1);
     
-    this.geometry = new THREE.CubeGeometry(170, 85, 1);
+    this.geometry = new THREE.CubeGeometry(170, 85, 0.1);
     this.position.set(0, y, z);
 };
 
