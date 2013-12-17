@@ -11,9 +11,11 @@
  * @param {int} canvasWidth The width of the canvas.
  * @param {int} canvasHeight The height of the canvas.
  * @param {Camera} camera Reference to the Camera object.
+ * @param {Door[]} doors
  */
-function CameraController(canvasWidth, canvasHeight, camera) {    
+function CameraController(canvasWidth, canvasHeight, camera, doors) {    
     this.camera = camera;
+    this.doors = doors;
     
     this.lastMouseX = canvasWidth / 2.0;
     this.lastMosueY = canvasHeight / 2.0;
@@ -53,35 +55,51 @@ CameraController.prototype.keyDown = function(e) {
         
     var keyCode = e.keyCode || e.which;
     
-    if (keyCode == KeyEvent.DOM_VK_LEFT ||
-            keyCode == KeyEvent.DOM_VK_A)
+    if (keyCode === KeyEvent.DOM_VK_LEFT ||
+            keyCode === KeyEvent.DOM_VK_A)
     {
         if (this.debug) console.log("Key: Left");
         return this.camera.strafeLeft();
     }
-    else if (keyCode == KeyEvent.DOM_VK_RIGHT ||
-            keyCode == KeyEvent.DOM_VK_D)
+    else if (keyCode === KeyEvent.DOM_VK_RIGHT ||
+            keyCode === KeyEvent.DOM_VK_D)
     {
         if (this.debug) console.log("Key: Right");
         return this.camera.strafeRight();
     }
-    else if (keyCode == KeyEvent.DOM_VK_UP ||
-            keyCode == KeyEvent.DOM_VK_W)
+    else if (keyCode === KeyEvent.DOM_VK_UP ||
+            keyCode === KeyEvent.DOM_VK_W)
     {
         if (this.debug) console.log("Key: Up");
         return this.camera.moveForward();
  
     }
-    else if (keyCode == KeyEvent.DOM_VK_DOWN ||
-            keyCode == KeyEvent.DOM_VK_S)
+    else if (keyCode === KeyEvent.DOM_VK_DOWN ||
+            keyCode === KeyEvent.DOM_VK_S)
     {
         if (this.debug) console.log("Key: Down");
         return this.camera.moveBackward();
     }
-    else if (keyCode == KeyEvent.DOM_VK_Q)
+    else if (keyCode === KeyEvent.DOM_VK_Q)
     {
         this.camera.rotate180();
         return true;
+    }
+    else if (keyCode === KeyEvent.DOM_VK_E)
+    {
+        var box = this.camera.getBoundingBox().clone();
+        box.xLeft -= 10;
+        box.width += 20;
+        box.zBack -= 10;
+        box.zDepth += 20;
+        
+        for (var i = 0; i < this.doors.length; ++i)
+        {
+            if (this.doors[i].intersects(box) && !this.doors[i].isOpen())
+            {
+                this.doors[i].open();
+            }
+        }
     }
 };
 

@@ -15,8 +15,9 @@
  * @param {float} height
  * @param {float} depth
  * @param {Zone} zone The zone that the wall falls within.
+ * @param {GameScene} gameScene Reference to the game scene.
  */
-function Door(xLeft, yBottom, zBack, width, height, depth, zone) {
+function Door(xLeft, yBottom, zBack, width, height, depth, zone, gameScene) {
     Drawable.call(this);
     zone.addDrawable(this);
     
@@ -33,13 +34,16 @@ function Door(xLeft, yBottom, zBack, width, height, depth, zone) {
     this.threeJsDrawable = mesh;
     
     // Prevent camera from walking through wall.
-    this.blockedArea = new BlockedArea(new BoundingBox(xLeft, width, yBottom, height, zBack - depth, depth));
+    this.boundingBox = new BoundingBox(xLeft, width, yBottom, height, zBack - depth, depth);
+    this.blockedArea = new BlockedArea(this.boundingBox);
     zone.addBlockedArea(this.blockedArea);
-    
+
     this.opening = false;
     this.open = false;
     this.timeToOpenMillis = 2000;
     this.openSpeedPerMilli = width / this.timeToOpenMillis;
+    
+    gameScene.addDoor(this);
 }
 
 

@@ -86,6 +86,7 @@ Drawable.prototype.update = function(deltaTime) {
 
 Drawable.prototype.updateThis = function(deltaTime) {
     // Override in inheriting class if this functionality is needed.
+    // Default implementation: Do nothing.
 };
 
 

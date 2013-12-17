@@ -27,7 +27,9 @@ function BoundingBox(xLeft, width, yBottom, height, zBack, depth) {
 
 BoundingBox.id = 0;
 
-
+/**
+ * Returns true if the otherBox is equal to this box. 
+ */
 BoundingBox.prototype.equals = function(otherBox) {
     return (this.xLeft === otherBox.xLeft &&
             this.width === otherBox.width &&
@@ -75,4 +77,11 @@ BoundingBox.overlapsZ = function(box1, box2) {
             box1.zBack >= box2.zBack) ||
             ((box1.zBack + box1.depth) >= box2.zBack &&
             box1.zBack <= box2.zBack)); 
+};
+
+/**
+ * Returns a clone of this BoundingBox. 
+ */
+BoundingBox.prototype.clone = function() {
+    return new BoundingBox(this.xLeft, this.width, this.yBottom, this.height, this.zBack, this.depth);
 };

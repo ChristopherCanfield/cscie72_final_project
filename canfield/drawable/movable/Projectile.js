@@ -98,7 +98,7 @@ Projectile.prototype.onHit = function() {
 
     var p = this.particleSystemPool.getExplosionSystem(this.zone, lifetime, particleCount, 
             this.threeJsDrawable.position, particleSpeed, particleSize, 
-            new THREE.Color("rgb(180, 0, 0)"), particleLifetime, ParticleSpread.SMALL, this.camera);
+            new THREE.Color("rgb(128, 128, 128)"), particleLifetime, ParticleSpread.SMALL, this.camera);
     if (p !== null)
     {
         this.zone.addParticleSystem(p);

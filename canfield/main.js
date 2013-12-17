@@ -77,7 +77,7 @@ function init()
     // Create the camera so it can be moved.
     cdc.camera = new Camera(cdc.scene.getZones(), window, glCanvas.width, glCanvas.height);
     //cdc.camera.debug = true;
-    cdc.cameraController = new CameraController(glCanvas.width, glCanvas.height, cdc.camera);
+    cdc.cameraController = new CameraController(glCanvas.width, glCanvas.height, cdc.camera, cdc.scene.getDoors());
     cdc.weaponController = new WeaponController(cdc.scene.getThreeJsScene(), cdc.camera);
     
     cdc.scene.getThreeJsScene().add(cdc.camera.yawObject);

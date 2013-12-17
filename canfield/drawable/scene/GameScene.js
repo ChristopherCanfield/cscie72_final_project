@@ -13,6 +13,8 @@ function GameScene() {
     
     this.threeJsScene = new THREE.Scene();
     this.zones = new Zones();
+    
+    this.doors = [];
 }
 
 GameScene.prototype = Object.create(Drawable.prototype);
@@ -106,6 +108,14 @@ GameScene.prototype.getThreeJsScene = function() {
 
 GameScene.prototype.getZones = function() {
     return this.zones;    
+};
+
+GameScene.prototype.addDoor = function(door) {
+    this.doors.push(door);    
+};
+
+GameScene.prototype.getDoors = function() {
+    return this.doors;    
 };
 
 
