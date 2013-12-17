@@ -46,6 +46,7 @@ GameScene.prototype.createScene = function() {
     //this.add(new Ground());
     
     StartRoom.create(this, this.zones);
+    Outside.create(this, this.zones);
     
     // Add ambient light to scene.
    // var ambientLight = new THREE.AmbientLight(0x050505);

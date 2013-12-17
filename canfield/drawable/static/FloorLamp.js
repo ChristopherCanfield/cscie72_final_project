@@ -12,8 +12,11 @@
  * @param {float} yBottom
  * @param {float} zBack
  * @param {Zone} zone The zone that the lamp falls within.
+ * @param {hex} color The light's color, in hexadecimal. The default color is white. (optional)
+ * @param {float} intensity The light's intensity (optional).
+ * @param {float} distance The light's distance (optional).
  */
-function FloorLamp(xLeft, yBottom, zBack, zone, gameScene) {
+function FloorLamp(xLeft, yBottom, zBack, zone, gameScene, color, intensity, distance) {
     Drawable.call(this);
     zone.addDrawable(this);
     
@@ -39,7 +42,10 @@ function FloorLamp(xLeft, yBottom, zBack, zone, gameScene) {
     this.bulb.position.set(0, 40, 0);
     poleMesh.add(this.bulb);
     
-    var light = new THREE.PointLight(0xffffff, 1.5, 450);
+    var lightColor = (typeof color !== "undefined") ? color : 0xffffff;
+    var lightIntensity = (typeof intensity !== "undefined") ? intensity : 1.5;
+    var lightDistance = (typeof distance !== "undefined") ? distance : 450;
+    var light = new THREE.PointLight(lightColor, lightIntensity, lightDistance);
     this.bulb.add(light);
     
     var smokeParticle = new Particle(null, new THREE.Vector3(xLeft, yBottom + 47, zBack), new THREE.Vector3(0, 0.5, 0), new THREE.Vector3(0, 1, 0), 

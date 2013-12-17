@@ -72,6 +72,7 @@ Door.prototype.open = function() {
     {
         this.opening = true;
         this.timeSinceOpeningStarted = 0;
+        this.threeJsDrawable.position.z -= 7.5; 
     }
 };
 

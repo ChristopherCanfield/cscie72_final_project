@@ -19,10 +19,8 @@
  * @param {int} textureRepeatY
  * @param {Zone} zone The zone that the wall falls within.
  */
-function BuildingWall(xLeft, yBottom, zBack, 
-        width, height, depth, 
-        texturePath, textureRepeatX, textureRepeatY, 
-        zone, debug) {
+function BuildingWall(xLeft, yBottom, zBack, width, height, depth, 
+        texturePath, textureRepeatX, textureRepeatY, zone, debug) {
     Drawable.call(this);
     zone.addDrawable(this);
     
