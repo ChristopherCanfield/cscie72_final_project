@@ -65,7 +65,7 @@ function init()
     
     // Create the webGL render.
     gl = new THREE.WebGLRenderer(glParameters);
-    gl.setClearColor(Colors.SKY_GETTING_DARK_4); // gl.clearColor(r, g, b);
+    gl.setClearColor(Colors.SKY_BLACK); // gl.clearColor(r, g, b);
     gl.setDepthTest(true); // gl.enable(gl.DEPTH_TEST);
     
     cdc.textureManager = new TextureManager(gl);

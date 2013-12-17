@@ -48,9 +48,8 @@ GameScene.prototype.createScene = function() {
     StartRoom.create(this, this.zones);
     
     // Add ambient light to scene.
-    // TODO: turn down the light after testing.
-    var ambientLight = new THREE.AmbientLight(0x050505);
-    this.getThreeJsScene().add(ambientLight);
+   // var ambientLight = new THREE.AmbientLight(0x050505);
+    // this.getThreeJsScene().add(ambientLight);
     
     // Attach the scene to the three.js scene graph.
     this.addToThreeJsScene(this.threeJsScene);

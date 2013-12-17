@@ -91,14 +91,14 @@ Projectile.prototype.onHit = function() {
     
     var lifetime = 4250;
     var position = position;
-    var particleSpeed = new THREE.Vector3(3, 1.5, 3);
-    var particleSize = 0.275;
-    var particleLifetime = 2750;
-    var particleCount = this.particleSystemPool.getMaxPoolSize();
+    var particleSpeed = new THREE.Vector3(4, 1.5, 4);
+    var particleSize = 0.225;
+    var particleLifetime = 2650;
+    var particleCount = this.particleSystemPool.getParticlesPerSystem();
 
     var p = this.particleSystemPool.getExplosionSystem(this.zone, lifetime, particleCount, 
             this.threeJsDrawable.position, particleSpeed, particleSize, 
-            new THREE.Color("rgb(128, 128, 128)"), particleLifetime, ParticleSpread.SMALL, this.camera);
+            new THREE.Color("rgb(209, 0, 0)"), particleLifetime, ParticleSpread.SMALL, this.camera);
     if (p !== null)
     {
         this.zone.addParticleSystem(p);

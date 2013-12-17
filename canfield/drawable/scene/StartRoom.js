@@ -125,20 +125,7 @@ StartRoom.addFloorCeiling = function(gameScene, zone) {
             Textures.CONCRETE_7, 8, 8));
 };
 
-StartRoom.addLights = function(gameScene, zone) {
-    // var light1 = new THREE.PointLight(0xE5E5CD, 3, 1000);
-    // light1.rotation.x = Math.PI / 4;
-    // light1.position.set(StartRoom.X_LEFT + 300, 50, StartRoom.Z_BACK + 400); 
-    // var scene = gameScene.getThreeJsScene();
-    //scene.add(light1);
-    
-    // var lamp1 = new FloorLamp(StartRoom.X_LEFT + 50, 0, 50, zone, gameScene);
-    // gameScene.add(lamp1);
-    // var lamp2 = new FloorLamp(StartRoom.X_LEFT + StartRoom.X_WIDTH - 50, 0, 50, zone, gameScene);
-    // gameScene.add(lamp2);
-//     
-    // var lamp3 = new FloorLamp(50, 0, StartRoom.Z_BACK + 50, zone, gameScene);
-    // gameScene.add(lamp3);    
+StartRoom.addLights = function(gameScene, zone) {  
     var frontLeft = new FloorLamp(125, 0, StartRoom.Z_BACK + StartRoom.Z_DEPTH - 75, zone, gameScene);
     gameScene.add(frontLeft);
     var frontRight = new FloorLamp(-125, 0, StartRoom.Z_BACK + StartRoom.Z_DEPTH - 75, zone, gameScene);

@@ -17,6 +17,10 @@ ParticleSystemPool.prototype.getMaxPoolSize = function() {
     return this.poolSize;
 };
 
+ParticleSystemPool.prototype.getParticlesPerSystem = function() {
+    return this.particlesPerSystem;
+};
+
 /**
  * Gets a particle system from the pool. Note: returns null if no particle system is free.
  * @param {Zone} zone
