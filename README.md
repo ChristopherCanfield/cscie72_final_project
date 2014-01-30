@@ -13,5 +13,5 @@ The project was created as part of the CSCI E-72 Computer Graphics course that I
 
 The three.js library was used to assist with WebGL. The textures are from Paul Bourke's texture library: http://paulbourke.net/texture_colour/
 
-Christopher D. Canfield
+Christopher D. Canfield<br>
 January 2014
