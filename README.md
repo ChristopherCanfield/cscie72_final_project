@@ -8,7 +8,7 @@ The project was created as part of the CSCI E-72 Computer Graphics course that I
 - Collision detection
 - User interaction, such as opening doors and shooting projectiles
 - Moveable camera with mouse look (though pointer lock wasn't implemented)
-- KD tree to reduce cost of collision detection and to turn particle systems on or off
+- Zone-based system to reduce cost of collision detection and to turn particle systems on or off (based on the KD-tree concept)
 - Billboarding
 
 The three.js library was used to assist with WebGL. The textures are from Paul Bourke's texture library: http://paulbourke.net/texture_colour/
